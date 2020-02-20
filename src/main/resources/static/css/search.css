@@ -602,7 +602,7 @@ svg:not(:root){
   display: inline-block;
   height: 21px;
   line-height: 19px;
-  vertical-align: top;
+  vertical-align: middle;
   padding: 0px 5px;
   border-width: 1px;
   border-style: solid;
