@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksh.dabang.repository.UserRepository">
+
+	<select resultType="com.ksh.dabang.model.user.User" id="findAll">
+		SELECT * FROM user 
+	</select>
+
+	<insert id="join">
+		insert into user(email,name, password, phone, type,createDate)values(#{email},#{name},#{password},#{phone},#{type},now());
+	</insert>
+
+	<select resultType="com.ksh.dabang.model.user.User" id="findByUsernameAndPassword">
+		select userId,email,name,phone,type,typeName,typeNum,typeImage,role,profile from user where email = #{email} and password = #{password}
+	</select>
+
+	<select resultType="int" id="emailCheck">
+		select count(*) from user where email = #{email} 
+	</select>
+
+	<select resultType="com.ksh.dabang.model.user.dto.TypeDto" id="findByEmail">
+		select * from user where email = #{email}
+	</select>
+
+	<update id="typeSave">
+		UPDATE user SET typeName=#{typeName}, typeNum = #{typeNum}, typeImage = #{typeImage} WHERE userId = #{userId} 
+	</update>
+
+</mapper>

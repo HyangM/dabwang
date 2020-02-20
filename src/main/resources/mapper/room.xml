@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksh.dabang.repository.RoomRepository">
+
+	<select id="findAll" resultType="com.ksh.dabang.model.room.Room">
+		select * from room
+	</select>
+	
+	<select id="findByroomId" resultType="com.ksh.dabang.model.room.Room">
+		select * from room where roomId = #{roomId}	
+	</select>
+	
+	<select id="findAllpics" resultType="com.ksh.dabang.model.room.Room_pic">
+		select * from room_pic where roomId = #{roomId}
+	</select>
+	
+	
+	
+	<select id="findAlloption" resultType="com.ksh.dabang.model.room.Options">
+		select op.optionId, op.optionName
+		from room_option rop inner join options op 
+		on rop.optionId = op.optionId 
+		where roomId = #{roomId}
+	</select>
+	
+	<select resultType="com.ksh.dabang.model.room.dto.RespSearchListDto" id="findBySearchList">
+		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
+			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
+			   hostId, agentId, lat, lng, picName
+	      from room inner join room_pic
+	      					on room_pic.roomId = room.roomId
+	      				   and room_pic.picId = 1 
+	</select>
+	
+	
+<!-- 	<select id="findByPostId" resultType="com.cos.blog.model.comment.dto.RespDetailDto"> -->
+<!-- 		select c.id, c.userId, c.postId, c.content, c.createDate, u.username  -->
+<!-- 		from comment c inner join user u  -->
+<!-- 		on c.userId = u.id  -->
+<!-- 		where c.postId = #{postId} -->
+		
+<!-- 		order by c.id desc -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="findById" resultType="com.cos.blog.model.comment.dto.RespDetailDto"> -->
+<!-- 		select c.id, c.userId, c.postId, c.content, c.createDate, u.username  -->
+<!-- 		from comment c inner join user u  -->
+<!-- 		on c.userId = u.id  -->
+<!-- 		where c.id = #{id} -->
+<!-- 	</select> -->
+
+	
+</mapper>
