@@ -1,14 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="include/nav.jsp"%>
 
+<!-- <script src="/js/jquery.min.js"></script> -->
+<!-- <script src="/js/jquery-migrate-3.0.1.min.js"></script> -->
+<!-- <script src="/js/popper.min.js"></script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
 <div class="container">
    <h2 class="text-center">방 내놓기</h2>
    <br /> <br /> <br />
-
-   <ul class="list-group list-group-horizontal">
-      <li class="list-group-item m-auto">방 내놓기</li>
-      <li class="list-group-item m-auto">내방관리</li>
-   </ul>
+      
+   <table class="table table-borderless">
+		<tbody>
+			<tr class="text-center" id="detail_menu">
+				<td>방 내놓기</td>
+				<td>내방관리</td>
+			</tr>
+		</tbody>
+	</table>
    <hr />
 
    <br />
@@ -30,67 +42,52 @@
                <tr>
                   <td colspan="1">종류선택</td>
                   <td colspan="5">
-                     <button type="button" class="btn btn-outline-primary">원룸</button>
-                     <button type="button" class="btn btn-outline-primary">투룸</button>
-                     <button type="button" class="btn btn-outline-primary">쓰리룸</button>
-                     <button type="button" class="btn btn-outline-primary">오피스텔(도시형)</button>
-                     <button type="button" class="btn btn-outline-primary">아파트</button>
+                     <button type="button" class="room--type btn btn-outline-primary" rtype="원룸">원룸</button>
+                     <button type="button" class="btn room--type btn-outline-primary" rtype="투룸">투룸</button>
+                     <button type="button" class="btn room--type btn-outline-primary" rtype="쓰리룸">쓰리룸</button>
+                     <button type="button" class="btn room--type btn-outline-primary"  rtype="오피스텔">오피스텔</button>
+                     <button type="button" class="btn room--type btn-outline-primary"  rtype="아파트">아파트</button>
                   </td>
-               </tr>
-               <tr>
-                  <td colspan="1">건물유형</td>
-                  <td colspan="5">
-                     <button type="button" class="btn btn-outline-primary">단독주택</button>
-                     <button type="button" class="btn btn-outline-primary">다가구주택</button>
-                     <button type="button" class="btn btn-outline-primary">빌라/연립/다세대</button>
-                     <button type="button" class="btn btn-outline-primary">상가주택</button>
-                     <button type="button" class="btn btn-outline-primary">도피스텔</button>
-                     <button type="button" class="btn btn-outline-primary">도시형생활주택</button>
-                  </td>
-               </tr>
+               </tr>            
             </tbody>
          </table>
       </div>
    </div>
    <br /> <br />
 
+
+
    <div class="card">
       <div class="card-header">
          <span class="">위치 정보</span> <span class="text-secondary">*등기부등본 상의 주소를 입력해 주세요.</span>
       </div>
-
+	
       <div class="card-body pb-0">
-         <div class="row">
-            <div class="col-sm-1 text-center">주소</div>
+        <div class="row">
+            <div class="col-sm-2 text-center">주소</div>
 
             <div class="col-sm-6">
-               <form action="" method="GET">
-                  <div class="form-group">
-                     <span> <label for="addr" class="text-smaller">도로명,건물면,지번에 대해 통합검색이 가능합니다.</label>
-                     </span> <span><input type="text" class="form-control" placeholder="" id="addr" /></span> <span><button type="button"
-                           class="btn btn-dark btn-sm">주소검색</button></span> <br /> <br />
-                     <textarea rows="2" cols="40">선택한 주소내용</textarea>
-                  </div>
-
-                  <div class="form-group row">
-                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="예)101동" id="dong" />
-                     </div>
-                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="예)201호" id="ho" />
-                     </div>
-                     <span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span>
-                  </div>
-                  <a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
-               </form>
-            </div>
-
-            <div class="col-sm-3">
+              	<form action="#" method="GET">
+                <div class="form-group">
+                     <span> 
+                     	<label for="addr" class="text-smaller">도로명,건물면,지번에 대해 통합검색이 가능합니다.</label>
+                     </span> 
+                     <span>
+                     	<button onclick="goPopup()" type="button" class="btn btn-dark float-right btn-sm">주소찾기</button>
+					 	<input type="text" class="form-control" placeholder="" id="address" name="address" />				
+					 </span>
+					 <span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br />
+					 <a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
+				</div>
+				</form>               
+           	</div>
+            <div class="col-sm-4">
                <img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 300px;" />
             </div>
          </div>
       </div>
-   </div>
+    </div>
+   
    <br />
    <!-- 거래정보 -->
    <div class="card">
@@ -103,13 +100,27 @@
             <div class="col-sm-2 text-center">거래종류</div>
 
             <div class="col-sm-10">
-               <button type="button" class="btn btn-primary btn-small">월세</button>
-               <span class="text-secondary"><input type="text" name="보증금" placeholder="보증금" /> / <input type="text" name="월세" placeholder="월세" />(예: 월세
-                  1000만원/50만원)</span>
-
-               <button type="button" class="btn btn-primary btn-small">전세</button>
-               <span class="text-secondary"><input type="text" name="전세" placeholder="전세" /> (예: 전세 1000만원)</span> <br /> <span><input type="checkbox" />단기가능</span>
-
+             <div>
+               <button type="button" class="btn btn-primary btn-small" id="mBuy">월세</button>
+               <span class="text-secondary">
+               		<input type="text" name="보증금" placeholder="보증금" id="mBuyDeposit"/> / 
+               		<input type="text" name="월세" placeholder="월세" id="mBuyPrice" />(예: 월세 1000만원/50만원)</span>
+              </div>
+              <br />
+              <div>
+               <button type="button" class="btn btn-primary btn-small" id="yBuy">전세</button>
+               <span class="text-secondary">
+               <input type="text" name="전세" placeholder="전세" id="yBuyPrice" /> (예: 전세 1000만원)</span>
+			</div>
+			<br />
+			 <div>
+               <button type="button" class="btn btn-primary btn-small" id="rBuy">매매</button>
+               <span class="text-secondary">
+               <input type="text" name="매매" placeholder="매매가" id="rBuyPrice" /> (예: 매매 1000만원)</span>
+               
+			</div>
+			
+			
             </div>
          </div>
       </div>
@@ -128,23 +139,30 @@
                <tr>
                   <td>건물크기<br />(1P=3.3058㎡)
                   </td>
-                  <td colspan="2"><span>공급면적 <input type="number" style="width: 70px;" />평 <input type="text" style="width: 70px;" />㎡
+                  <td colspan="2">
+                  <span>공급면적 
+                  <input type="number" style="width: 70px;" id="areaP" />평 
+                  <input type="text" style="width: 70px;" id="areaM" />㎡
                   </span></td>
+                  
+                  
                   <td>해당 층수</td>
-                  <td colspan="2"><select class="form-control">
+                  <td colspan="2">
+                  <select class="form-control" id="floorNum">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
                   </select></td>
-               </tr>
-               <tr>
+              
                   <td>입주가능일</td>
                   <td colspan="5">
-                     <button class="btn btn-outline-primary">즉시입주</button>
-                     <button class="btn btn-outline-primary">날짜협의</button>
-                     <button class="btn btn-outline-primary">날짜선택</button>
+                     <button class="mDay btn btn-outline-primary" mDay="즉시입주">즉시입주</button>
+                     <button class="mDay btn btn-outline-primary" mDay="날짜협의">날짜협의</button>
+<!--                      <button class="btn btn-outline-primary">날짜선택</button> -->
                   </td>
                </tr>
             </tbody>
@@ -152,51 +170,62 @@
       </div>
    </div>
    <br/>
-
-
 <!-- 추가정보 ----------->
-
    <div class="card">
-      <div class="card-header text-center">
+      <div class="card-header">
          <span>추가정보</span>
       </div>
       <div class="card-body">
          <table class="table table-borderless">
             <tbody>
                <tr>
-                  <td>관리비</td>
-                  <td colspan="5">
-                     <span><input type="number" style="width: 50px;" />만원</span>
+                  <td colspan="4">관리비</td>
+                  <td colspan="4">
+                     <span><input type="number" style="width: 50px;" id="mCost" />만원</span>
                   </td>
                </tr>
                <tr>
-                  <td>주차여부</td>
+                  <td colspan="4">주차여부</td>
                   <td colspan="2">
-                     <button class="btn btn-outline-primary">불가능</button>
-                     <button class="btn btn-outline-primary">가능</button>
+                     <button class="parking btn btn-outline-primary" parking ="N">불가능</button>
+                     <button class="parking btn btn-outline-primary" parking ="P">가능</button>
                   </td>
-                  <td>엘리베이터</td>
-                  <td colspan="2">
-                     <button class="btn btn-outline-primary">있음</button>
-                     <button class="btn btn-outline-primary">없음</button>
+                  <td colspan="1">엘리베이터</td>
+                  <td colspan="1">
+                     <button class="elevator btn btn-outline-primary" elevator="P">있음</button>
+                     <button class="elevator btn btn-outline-primary" elevator="N">없음</button>
                   </td>                  
                </tr>
                <tr>
-                  <td>옵션항목</td>
-                  <td colspan="5">
+                  <td colspan="4">옵션항목</td>
+                  <td colspan="4">
                      <span>
-                        <button class="btn btn-outline-info">에어컨</button>
-                        <button class="btn btn-outline-info">세탁기</button>
-                        <button class="btn btn-outline-info">옷장</button>
-                        <button class="btn btn-outline-info">TV</button>
+                        <button class="options btn btn-outline-info">에어컨</button>
+                        <button class="options btn btn-outline-info">세탁기</button>
+                        <button class="options btn btn-outline-info">옷장</button>
                         <button class="btn btn-outline-info">냉장고</button>
                         <button class="btn btn-outline-info">전자도어락</button>
+                        <button class="btn btn-outline-info">가스레인지</button>
+                        <button class="btn btn-outline-info">비데</button>
+                        <button class="btn btn-outline-info">신발장</button>
+                        <button class="btn btn-outline-info">인덕션</button>
+                        <button class="btn btn-outline-info">전자레인지</button>
+                        <button class="btn btn-outline-info">책상</button>
+                        <button class="btn btn-outline-info">침대</button>
+                        <button class="btn btn-outline-info">TV</button>
+                        <button class="btn btn-outline-info">비디오폰</button>
+                        <button class="btn btn-outline-info">공동현관</button>
+                        <button class="btn btn-outline-info">경비원</button>
+                        <button class="btn btn-outline-info">CCTV</button>
+                        <button class="btn btn-outline-info">방범창</button>
+                        <button class="btn btn-outline-info">인터폰</button>
+                       
                      </span>
                   </td>
                </tr>
                <tr>
-                  <td>전세자금대출</td>
-                  <td colspan="5">
+                  <td colspan="4">전세자금대출</td>
+                  <td colspan="4">
                      <span>
                         <button class="btn btn-outline-info">가능</button>
                         <button class="btn btn-outline-info">불가능</button>
@@ -268,7 +297,7 @@
    </div>
    <div >
       <button type="button" class="btn btn-outline-secondary">취소</button>
-      <button type="button" class="btn btn-primary">매물등록</button>
+      <button type="button" class="btn btn-primary" id="room--upload">매물등록</button>
    </div>
 
 
@@ -285,6 +314,8 @@
 
 
 
+
+ <script src="/js/upload.js" type="text/javascript"></script>
 
 <br />
 <br />

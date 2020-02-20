@@ -39,12 +39,6 @@ public class RoomController {
 	}  
 	
 	
-	//지도 테스트
-	@GetMapping("/maptest")
-	public String maptest() {
-		return "map-test";
-	}
-	
 	
 
 	// 윤정 추가!!
@@ -52,5 +46,37 @@ public class RoomController {
 	public String upload() {
 		return "upload";
 	}
+	
+	
+	
+	@GetMapping("/upload2")
+	public String upload2() {
+		return "upload2";
+	}
+	@GetMapping("/uploadTest")
+	public String uploadTest() {
+		return "uploadTest";
+	}
+	
+	
+	
+	
+	@GetMapping("/jusoPopup")
+	public String jusoPopup() {
+		return "jusoPopup";
+	}
+	
+	//지도 테스트
+	@GetMapping("/maptest")
+	public String maptest() {
+		return "map-test";
+	}
+	@GetMapping("/clusteringtest")
+	public String clusteringtest() {
+		return "clustering-test";
+	}
+	
+	
 
+	
 }
