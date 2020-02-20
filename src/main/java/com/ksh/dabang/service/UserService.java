@@ -8,6 +8,7 @@ import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
 import com.ksh.dabang.model.user.dto.TypeDto;
+import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.repository.UserRepository;
 
 
@@ -17,7 +18,6 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	// result = 0 비정상, 1 정상, -1 DB 오류, -2 아이디 중복
 	@Transactional
 	public int 회원가입(JoinDto joinDto) {
 		return userRepository.join(joinDto);
@@ -25,24 +25,22 @@ public class UserService {
 	
 	@Transactional
 	public int 중복확인(String email) {
-		int result = userRepository.emailCheck(email);
-		return result;
+		return userRepository.emailCheck(email);
 	}
 	
-	@Transactional
-	public TypeDto 공인중개사정보확인(String email) {
-		TypeDto typeDto = userRepository.findByEmail(email);
-		return typeDto;
-	}
 	
 	@Transactional
 	public int 공인중개사정보입력(int userId, String typeName, int typeNum, String typeImage) {
-		int result = userRepository.typeSave(userId,typeName,typeNum,typeImage);
-		return result;
+		return userRepository.typeSave(userId,typeName,typeNum,typeImage);
 	}
 	
 	@Transactional
 	public User 로그인(LoginDto logindto) {
 	      return userRepository.findByUsernameAndPassword(logindto);
 	   }
+	
+	@Transactional
+	public int 회원수정(UpdateDto updateDto) {
+	      return userRepository.updateUser(updateDto);
+		}
 }

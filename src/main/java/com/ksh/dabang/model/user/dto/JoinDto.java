@@ -33,6 +33,5 @@ public class JoinDto {
 	
 	
 	private String type;
-	private String typeImage;
 }
 

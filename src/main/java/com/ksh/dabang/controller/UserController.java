@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,9 +20,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +33,7 @@ import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
 import com.ksh.dabang.model.user.dto.OverlapDto;
-import com.ksh.dabang.model.user.dto.TypeDto;
+import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.service.UserService;
 
 @Controller
@@ -52,12 +57,38 @@ public class UserController {
 	public String login() {
 		return "login";
 	}
-
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "index";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
+	
+	@GetMapping("/typeCerAdmin")
+	public String typeCerAdmin() {
+		return "typeCerAdmin";
+	}
+	
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto) {
-		System.out.println(loginDto.getEmail());
-		System.out.println(loginDto.getPassword());
+	public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto,HttpServletResponse response) {
 		
+		if(loginDto.getRememberMe().equals("true")) {
+			Cookie cookie = new Cookie("emailCookie", loginDto.getEmail());
+			cookie.setMaxAge(60*60*24*7);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("emailCookie", "");
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		}
+	
 		User principal = userService.로그인(loginDto);
 		
 	    if(principal != null) {
@@ -75,6 +106,18 @@ public class UserController {
 
 	@PostMapping("/join")
 	public ResponseEntity<?> join(@Valid @RequestBody JoinDto joinDto, BindingResult bindingResult, Model model) {
+	  if (bindingResult.hasErrors()) {
+	         Map<String, String> errorMap = new HashMap<>();
+
+	         for (FieldError error : bindingResult.getFieldErrors()) {
+	            errorMap.put(error.getField(), error.getDefaultMessage());
+	            System.out.println(error.getField());
+	            System.out.println(error.getDefaultMessage());
+	            
+	         }
+	         return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
+	      }
+		  
 		int result = userService.회원가입(joinDto);
 		if (result == 1) {
 			if (joinDto.getType().equals("공인중개사")) {
@@ -97,17 +140,34 @@ public class UserController {
 			return new ResponseEntity<RespCM>(new RespCM(200, "dul"), HttpStatus.OK);
 		}
 	}
-
-	@GetMapping("/jointype/{userId}")
-	public String jointype(@PathVariable int userId, Model model) {
-		model.addAttribute(userId);
-		return "jointype";
+	
+	
+	@PutMapping("/mypage/update")
+	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
+		
+		int result = userService.회원수정(updatedto);
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	
+	@GetMapping("/mypage/typeCer")
+	public String typeCer() {
+		return "typeCer";
 	}
 
-	@PostMapping("/join/jointype")
-	public String joinType(@RequestParam String email, @RequestParam String typeName, @RequestParam int typeNum,
+	@PostMapping("/mypage/typeCer")
+	public String joinType(@RequestParam int userId, @RequestParam String typeName, @RequestParam int typeNum,
 			@RequestParam MultipartFile typeImage) {
-
+		System.out.println(userId);
+		System.out.println(typeName);
+		System.out.println(typeNum);
+		
+		
 		UUID uuid = UUID.randomUUID();
 		String uuidFilename = "/usertypeImage/" + uuid + "_" + typeImage.getOriginalFilename();
 		Path filePath = Paths.get(fileRealPath + uuidFilename);
@@ -118,13 +178,12 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-		TypeDto dto = userService.공인중개사정보확인(email);
-		int result = userService.공인중개사정보입력(dto.getUserId(), typeName, typeNum, uuidFilename);
+		int result = userService.공인중개사정보입력(userId, typeName, typeNum, uuidFilename);
 
 		if (result == 1) {
-			return "redirect:/";
+			return "/mypage";
 		} else {
-			return "redirect:/";
+			return "/mypage";
 		}
 	}
 }

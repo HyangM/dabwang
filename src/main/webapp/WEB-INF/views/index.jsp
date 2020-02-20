@@ -7,6 +7,7 @@
 	data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
+		
 		<div
 			class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
 			data-scrollax-parent="true">
@@ -33,6 +34,7 @@
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-3">
 			<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
+
 				<h2 class="mb-4 text-center">쉬운 방찾기</h2>
 				<p class="text-center">방 찾기 초보를 위한 초간단 솔루션!</p>
 			</div>
