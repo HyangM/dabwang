@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ksh.dabang.service.RoomService;
 
@@ -53,7 +54,8 @@ public class RoomController {
 	public String upload2() {
 		return "upload2";
 	}
-	@GetMapping("/uploadTest")
+	
+	@PostMapping("/uploadTest")
 	public String uploadTest() {
 		return "uploadTest";
 	}
