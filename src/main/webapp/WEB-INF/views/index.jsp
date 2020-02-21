@@ -17,6 +17,7 @@
 					<h4 class="mb-4">어떤 동네, 어떤 방에서 살고 싶으신가요?</h4>
 					<div class="input-group col-10 ">
 						<input type="text" class="form-control"
+					
 							placeholder="부산광역시 수영구를 검색해보세요.">
 						<div class="input-group-append">
 							<button class="btn btn-outline-primary">&nbsp&nbsp검&nbsp&nbsp색&nbsp&nbsp</button>

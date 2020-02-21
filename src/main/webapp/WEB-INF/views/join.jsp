@@ -33,9 +33,9 @@
 		<div class="form-group">
 			<label for="type">구분</label> <select id="type" size="1"
 				class="form-control">
-				<option id="1">세입자</option>
+				<option selected="selected" id="1">세입자</option>
 				<option id="2">방 주인</option>
-				<option selected="selected" id="3">공인중개사</option>
+				<option id="3">공인중개사</option>
 			</select>
 		</div>
 		<br />
@@ -70,53 +70,44 @@
 	 */
 
 	/* 서하 이메일 중복확인 ajax*/
-	$('#email')
-			.focusout(
-					function(e) {
-						var email = e.target.value;
-						var data = {
-							email : email
-						};
+	$('#email').focusout(function(e) {
+		var email = e.target.value;
+		var data = {
+			email : email
+		};
 
-						$
-								.ajax(
-										{
-											type : 'POST',
-											url : '/join/overlap',
-											data : JSON.stringify(data),
-											contentType : 'application/json; charset=utf-8',
-											dataType : 'json'
-										})
-								.done(
-										function(r) {
-											if (r.msg == "dul") {
-												$('#overlap').remove();
-												var message = "<p id='overlap' class='text-danger' value='overlap'>중복된 아이디입니다.</p>"
-												$('#email').after(message);
-											} else if (r.msg == "ok") {
-												$('#overlap').remove();
-												var message = "<p id='overlap'>사용가능한 아이디입니다.</p>"
-												$('#email').after(message);
-											}
-										}).fail(function(r) {
-								});
-					});
+		$.ajax({type : 'POST',
+				url : '/join/overlap',
+				data : JSON.stringify(data),
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'json'})
+		.done(function(r) {
+			if (r.msg == "dul") {
+				$('#overlap').remove();
+				var message = "<p id='overlap' class='text-danger' value='overlap'>중복된 아이디입니다.</p>"
+				$('#email').after(message);
+			} else if (r.msg == "ok") {
+				$('#overlap').remove();
+				var message = "<p id='overlap'>사용가능한 아이디입니다.</p>"
+				$('#email').after(message);
+				}
+			}).fail(function(r) {
+		});
+	});
 
 	/* 서하 비밀번호가 일치하는지 여부*/
-	$('#password2')
-			.focusout(
-					function() {
-						let password1 = $('#password').val();
-						let password2 = $('#password2').val();
-
-						if (password1 == password2) {
-							$('#passwordSame').remove();
-						} else {
-							$('#passwordSame').remove();
-							var message = "<p id='passwordSame' class='text-danger'>비밀번호가 일치하지 않습니다.</p>"
-							$('#password2').after(message);
-						}
-					});
+	$('#password2').focusout(function() {
+		let password1 = $('#password').val();
+		let password2 = $('#password2').val();
+		
+		if (password1 == password2) {
+			$('#passwordSame').remove();
+		} else {
+			$('#passwordSame').remove();
+			var message = "<p id='passwordSame' class='text-danger'>비밀번호가 일치하지 않습니다.</p>"
+			$('#password2').after(message);
+		}
+	});
 
 	$('#password').focusout(function() {
 		var password1 = $('#password').val();

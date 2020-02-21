@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,11 +31,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ksh.dabang.model.RespCM;
+import com.ksh.dabang.model.board.dto.BoardTypeApprDto;
+import com.ksh.dabang.model.board.dto.BoardTypeCerDto;
+import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
 import com.ksh.dabang.model.user.dto.OverlapDto;
 import com.ksh.dabang.model.user.dto.UpdateDto;
+import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.UserService;
 
 @Controller
@@ -47,6 +53,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@GetMapping({ "", "/" })
 	public String index() {
@@ -69,11 +78,13 @@ public class UserController {
 		return "mypage";
 	}
 	
-	@GetMapping("/typeCerAdmin")
-	public String typeCerAdmin() {
-		return "typeCerAdmin";
+	@GetMapping("/typeApprList")
+	public String typeCerList(Model model) {
+		List<BoardTypeListDto> typeCers=boardService.공인중개사승인게시판();
+		model.addAttribute("typeCers",typeCers);
+		return "typeApprList";
 	}
-	
+		
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto,HttpServletResponse response) {
 		
@@ -179,11 +190,41 @@ public class UserController {
 		}
 
 		int result = userService.공인중개사정보입력(userId, typeName, typeNum, uuidFilename);
-
-		if (result == 1) {
-			return "/mypage";
+		int boardSave = boardService.공인중개사정보게시글생성(userId);
+		
+		if (result == 1 && boardSave ==1) {
+			return "index";
 		} else {
-			return "/mypage";
+			return "index";
 		}
 	}
+	
+	@GetMapping("/typeAppr/{postId}")
+	public String typeAppr(@PathVariable int postId,Model model) {
+		BoardTypeCerDto postAuth = boardService.공인중개사승인디테일(postId);
+		model.addAttribute("postAuth",postAuth);
+		return "typeAppr";
+	}
+
+	@PutMapping("/typeAppr")
+	public ResponseEntity<?> typeAppr(@RequestBody BoardTypeApprDto typeApprDto) {
+		int result = boardService.공인중개사권한부여(typeApprDto.getAgentId());
+		System.out.println(result);
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	@GetMapping("/roomApprList")
+	public String roomApprList(Model model) {
+		List<BoardTypeListDto> roomCers=boardService.공인중개사승인게시판();
+		model.addAttribute("roomCers",roomCers);
+		return "roomApprList";
+	}
+	
+	
+	
 }
