@@ -38,6 +38,7 @@ CREATE TABLE user (
 	typeName varchar(20) DEFAULT NULL,
 	typeNum varchar(100) DEFAULT NULL,
 	typeImage varchar(1000) DEFAULT NULL,
+	typeCer int(10) DEFAULT NULL,
 	role varchar(10) DEFAULT NULL,
 	createDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	profile varchar(1000) DEFAULT NULL,
@@ -140,34 +141,36 @@ insert INTO floor VALUES (7, '7층');
 ```sql
 CREATE TABLE post_deal (
 	postId int auto_increment primary key,
-    roomId int default '0',
-    agentId int default '0',
-    title varchar(40) not null,
-    hostId int default '0',
-    confirmYN varchar(2) not null,
-    createDate timestamp,
-    foreign key (roomId) references room (roomId) on delete set null,
+	roomId int default 0,
+	agentId int default 0,
+	title varchar(40) not null,
+	hostId int default 0,
+	confirmYN varchar(1) not null,
+	confirmDate datetime default null,
+	createDate datetime not null,
+	foreign key (roomId) references room (roomId) on delete set null,
 	foreign key (hostId) references user (userId) on delete set null,
-    foreign key (agentId) references user (userId) on delete set null
+	foreign key (agentId) references user (userId) on delete set null
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE post_auth (
 	postId int auto_increment primary key,
-    title varchar(40) not null,
-    agentId int default '0',
-    confirmYN varchar(2) not null,
-    createDate timestamp,
-    foreign key (agentId) references user (userId) on delete set null    
+	title varchar(40) not null,
+	agentId int default '0',
+	confirmYN varchar(2) not null,
+	confirmDate datetime,
+	createDate datetime,
+	foreign key (agentId) references user (userId) on delete set null    
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE like_room (
 	likeId int auto_increment primary key,
 	userId int default '0',
-    roomId int default '0',
-    createDate timestamp,
-    foreign key (userId) references user (userId) on delete set null,
+	roomId int default '0',
+	createDate timestamp,
+	foreign key (userId) references user (userId) on delete set null,
 	foreign key (roomId) references room (roomId) on delete set null  
 ) engine=InnoDB default charset=utf8;
 ```
@@ -192,15 +195,3 @@ drop table post_deal;
 drop table post_auth;
 commit;
 ```
-
-
-
-
-
-
-
-
-
-
-
-

@@ -25,7 +25,7 @@
 		where roomId = #{roomId}
 	</select>
 	
-	<select resultType="com.ksh.dabang.model.room.dto.RespSearchListDto" id="findBySearchList">
+	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
 			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
 			   hostId, agentId, lat, lng, picName
@@ -41,23 +41,16 @@
 		#{floor}, #{moveDay}, #{mCost}, #{parking}, #{elevator}, #{lof}, #{areaM}title, #{content}, now(), #{hostId}, #{lat}, #{lng})
 	</insert>
 	
+	<select id="findByKeywordSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
+		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
+			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
+			   hostId, agentId, lat, lng, picName
+	      from room inner join room_pic
+	      					on room_pic.roomId = room.roomId
+	      				   and room_pic.picId = 1 
+	      				   
+	     where room.addr like CONCAT('%',#{keyword},'%')	      				
+	</select>
 	
-	
-<!-- 	<select id="findByPostId" resultType="com.cos.blog.model.comment.dto.RespDetailDto"> -->
-<!-- 		select c.id, c.userId, c.postId, c.content, c.createDate, u.username  -->
-<!-- 		from comment c inner join user u  -->
-<!-- 		on c.userId = u.id  -->
-<!-- 		where c.postId = #{postId} -->
 		
-<!-- 		order by c.id desc -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="findById" resultType="com.cos.blog.model.comment.dto.RespDetailDto"> -->
-<!-- 		select c.id, c.userId, c.postId, c.content, c.createDate, u.username  -->
-<!-- 		from comment c inner join user u  -->
-<!-- 		on c.userId = u.id  -->
-<!-- 		where c.id = #{id} -->
-<!-- 	</select> -->
-
-	
 </mapper>

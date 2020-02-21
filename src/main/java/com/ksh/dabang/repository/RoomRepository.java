@@ -21,5 +21,7 @@ public interface RoomRepository {
 	
 	public int upload(ReqUploadDto dto);
 	
+	public List<RespSearchListDto> findByKeywordSearchList(String keyword);
+	
 	
 }

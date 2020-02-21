@@ -13,8 +13,10 @@
 .ftco-navbar-light {
 	top: 0px;
 }
-</style>
-
+#map {
+    height: 100%;
+  }
+</style> 
 <div id="root">
 	<div class="styled__Main-sc-36tku2-0 ePlFZY">
 
@@ -22,9 +24,9 @@
 		<div class="styled__Top-sc-36tku2-1 hJtKYy">
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
-					<input type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
-						autocomplete="off" name="keyword" placeholder="수영동" />
-					<svg width="18" height="18" viewBox="0 0 18 18">
+					<input id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
+						autocomplete="off" placeholder="수영동" value="" />
+					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
 			                <circle cx="7.5" cy="7.5" r="6.5"></circle>
 			                <path d="M13 12l5 5"></path>
@@ -769,7 +771,7 @@
 										<div class="styled__BtnWrap-sc-3yrk4m-0 gYMri">
 											<div class="styled__Like-sc-3yrk4m-1 hjVNgq"></div>
 										</div>
-										<a href="/detail/${room.roomId}" target="_blank"
+										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank"
 											rel="noopener noreferrer" class="styled__A-fi3k4t-1 kpKjGs">
 											<div class="styled__RoomImg-fi3k4t-2 kfPGuF RoomImg"
 												style="background: url(/media/${room.picName}) center center/cover no-repeat;"></div>
@@ -1426,44 +1428,71 @@
 
 	</div>
 </div>
-
+<form id="SearchForm" >
+	<input type="hidden" id="keyword" name="keyword" value="">
+</form>
 <script src="../js/all.min.js"></script>
 <script>
 	$('#ftco-navbar').removeClass("bg-dark");
 	$('#ftco-navbar').removeClass("navbar-dark");
 </script>
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer&services"></script>
+	
 <script>
-    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-        center : new kakao.maps.LatLng(35.165001, 129.114666), // 지도의 중심좌표 
-        level : 6 // 지도의 확대 레벨 
-    });
-    
-    // 마커 클러스터러를 생성합니다 
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 10 // 클러스터 할 최소 지도 레벨 
-    });
-    var data = {positions: ${map}};
-    console.log(data);
-    // 데이터를 가져오기 위해 jQuery를 사용합니다
-    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-    /* $.getJSON("../static/json/chicken.json", */ 
+	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+	    center : new kakao.maps.LatLng(35.165001, 129.114666), // 지도의 중심좌표 
+	    level : 6 // 지도의 확대 레벨 
+	});
+	
+	// 마커 클러스터러를 생성합니다 
+	var clusterer = new kakao.maps.MarkerClusterer({
+	    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+	    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+	    minLevel: 10 // 클러스터 할 최소 지도 레벨 
+	});
+	var data = {positions: ${map}};
+	/* console.log(data); */
+	// 데이터를 가져오기 위해 jQuery를 사용합니다
+	// 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+	
+	    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+	    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+	    var markers = $(data.positions).map(function(i, position) {
+	        return new kakao.maps.Marker({
+	            position : new kakao.maps.LatLng(position.lat, position.lng)
+	        });
+	    });
+	
+	    // 클러스터러에 마커들을 추가합니다
+	    clusterer.addMarkers(markers);
+	    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+	
+	        // 현재 지도 레벨에서 1레벨 확대한 레벨
+	        var level = map.getLevel()-1;
+	
+	        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+	        map.setLevel(level, {anchor: cluster.getCenter()});
+	    });  
+</script>
 
-        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        var markers = $(data.positions).map(function(i, position) {
-            return new kakao.maps.Marker({
-                position : new kakao.maps.LatLng(position.lat, position.lng)
-            });
-        });
+<script>
 
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
+var searchForm = $("#SearchForm");
 
+function search(){
+	var keyword = $('.keOJyH').val();
+	if(keyword == ''){
+		keywordval = $('.keOJyH').attr('placeholder'); 
+	}else {
+		keywordval = keyword; 
+	}
+	
+	document.getElementById('keyword').value = keywordval;
+	searchForm.attr('action', '/filter').attr('method', 'get');
+	searchForm.submit();
+
+}
 </script>
 <script src="/js/search.js"></script>
 </body>
