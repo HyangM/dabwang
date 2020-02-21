@@ -13,7 +13,7 @@
 	<table class="table table-borderless">
 		<thead>
 			<tr class="text-smaller text-secondary">
-				<th>${room.roomType}(주방분리형(1.5룸))</th>
+				<th>${room.roomType}(주방분리형)</th>
 				<th>전용면적</th>
 				<th>한달생활비</th>
 				<th></th>
