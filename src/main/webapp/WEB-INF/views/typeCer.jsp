@@ -7,21 +7,27 @@
   		<input type="hidden" name="userId" value="${sessionScope.principal.userId}" />
 		<div class="form-group ">
 			<label>중개사무소명</label>
-			<input type="text" name="typeName" class="form-control" placeholder="상호명" required="required">
+			<input type="text" name="typeName" class="form-control" placeholder="상호명" value="${sessionScope.principal.typeName}"required="required"maxlength="20">
 		</div>
 		
 		<div class="form-group ">
 			<label>중개등록번호</label>
-			<input type="text" name="typeNum" class="form-control" placeholder="중개등록번호" required="required">
+			<input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'')" name="typeNum" class="form-control" placeholder="중개등록번호 -제외하여 입력하세요." value="${sessionScope.principal.typeNum}" required="required" maxlength="20">
 		</div>
 		
-		<div class="form-group ">
-			<label>사업자등록증</label>
-			<input type="file" name="typeImage" class="form-control" required="required">
-		</div>
-
-	
-	<input id="join-btn" type="submit" value="공인중개사 인증하기" class="btn btn-outline-info col-12 py-3 px-5">		
+		<c:choose>
+			<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer eq 'Y'}">
+				<label class="text-primary">인증된 공인중개사입니다. </label>
+				<a href="/mypage" class="btn btn-primary col-12">마이페이지</a>
+			</c:when>
+			<c:otherwise>
+				<div class="form-group ">
+					<label>사업자등록증</label>
+					<input type="file" name="typeImage" class="form-control" required="required">
+				</div>
+					<input id="join-btn" type="submit" value="공인중개사 인증하기" class="btn btn-outline-info col-12 py-3 px-5">		
+			</c:otherwise>
+		</c:choose>
 	</form>	
 </div>
 <br />

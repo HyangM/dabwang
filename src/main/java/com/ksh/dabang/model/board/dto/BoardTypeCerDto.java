@@ -23,7 +23,6 @@ public class BoardTypeCerDto {
 	private String typeImage;
 	private String title;
 	private int postId;
-	private String confirmYN;
 	private Timestamp createDate;
 	private Timestamp confirmDate;
 	

@@ -18,12 +18,12 @@ public class BoardService {
 	private BoardRepository BoardRepository;
 
 	@Transactional
-	public List<BoardTypeListDto> 공인중개사승인게시판() {
-		return BoardRepository.findAll();
+	public List<BoardTypeListDto> 공인중개사승인게시판(int pageNo) {
+		return BoardRepository.findAll(pageNo);
 	}
 	
 	@Transactional
-	public int 공인중개사정보게시글생성(int agentId ) {
+	public int 공인중개사정보게시글생성(int agentId) {
 		return BoardRepository.saveTypeCer(agentId);
 	}
 	@Transactional

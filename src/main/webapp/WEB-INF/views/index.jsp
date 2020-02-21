@@ -3,7 +3,7 @@
 <%@ include file="include/nav.jsp"%>
 
 <section class="hero-wrap js-fullheight"
-	style="background-image: url('images/main.jpg');" data-section="home"
+	style="background-image: url('/images/main.jpg');" data-section="home"
 	data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="images/sl_1.jpg"></a>
+				<a href="/"><img class="card-img-top" src="/images/sl_1.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">월세 + 관리비</p>
 					<p style="font-size: 12px">월 50 이하 원룸</p>
@@ -49,7 +49,7 @@
 
 			</div>
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="images/sl_2.jpg"></a>
+				<a href="/"><img class="card-img-top" src="/images/sl_2.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">전세자금대출</p>
 					<p style="font-size: 12px">가능한 투쓰리룸</p>
@@ -57,7 +57,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="images/sl_3.jpg"></a>
+				<a href="/"><img class="card-img-top" src="/images/sl_3.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">반려동물</p>
 					<p style="font-size: 12px">가능한 원룸</p>
@@ -65,7 +65,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="images/sl_4.jpg"></a>
+				<a href="/"><img class="card-img-top" src="/images/sl_4.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">낭만적인</p>
 					<p style="font-size: 12px">옥탑방 원룸</p>
@@ -73,7 +73,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="images/sl_5.jpg"></a>
+				<a href="/"><img class="card-img-top" src="/images/sl_5.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">2억 이하</p>
 					<p style="font-size: 12px">전세 투 쓰리룸</p>
@@ -104,7 +104,7 @@
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(images/profile1.jpg)">
+								style="background-image: url(/images/profile1.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
@@ -120,7 +120,7 @@
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(images/profile2.jpg)">
+								style="background-image: url(/images/profile2.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
@@ -136,7 +136,7 @@
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(images/profile3.jpg)">
+								style="background-image: url(/images/profile3.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
@@ -171,7 +171,7 @@
 		<div class="row d-flex">
 			<div class="col-md-6 col-lg-5 d-flex">
 				<div class="img d-flex align-self-stretch align-items-center"
-					style="background-image: url(images/header.jpg);"></div>
+					style="background-image: url(/images/header.jpg);"></div>
 			</div>
 			<div class="col-md-6 col-lg-7 pl-lg-5 py-md-5">
 				<div class="py-md-5">
@@ -199,7 +199,7 @@
 
 
 <section class="ftco-facts img ftco-counter"
-	style="background-image: url(images/dabang.jpg);">
+	style="background-image: url(/images/dabang.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row d-flex align-items-center">

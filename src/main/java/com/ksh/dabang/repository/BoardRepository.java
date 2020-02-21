@@ -6,7 +6,7 @@ import com.ksh.dabang.model.board.dto.BoardTypeCerDto;
 import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 
 public interface BoardRepository {
-	List<BoardTypeListDto> findAll();
+	List<BoardTypeListDto> findAll(int pageNo);
 	int saveTypeCer(int agentId);
 	BoardTypeCerDto findByPostId(int postId);
 	int saveTypeAppr(int agentId);

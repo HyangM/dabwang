@@ -31,12 +31,16 @@
 						<td class="text-center"><a href="/typeAppr/${typeCer.postId}">${typeCer.title}</a></td>
 						<td class="text-center">${typeCer.name}</td>
 						<td class="text-center">${fn:substring({typeCer.createDate},1,17)}</td>
-						<td class="text-center">${typeCer.confirmYN}</td>
+						<td class="text-center">${typeCer.typeCer}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+			<a href="#" class="btn btn-info col-2 float-left">prev</a>
+			<a href="#" class="btn btn-info col-2 float-right">Next</a>	
 	</div>
+	<br/>
+	<br/>
 	<br/>
 	
 <%@ include file="include/footer.jsp"%>

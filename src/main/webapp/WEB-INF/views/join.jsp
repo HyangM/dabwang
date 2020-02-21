@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="form-group">
-			<input type="number" class="form-control"
+			<input type="text" class="form-control" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 				placeholder="핸드폰번호 - 제외하여 입력하세요." id="phone" required="required">
 		</div>
 

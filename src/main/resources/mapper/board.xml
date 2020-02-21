@@ -5,8 +5,8 @@
 <mapper namespace="com.ksh.dabang.repository.BoardRepository">
 	
 	<select resultType="com.ksh.dabang.model.board.dto.BoardTypeListDto" id="findAll">
-		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc
-	</select>
+		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc limit (#{pageNo}-1)*10 , 10 
+	</select> 
 	 
 	<insert id="saveTypeCer">
 		insert into post_auth(agentId,createDate) values(#{agentId},now());
@@ -18,7 +18,8 @@
 	</select>
 
 	<update id="saveTypeAppr">
-		UPDATE user SET typeCer=1 WHERE userId = #{agentId} 
+		UPDATE user SET typeCer='Y' WHERE userId = #{agentId} 
 	</update>
 	
+
 </mapper>

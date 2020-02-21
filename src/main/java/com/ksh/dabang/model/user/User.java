@@ -15,7 +15,7 @@ public class User {
 	private String password;
 	private String phone;
 	private String type;
-	private int typeCer;
+	private String typeCer;
 	private String typeName;
 	private String typeNum;
 	private String typeImage;
@@ -24,7 +24,7 @@ public class User {
 	private String profile;
 	
 	@Builder
-	public User(String email, String name, String password, String phone, String type, int typeCer, String typeName,
+	public User(String email, String name, String password, String phone, String type, String typeCer, String typeName,
 			String typeNum, String typeImage, String role, Timestamp createDate,String profile) {
 		this.email = email;
 		this.name = name;

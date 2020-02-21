@@ -17,8 +17,8 @@ public class BoardTypeListDto {
 	private String email;
 	private String name;
 	private String title;
+	private String typeCer;
 	private int postId;
-	private String confirmYN;
 	private Timestamp createDate;
 	private Timestamp confirmDate;
 	

@@ -33,29 +33,35 @@
 		<div class="form-group">
 			<label for="type">구분</label>
 				<c:choose>
-					<c:when test="${sessionScope.principal.type eq '공인중개사'}">
+					<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer eq 'N'}">
 						<div class="input-group">
 							<input type="text" class="form-control" value="${principal.type}"
 								id="type" readonly="readonly">
 							<div class="input-group-append">
-								<a href="/mypage/typeCer" class="btn btn-info">인증하기</a>
+								<a href="/mypage/typeCer" class="btn btn-primary">인증하기</a>
 							</div>
 						</div>
+						<label class="text-danger">인증되지 않은 공인중개사입니다. </label>
 					</c:when>
-				
+					
+					
+					<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer eq 'Y'}">
+					<div class="input-group">
+							<input type="text" class="form-control" value="${principal.type}"
+								id="type" readonly="readonly">
+							<div class="input-group-append">
+								<a href="/mypage/typeCer" class="btn btn-primary">인증정보</a>
+							</div>
+						</div>
+						<label class="text-primary">인증된 공인중개사입니다. </label>
+					</c:when>
+					
+					
 				<c:otherwise>
 					<input type="text" class="form-control" value="${principal.type}" id="type" readonly="readonly">
 				</c:otherwise>
 				</c:choose>
 				
-			<c:choose>
-					<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer == 0}">
-						<label class="text-danger">인증되지 않은 공인중개사입니다. </label>
-					</c:when>
-					<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer == 1}">
-						<label class="text-danger">인증받은 공인중개사입니다. </label>
-					</c:when>
-			</c:choose>
 		</div>
 		<br /> 
 	</form>

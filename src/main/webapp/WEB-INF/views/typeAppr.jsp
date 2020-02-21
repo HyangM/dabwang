@@ -20,7 +20,7 @@
 		</div>
 		<div class="form-group ">
 			<label>중개사무소 등록번호</label>
-			<input type="text" class="form-control" value="${postAuth.typeNum}" readonly="readonly">
+			<input type="number" class="form-control" value="${postAuth.typeNum}" readonly="readonly">
 		</div>
 		
 	</form>	

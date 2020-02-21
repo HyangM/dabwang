@@ -78,9 +78,9 @@ public class UserController {
 		return "mypage";
 	}
 	
-	@GetMapping("/typeApprList")
-	public String typeCerList(Model model) {
-		List<BoardTypeListDto> typeCers=boardService.공인중개사승인게시판();
+	@GetMapping("/typeApprList/{pageNo}")
+	public String typeCerList(@PathVariable int pageNo,Model model) {
+		List<BoardTypeListDto> typeCers=boardService.공인중개사승인게시판(pageNo);
 		model.addAttribute("typeCers",typeCers);
 		return "typeApprList";
 	}
@@ -217,14 +217,12 @@ public class UserController {
 		}
 	}
 	
-	
-	@GetMapping("/roomApprList")
-	public String roomApprList(Model model) {
-		List<BoardTypeListDto> roomCers=boardService.공인중개사승인게시판();
+	@GetMapping("/roomApprList/{pageNo}")
+	public String roomApprList(@PathVariable int pageNo,Model model) {
+		List<BoardTypeListDto> roomCers=boardService.공인중개사승인게시판(pageNo);
 		model.addAttribute("roomCers",roomCers);
 		return "roomApprList";
 	}
-	
 	
 	
 }
