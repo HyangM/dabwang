@@ -5,7 +5,7 @@
 <mapper namespace="com.ksh.dabang.repository.BoardRepository">
 	
 	<select resultType="com.ksh.dabang.model.board.dto.BoardTypeListDto" id="findAll">
-		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc limit (#{pageNo}-1)*10 , 10 
+		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc limit #{pageNo} , 10 
 	</select> 
 	 
 	<insert id="saveTypeCer">
