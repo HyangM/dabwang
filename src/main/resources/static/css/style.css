@@ -23,6 +23,11 @@
     #table_1 {
         border-color: white;
     }
+    
+    radio.selected{
+  	background-color: primary;
+  	color: white;
+	}
 /*  윤정이 추가 css 끝 */    
  
  

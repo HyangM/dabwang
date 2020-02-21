@@ -1,6 +1,17 @@
 /**
  * 
  */
+
+$('label').on('click', function(){
+    $('label').removeClass('selected');
+    $(this).addClass('selected');
+});
+
+
+
+
+
+
 var data1 ="";
 var data2 ="";
 var data3a ="";

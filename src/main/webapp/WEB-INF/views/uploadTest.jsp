@@ -20,6 +20,19 @@ String areaM = request.getParameter("areaM");
 String floor = request.getParameter("floor");
 String moveDay = request.getParameter("moveDay");
 
+String mCost = request.getParameter("mCost");
+String parking = request.getParameter("parking");
+String elevator = request.getParameter("elevator");
+String options = request.getParameter("options");
+String lof = request.getParameter("lof");
+
+String title = request.getParameter("title");
+String content = request.getParameter("content");
+String picName  = request.getParameter("picName");
+
+
+
+
 %>
 
 
@@ -38,8 +51,17 @@ String moveDay = request.getParameter("moveDay");
 <p> 평수 : <%=areaP%></p>
 <p> 제곱미터 : <%=areaM%></p>
 <p> 층수 : <%=floor%></p>
-<p> 이사가능일 : <%=moveDay%></p>
+<p> 입주가능일 : <%=moveDay%></p>
 
+<p> 관리비 : <%=mCost%></p>
+<p> 주차여부 : <%=parking%></p>
+<p> 엘리베이터 : <%=elevator%></p>
+<p> 옵션들 : <%=options%></p>
+<p> 전세자금대출 : <%=lof%></p>
+
+<p> 제목 : <%=title%></p>
+<p> 글내용 : <%=content%></p>
+<p> 방사진이름(1장) : <%=picName%></p>
 
 
 </body>
