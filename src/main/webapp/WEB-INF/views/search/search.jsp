@@ -16,7 +16,7 @@
 #map {
     height: 100%;
   }
-</style>
+</style> 
 <div id="root">
 	<div class="styled__Main-sc-36tku2-0 ePlFZY">
 
@@ -24,8 +24,8 @@
 		<div class="styled__Top-sc-36tku2-1 hJtKYy">
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
-					<input type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
-						autocomplete="off" name="keyword" placeholder="수영동" />
+					<input id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
+						autocomplete="off" placeholder="수영동" value="" />
 					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
 			                <circle cx="7.5" cy="7.5" r="6.5"></circle>
@@ -1428,15 +1428,16 @@
 
 	</div>
 </div>
-
+<form id="SearchForm" >
+	<input type="hidden" id="keyword" name="keyword" value="">
+</form>
 <script src="../js/all.min.js"></script>
 <script>
 	$('#ftco-navbar').removeClass("bg-dark");
 	$('#ftco-navbar').removeClass("navbar-dark");
 </script>
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer&services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer&services"></script>
 	
 <script>
 	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
@@ -1477,6 +1478,8 @@
 
 <script>
 
+var searchForm = $("#SearchForm");
+
 function search(){
 	var keyword = $('.keOJyH').val();
 	if(keyword == ''){
@@ -1484,26 +1487,11 @@ function search(){
 	}else {
 		keywordval = keyword; 
 	}
-		
-	$.ajax({
-		type : "GET",
-		url : "/search/filter/"+keyword,
-		dataType : 'json'
-	}).done(function(result) {
-			console.log(result);
-			for ( var i in result) {
+	
+	document.getElementById('keyword').value = keywordval;
+	searchForm.attr('action', '/filter').attr('method', 'get');
+	searchForm.submit();
 
-				var item_el = "<tr class='item'><td>"
-						+ result[i].id + "</td><td>"
-						+ result[i].teamId + "</td><td>"
-						+ result[i].teamName + "</td><td>"
-						+ result[i].playerName + "</td></tr>";
-				$("#title2").after(item_el);
-			}
-
-		}).fail(function() {
-		alert("안됨");
-	});
 }
 </script>
 <script src="/js/search.js"></script>

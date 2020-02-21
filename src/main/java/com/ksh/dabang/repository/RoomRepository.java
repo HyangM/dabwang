@@ -18,5 +18,7 @@ public interface RoomRepository {
 		
 	public List<RespSearchListDto> findBySearchList();
 	
+	public List<RespSearchListDto> findByKeywordSearchList(String keyword);
+	
 	
 }
