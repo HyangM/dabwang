@@ -9,10 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-
 public class LoginDto {
 
 	@Size(max = 30, message = "이메일을 확인하세요.")
@@ -22,5 +21,7 @@ public class LoginDto {
 	@Size(max = 20, message = "비밀번호를  확인하세요.")
 	@NotBlank(message = "비밀번호를 확인하세요")
 	private String password;
+	
+	private String rememberMe;
 
 }

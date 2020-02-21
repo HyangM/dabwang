@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ksh.dabang.repository.BoardRepository">
+	
+	<select resultType="com.ksh.dabang.model.board.dto.BoardTypeListDto" id="findAll">
+		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc
+	</select>
+	 
+	<insert id="saveTypeCer">
+		insert into post_auth(agentId,createDate) values(#{agentId},now());
+	</insert>	
+
+
+	<select resultType="com.ksh.dabang.model.board.dto.BoardTypeCerDto" id="findByPostId">
+		select * from user join post_auth on user.userId = post_auth.agentId where postId = #{postId}
+	</select>
+
+	<update id="saveTypeAppr">
+		UPDATE user SET typeCer=1 WHERE userId = #{agentId} 
+	</update>
+	
+</mapper>

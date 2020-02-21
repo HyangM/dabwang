@@ -20,7 +20,7 @@
 				<div class="ftco-footer-widget mb-3 ml-md-3">
 					<h2 class="ftco-heading-2">공인중개사 회원가입</h2>
 					<ul class="list-unstyled">
-						<li><a href="/">회원 가입</a></li>
+						<li><a href="/join">회원 가입</a></li>
 					</ul>
 				</div>
 			</div>

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -56,7 +60,6 @@
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
-
 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
 		id="ftco-navbar">
@@ -71,12 +74,38 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="/search" class="nav-link"><span>방찾기</span></a></li>
-					<li class="nav-item"><a href="/" class="nav-link"><span>관심목록</span></a></li>
-					<li class="nav-item"><a href="/upload" class="nav-link"><span>방내놓기</span></a></li>
-					<li class="nav-item"><a href="/" class="nav-link"><span>알림</span></a></li>
-					<li class="nav-item"><a href="/join" class="nav-link"><span>회원가입</span></a></li>
-					<li class="nav-item"><a href="/login" class="nav-link"><span>로그인</span></a></li>
+					<c:choose>
+						<c:when test="${sessionScope.principal.type eq '세입자' || sessionScope.principal.type eq '방주인'}">
+						<li class="nav-item"><a href="/search" class="nav-link"><span>방찾기</span></a></li>
+							<li class="nav-item"><a href="/" class="nav-link"><span>관심목록</span></a></li>
+							<li class="nav-item"><a href="/" class="nav-link"><span>방내놓기</span></a></li>
+							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
+							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
+						</c:when>
+						
+						<c:when test="${sessionScope.principal.type eq '공인중개사'}">
+							<li class="nav-item"><a href="/search" class="nav-link"><span>방 찾기</span></a></li>
+							<li class="nav-item"><a href="/roomApprList" class="nav-link"><span>매물 승인하기</span></a></li>
+							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
+							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
+						</c:when>
+						
+						<c:when test="${sessionScope.principal.role eq '관리자'}">
+							<li class="nav-item"><a href="/search" class="nav-link"><span>방 찾기</span></a></li>
+							<li class="nav-item"><a href="roomApprList" class="nav-link"><span>매물 승인하기</span></a></li>
+							<li class="nav-item"><a href="/typeApprList" class="nav-link"><span>공인중개사 승인하기</span></a></li>
+							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
+							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
+						</c:when>
+						
+						<c:otherwise>
+							<li class="nav-item"><a href="/search" class="nav-link"><span>방찾기</span></a></li>
+							<li class="nav-item"><a href="/" class="nav-link"><span>관심목록</span></a></li>
+							<li class="nav-item"><a href="/" class="nav-link"><span>방내놓기</span></a></li>
+							<li class="nav-item"><a href="/join" class="nav-link"><span>회원가입</span></a></li>
+							<li class="nav-item"><a href="/login" class="nav-link"><span>로그인</span></a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
@@ -86,3 +115,4 @@
 	<br />
 	<br />
 	<br />
+	

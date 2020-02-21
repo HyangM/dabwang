@@ -7,6 +7,7 @@
 	data-stellar-background-ratio="0.5">
 	<div class="overlay"></div>
 	<div class="container">
+		
 		<div
 			class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
 			data-scrollax-parent="true">
@@ -16,6 +17,7 @@
 					<h4 class="mb-4">어떤 동네, 어떤 방에서 살고 싶으신가요?</h4>
 					<div class="input-group col-10 ">
 						<input type="text" class="form-control"
+					
 							placeholder="부산광역시 수영구를 검색해보세요.">
 						<div class="input-group-append">
 							<button class="btn btn-outline-primary">&nbsp&nbsp검&nbsp&nbsp색&nbsp&nbsp</button>
@@ -33,6 +35,7 @@
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-3">
 			<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
+
 				<h2 class="mb-4 text-center">쉬운 방찾기</h2>
 				<p class="text-center">방 찾기 초보를 위한 초간단 솔루션!</p>
 			</div>
