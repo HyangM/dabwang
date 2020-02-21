@@ -29,4 +29,9 @@ public class SearchService {
 		
 		return roomRepository.findBySearchList();
 	}
+	
+	public List<RespSearchListDto> 방검색어조회(String keyword) {
+		
+		return roomRepository.findByKeywordSearchList(keyword);
+	}
 }

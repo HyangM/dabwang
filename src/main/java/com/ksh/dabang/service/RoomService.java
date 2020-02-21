@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import com.ksh.dabang.model.room.Options;
 import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
+import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.repository.RoomRepository;
 
 @Service
 public class RoomService {
+	
+	
 
 	@Autowired
 	private RoomRepository roomRepository;
@@ -29,5 +32,13 @@ public class RoomService {
 
 		return roomRepository.findAlloption(roomId);
 	}
+	
+	public int 방등록하기(ReqUploadDto dto) {
+		return roomRepository.upload(dto);
+		
+	}
+	
+	
+		
 
 }

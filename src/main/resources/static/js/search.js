@@ -54,3 +54,9 @@
 		 $('.portal').hide();
 	}
 });
+ 
+
+function roomDetail(roomId){
+
+	location.href='/detail/'+roomId;
+}
