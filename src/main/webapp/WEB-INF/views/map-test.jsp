@@ -15,18 +15,20 @@
        <a href="/download/web/data/chicken.json" target="_blank">여기를 클릭하세요!</a>
     </em>
 </p>
-<div id="map" style="width:100%;height:350px;"></div>
+<!-- 실제 지도가 나타나는 영역. -->
+<div id="map" style="width:70%;height:500px;"></div>
 
+<!-- services와 drawing 라이브러리 불러오기 -->
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,drawing"></script> -->
 <!-- 실제 지도를 그리는 javascript API 불러오기. -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011"></script> -->
-<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer"></script>
+
 <script>
-    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
-        level : 14 // 지도의 확대 레벨 
-    });
+var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+    center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표??? 
+    level : 14 // 지도의 확대 레벨 
+});
+
     
     // 마커 클러스터러를 생성합니다 
     var clusterer = new kakao.maps.MarkerClusterer({
