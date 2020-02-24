@@ -60,3 +60,61 @@ function roomDetail(roomId){
 
 	location.href='/detail/'+roomId;
 }
+
+
+let checkArr = [];
+$('.hpBewf .PcMeW:checkbox[name="multi_room_type"]').each(function(i){
+	if($(this).is(":checked")) {//체크된 애들만 넣어줄 값
+		checkArr.push($(this).val());
+		console.log('checkArr[i]: ',checkArr[i]);
+	}else {//체크되지 않은 애들만 넣어줄 값
+		this.checked=false;
+	}
+
+});
+document.getElementById('roomType').value = checkArr;
+console.log('checkArr: ',checkArr);	
+
+$('.hpBewf .PcMeW').on('click', function () {
+	let checkArr = [];
+	
+	$('input:checkbox[name="multi_room_type"]').each(function(i){
+		if($(this).is(":checked")) {//체크된 애들만 넣어줄 값
+			checkArr.push($(this).val());
+		}else {//체크되지 않은 애들만 넣어줄 값
+			this.checked=false;
+		}
+		   
+	});
+	document.getElementById('roomType').value = checkArr;
+}); 
+
+$('.eLjSYd .PcMeW').on('click', function () {
+	let checkArr2 = [];
+	
+	$('input:checkbox[name="selling_type"]').each(function(i){
+		if($(this).is(":checked")) {//체크된 애들만 넣어줄 값
+			checkArr2.push($(this).val());
+			console.log('checkArr2[i]: ',checkArr2[i]);
+		}else {//체크되지 않은 애들만 넣어줄 값
+			this.checked=false;
+		}
+		   
+	});
+	document.getElementById('dealType').value = checkArr2;
+});
+
+
+let checkArr2 = [];
+
+$('input:checkbox[name="selling_type"]').each(function(i){
+	if($(this).is(":checked")) {//체크된 애들만 넣어줄 값
+		checkArr2.push($(this).val());
+//		console.log('checkArr2[i]: ',checkArr2[i]);
+	}else {//체크되지 않은 애들만 넣어줄 값
+		this.checked=false;
+	}
+	   
+});
+document.getElementById('dealType').value = checkArr2;
+//console.log('checkArr2: ',checkArr2);	

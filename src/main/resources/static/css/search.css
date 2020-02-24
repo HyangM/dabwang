@@ -546,7 +546,7 @@ ul, li {
   width: 32px;
   height: 30px;
   margin: 0px auto;
-  background: url(/images/like.svg) center center / cover;
+  background: center center / cover;
 }
 .kpKjGs {
   display: block;
@@ -1047,6 +1047,7 @@ h1 {
   margin: 20px 0px;
   padding: 0px 11px;
 }
+/* 
 .noUi-target {
   box-shadow: rgb(240, 240, 240) 0px 1px 1px inset, rgb(187, 187, 187) 0px 3px 6px -5px;
   background: rgb(243, 243, 243);
@@ -1097,7 +1098,7 @@ h1 {
   height: 100%;
   width: 100%;
   transform-origin: 0px 0px;
-}
+} 
 html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   left: auto;
   right: 0px;
@@ -1132,6 +1133,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .noUi-draggable {
     cursor: ew-resize;
 }
+
+*/
 .iGsetp {
   padding-bottom: 47px;
   position: relative;

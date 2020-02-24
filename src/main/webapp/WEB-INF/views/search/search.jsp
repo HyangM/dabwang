@@ -3,10 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/nav.jsp"%>
 
+
 <!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />-->
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" /> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+
+<script src="http://propeller.in/components/range-slider/js/wNumb.js"></script>
+<script src="http://propeller.in/components/range-slider/js/nouislider.js"></script>
+<link rel="stylesheet" type="text/css" href="http://propeller.in/components/range-slider/css/nouislider.min.css">
+<link rel="stylesheet" type="text/css" href="http://propeller.in/components/textfield/css/textfield.css">
+<link rel="stylesheet" type="text/css" href="http://propeller.in/components/checkbox/css/checkbox.css">
+<link rel="stylesheet" type="text/css" href="http://propeller.in/components/range-slider/css/range-slider.css">
 <link rel="stylesheet" href="css/search.css" />
 
 <style>
@@ -17,6 +25,7 @@
     height: 100%;
   }
 </style> 
+
 <div id="root">
 	<div class="styled__Main-sc-36tku2-0 ePlFZY">
 
@@ -25,7 +34,7 @@
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
 					<input id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
-						autocomplete="off" placeholder="수영동" value="" />
+						autocomplete="off" placeholder="" value="" />
 					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
 			                <circle cx="7.5" cy="7.5" r="6.5"></circle>
@@ -51,20 +60,20 @@
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="multi_room_type"
 										type="checkbox" class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW"
-										value="" checked="" /> <span class="CheckBox"></span> <span
+										value="1" checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-1eqdfqp-2 kMvalg">원룸</span>
 								</label></li>
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="multi_room_type"
 										type="checkbox" class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW"
-										value="" checked="" /> <span class="CheckBox"></span> <span
+										value="2" checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-1eqdfqp-2 kMvalg">투·쓰리룸</span>
 								</label></li>
 
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="multi_room_type"
 										type="checkbox" class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW"
-										value="" checked="" /> <span class="CheckBox"></span> <span
+										value="3" checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-1eqdfqp-2 kMvalg">오피스텔</span>
 								</label></li>
 							</ul>
@@ -72,7 +81,7 @@
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="multi_room_type"
 										type="checkbox" class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW"
-										value="" /> <span class="CheckBox"></span> <span
+										value="4" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-1eqdfqp-2 kMvalg">아파트</span>
 								</label>
 									<div class="styled__DescBox-sc-1eqdfqp-1 kldrnH">
@@ -111,19 +120,19 @@
 							<ul class="styled__Ul-sc-7qrnpy-0 eLjSYd">
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="selling_type" type="checkbox"
-										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value=""
+										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value="월세"
 										checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-7qrnpy-1 nmQzi">월세 </span>
 								</label></li>
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="selling_type" type="checkbox"
-										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value=""
+										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value="전세"
 										checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-7qrnpy-1 nmQzi">전세 </span>
 								</label></li>
 								<li><label class="Checkbox__Label-ifp1yz-0 kAqGVi clearfix"
 									size="22"> <input name="selling_type" type="checkbox"
-										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value=""
+										class="Checkbox__CheckboxStd-ifp1yz-1 PcMeW" value="매매"
 										checked="" /> <span class="CheckBox"></span> <span
 										class="styled__Text-sc-7qrnpy-1 nmQzi">매매 </span>
 								</label></li>
@@ -145,28 +154,9 @@
 									<p class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
 								</h1>
 								<div class="styled__RangeSlider-sc-1wi5o59-0 jqwYlT">
-									<div class="noUi-target noUi-ltr noUi-horizontal">
-										<div class="noUi-base">
-											<div class="noUi-connects">
-												<div class="noUi-connect noUi-draggable"
-													style="transform: translate(0%, 0px) scale(1, 1);"></div>
-											</div>
-											<div class="noUi-origin"
-												style="transform: translate(-100%, 0px); z-index: 5;">
-												<div class="noUi-handle noUi-handle-lower" data-handle="0"
-													tabindex="0" role="slider" aria-orientation="horizontal"
-													aria-valuemin="0.0" aria-valuemax="100.0"
-													aria-valuenow="0.0" aria-valuetext="0.00"></div>
-											</div>
-											<div class="noUi-origin"
-												style="transform: translate(0%, 0px); z-index: 4;">
-												<div class="noUi-handle noUi-handle-upper" data-handle="1"
-													tabindex="0" role="slider" aria-orientation="horizontal"
-													aria-valuemin="0.0" aria-valuemax="100.0"
-													aria-valuenow="100.0" aria-valuetext="999999.00"></div>
-											</div>
-										</div>
-									</div>
+								
+									<div id="pmd-slider-value-range"  class="pmd-range-slider" min="0" max="99999"></div>	
+									
 								</div>
 								<ul class="styled__Ruler-sc-1a98puu-8 iGsetp">
 									<li>0</li>
@@ -378,13 +368,14 @@
 						</div>
 						<!-- 상세 창5 -->
 					</div>
-					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
+					<!-- 준공년차 -->
+					<!--<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-sc-1a98puu-1 fUMVvC">
 							<span>준공년차</span> <i width="11" height="7"
 								class="fas fa-angle-down search__btn1__icon"></i>
-						</div>
+						</div> -->
 						<!-- 상세 창6 -->
-						<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
+						<!--<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
 							style="right: 0px; display: none;">
 							<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">준공년차</h1>
 							<ul class="styled__Ul-sc-19pabue-0 bZsIeN">
@@ -427,7 +418,8 @@
 							</ul>
 						</div>
 						<!-- 상세 창6 -->
-					</div>
+					<!--</div> -->
+					<!-- 준공년차 -->
 					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-jzhnoe-1 bAZEbe">
 							추가필터 <i width="11" height="7"
@@ -727,7 +719,7 @@
 				</div>
 
 				<div class="styled__BtnWrap-sfs8fz-2 iAUcYP">
-					<button class="styled__Btn-sc-1p3e70q-0 bRnFtN">
+					<!-- <button class="styled__Btn-sc-1p3e70q-0 bRnFtN">
 						<svg width="22" height="19" viewBox="0 0 30 26">
 			                <g fill="none" fill-rule="evenodd">
 			                  <g class="Svg__group" fill-rule="nonzero">
@@ -741,7 +733,7 @@
 			                </g>
 			              </svg>
 						전체필터
-					</button>
+					</button> -->
 					<button class="styled__Btn-sfs8fz-3 bfbsFm"
 						style="padding-left: 36px;">
 						<i width="22" height="22"
@@ -769,9 +761,9 @@
 								<li class="styled__Li-sc-84urxt-0 hxpbDF">
 									<div class="styled__Card-fi3k4t-0 OUJOU">
 										<div class="styled__BtnWrap-sc-3yrk4m-0 gYMri">
-											<div class="styled__Like-sc-3yrk4m-1 hjVNgq"></div>
+											<div class="styled__Like-sc-3yrk4m-1 hjVNgq" value="${room.roomId}" style="background: url(/images/like.svg)"></div>
 										</div>
-										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank"
+										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank" 
 											rel="noopener noreferrer" class="styled__A-fi3k4t-1 kpKjGs">
 											<div class="styled__RoomImg-fi3k4t-2 kfPGuF RoomImg"
 												style="background: url(/media/${room.picName}) center center/cover no-repeat;"></div>
@@ -801,7 +793,7 @@
 											</div>
 											<p
 												class="styled__Text-fi3k4t-7 styled__RoomType-fi3k4t-8 iKMmNd">
-												${room.roomType}</p>
+												${room.roomType}   ${like.roomId}</p>
 											<p
 												class="styled__Text-fi3k4t-7 styled__Price-fi3k4t-9 bNBYTU">
 												<span>${room.dealType} <c:choose>
@@ -871,7 +863,7 @@
 			</div>
 		</div>
 		<!-- 전체필터 상세창 시작 -->
-		<div class="portal" style="display: none">
+	<%-- 	<div class="portal" style="display: none">
 			<div class="styled__Wrap-sc-1p3e70q-1 cRQhXs">
 				<div class="styled__Wrap-sc-17lr53x-0 RsiHx">
 					<h1 class="styled__Title-sc-17lr53x-1 coyXRX">
@@ -1423,13 +1415,17 @@
 					<button class="styled__CloseBtn-sc-1p3e70q-4 jyqVxU">취소</button>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<!-- 전체필터 상세창 끝 -->
 
 	</div>
 </div>
 <form id="SearchForm" >
+	<input type="hidden" id="userId" value="${sessionScope.principal.userId}"/>
+	<input type="hidden" id="roomId" value="${room.roomId}"/>
 	<input type="hidden" id="keyword" name="keyword" value="">
+	<input type="hidden" id="roomType" name="roomType" value="">
+	<input type="hidden" id="dealType" name="dealType" value="">
 </form>
 <script src="../js/all.min.js"></script>
 <script>
@@ -1438,7 +1434,8 @@
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer&services"></script>
-	
+
+
 <script>
 	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(35.165001, 129.114666), // 지도의 중심좌표 
@@ -1493,6 +1490,75 @@ function search(){
 	searchForm.submit();
 
 }
+
+var pmdSliderValueRange = document.getElementById('pmd-slider-value-range');
+
+noUiSlider.create(pmdSliderValueRange, {
+	start: [ 0, 99999 ], // Handle start position
+	connect: true, // Display a colored bar between the handles
+	 tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ], 
+	format: wNumb({
+		decimals: 0,
+		thousand: '',
+		postfix: '',
+	}),
+	range: { // Slider can select '0' to '100'
+		'min': 0,
+		'max': 100
+	},
+step: 5,
+	  pips: { 
+		  mode: 'steps',
+		  density: 10
+	  }
+});
+
+var valueMax = document.getElementById('value-max'),
+	valueMin = document.getElementById('value-min');
+
+// When the slider value changes, update the input and span
+pmdSliderValueRange.noUiSlider.on('update', function( values, handle ) {
+	if ( handle ) {
+		let pvalue = values[handle];
+		console.log(values[handle]);
+		$('.eavwzc').val(pvalue);
+		//valueMax.value = values[handle];
+	} else {
+		//valueMin.value = values[handle];
+	}
+});	
+
+
+$('.hjVNgq').on('click',function(){
+
+
+	let roomId = $(this).attr('value');
+	let userId = $('#userId').val();
+	if(userId == ""){
+		location.href = "/login"
+	}else{
+		let data = { 
+				userId : userId,
+				roomId : roomId
+		};
+
+	 	$.ajax({
+			type:'POST',
+			url:'/likeroom',
+			data:JSON.stringify(data),
+			contentType:'application/json; charset=utf-8',
+			dataType:'json'			
+		}).done(function(result){
+			if(result.statusCode==200){
+				alert('찜등록 성공.');
+			}
+		}).fail(function(result){
+			alert('찜등록 실패.');
+		}); 
+
+		
+	}
+});
 </script>
 <script src="/js/search.js"></script>
 </body>

@@ -41,7 +41,7 @@
 		#{floor}, #{moveDay}, #{mCost}, #{parking}, #{elevator}, #{lof}, #{areaM}title, #{content}, now(), #{hostId}, #{lat}, #{lng})
 	</insert>
 	
-	<select id="findByKeywordSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
+	<select id="findByFilterSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
 			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
 			   hostId, agentId, lat, lng, picName
@@ -49,7 +49,17 @@
 	      					on room_pic.roomId = room.roomId
 	      				   and room_pic.picId = 1 
 	      				   
-	     where room.addr like CONCAT('%',#{keyword},'%')	      				
+	     where room.addr like CONCAT('%',#{keyword},'%')	    
+	       and (roomType like #{roomType1}	
+	       		 or roomType like #{roomType2} 
+	       		 or roomType like #{roomType3} 
+	       		 or roomType like #{roomType4} 
+	       		 or roomType like #{roomType5} 
+	       	   )   			    
+	       and (dealType like #{dealType1}	
+	       		 or dealType like #{dealType2} 
+	       		 or dealType like #{dealType3}
+	       	   )   
 	</select>
 	
 		

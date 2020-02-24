@@ -21,7 +21,8 @@ public interface RoomRepository {
 	
 	public int upload(ReqUploadDto dto);
 	
-	public List<RespSearchListDto> findByKeywordSearchList(String keyword);
+	public List<RespSearchListDto> findByFilterSearchList(String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
+			String dealType1, String dealType2, String dealType3);
 	
 	
 }
