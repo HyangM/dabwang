@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +21,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ksh.dabang.model.RespCM;
 import com.ksh.dabang.model.room.Room_like;
 import com.ksh.dabang.model.room.dto.RespLatlngDto;
-import com.ksh.dabang.model.room.dto.RespRoomLikeDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
 import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.service.SearchService;
@@ -37,13 +38,15 @@ public class SearchController {
 	public String search(Model model) {
 		 
 		List<RespLatlngDto> dto = searchService.지도위치찾기();
-		List<RespSearchListDto> rooms = searchService.방리스트();
+		
 		User principal = (User)session.getAttribute("principal");
-		if(principal != null) {
-			List<RespRoomLikeDto> findLike = searchService.찜한방(principal.getUserId());
-			model.addAttribute("like",findLike);
+		int userId = 0;
+		if (principal != null) {
+			userId = principal.getUserId();		
 		}
 		
+		List<RespSearchListDto> rooms = searchService.방리스트(userId);
+				
 		model.addAttribute("rooms", rooms);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -69,7 +72,14 @@ public class SearchController {
 //		String[] roomTypeArr = roomType.split(",");
 				
 		List<RespLatlngDto> dto = searchService.지도위치찾기();
-		List<RespSearchListDto> rooms = searchService.방검색조회(keyword, roomType, dealType);
+
+		User principal = (User)session.getAttribute("principal");
+		int userId = 0;
+		if (principal != null) {
+			userId = principal.getUserId();		
+		}
+		
+		List<RespSearchListDto> rooms = searchService.방검색조회(userId, keyword, roomType, dealType);
 		for(RespSearchListDto room:rooms) {
 			System.out.println("getRoomType :"+room.getRoomType());
 		}
@@ -99,8 +109,9 @@ public class SearchController {
 	
 	@PostMapping("/likeroom")
 	public ResponseEntity<?> likeroom(@RequestBody Room_like roomlike){
-
+		
 		int result = searchService.찜한방추가(roomlike);
+		
 		if (result == 1) {
 			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
 		} else {
@@ -108,6 +119,19 @@ public class SearchController {
 		}
 		
 	}
+	
+	@DeleteMapping("/likeroom/{likeId}")
+	public ResponseEntity<?> likeroom(@PathVariable int likeId){
+		
+		int result = searchService.찜한방삭제(likeId);
+		
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+		}		
+	}
+	
 	
 	
 }

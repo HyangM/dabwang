@@ -546,7 +546,13 @@ ul, li {
   width: 32px;
   height: 30px;
   margin: 0px auto;
-  background: center center / cover;
+  background: url(/images/like.svg) center center / cover;
+}
+.doWxJj {
+  width: 32px;
+  height: 30px;
+  margin: 0px auto;
+  background: url(/images/like_fill.svg) center center / cover;
 }
 .kpKjGs {
   display: block;

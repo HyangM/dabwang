@@ -7,12 +7,16 @@
 	<select id="findBylatlng" resultType="com.ksh.dabang.model.room.dto.RespLatlngDto">
 		SELECT lat, lng FROM room 
 	</select>
+	
+	<select id="likeSelect" resultType="com.ksh.dabang.model.room.dto.ReqRoomLikeDto">
+		SELECT * FROM like_room where userId = #{userId}
+	</select>
 
 	<insert id="likeInsert">
 		insert into like_room(userId,roomId, createDate)values(#{userId}, #{roomId}, now());
 	</insert>
-	
-	<select id="likeSelect" resultType="com.ksh.dabang.model.room.dto.RespRoomLikeDto">
-		SELECT * FROM like_room where userId = #{userId}
-	</select>
+
+	<delete id="likeDelete">
+		delete from like_room where likeId = #{likeId};
+	</delete>
 </mapper>

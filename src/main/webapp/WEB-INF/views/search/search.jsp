@@ -8,13 +8,14 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" /> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-
+<!-- 
 <script src="http://propeller.in/components/range-slider/js/wNumb.js"></script>
 <script src="http://propeller.in/components/range-slider/js/nouislider.js"></script>
 <link rel="stylesheet" type="text/css" href="http://propeller.in/components/range-slider/css/nouislider.min.css">
 <link rel="stylesheet" type="text/css" href="http://propeller.in/components/textfield/css/textfield.css">
 <link rel="stylesheet" type="text/css" href="http://propeller.in/components/checkbox/css/checkbox.css">
 <link rel="stylesheet" type="text/css" href="http://propeller.in/components/range-slider/css/range-slider.css">
+ -->
 <link rel="stylesheet" href="css/search.css" />
 
 <style>
@@ -140,18 +141,18 @@
 						</div>
 						<!-- 상세 창2 -->
 					</div>
-					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
+				<!--  <div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-sc-1a98puu-1 fUMVvC">
 							<span>가격대</span> <i width="11" height="7"
 								class="fas fa-angle-down search__btn1__icon"></i>
-						</div>
+						</div>-->
 						<!-- 상세 창3 -->
-						<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
+							<!-- <div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
 							style="display: none">
 							<div class="styled__SliderWrap-sc-1a98puu-7 bGSvtn">
 								<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">
 									보증금/전세가
-									<p class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
+									<p name="first1_1" class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
 								</h1>
 								<div class="styled__RangeSlider-sc-1wi5o59-0 jqwYlT">
 								
@@ -167,7 +168,7 @@
 							<div class="styled__SliderWrap-sc-1a98puu-7 bGSvtn">
 								<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">
 									월세
-									<p class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
+									<p name="first1_2"class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
 								</h1>
 								<div class="styled__RangeSlider-sc-1wi5o59-0 jqwYlT">
 									<div class="noUi-target noUi-ltr noUi-horizontal">
@@ -202,7 +203,7 @@
 							<div class="styled__SliderWrap-sc-1a98puu-7 bGSvtn">
 								<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">
 									매매가
-									<p class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
+									<p name="first1_3"class="styled__Price-sc-1a98puu-4 eavwzc">무제한</p>
 								</h1>
 								<div class="styled__RangeSlider-sc-1wi5o59-0 jqwYlT">
 									<div class="noUi-target noUi-ltr noUi-horizontal">
@@ -244,16 +245,16 @@
 									조건삭제
 								</button>
 							</div>
-						</div>
-						<!-- 상세 창3 -->
-					</div>
-					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
+						</div>-->
+						<!-- 상세 창3 
+					</div>-->
+					<!--<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-sc-1a98puu-1 fUMVvC">
 							<span>관리비</span> <i width="11" height="7"
 								class="fas fa-angle-down search__btn1__icon"></i>
-						</div>
+						</div>-->
 						<!-- 상세 창4 -->
-						<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
+						<!--<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
 							style="left: 0px; display: none;">
 							<div class="styled__SliderWrap-sc-1a98puu-7 bGSvtn">
 								<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">
@@ -310,15 +311,15 @@
 								</button>
 							</div>
 						</div>
-						<!-- 상세 창4 -->
-					</div>
-					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
+						<!-- 상세 창4 
+					</div>-->
+					<!--<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-sc-1a98puu-1 fUMVvC">
 							<span>방크기</span> <i width="11" height="7"
 								class="fas fa-angle-down search__btn1__icon"></i>
-						</div>
+						</div>-->
 						<!-- 상세 창5 -->
-						<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
+						<!--<div class="styled__FilterBox-sc-1a98puu-2 fhfjff"
 							style="right: 0px; display: none;">
 							<div class="styled__SliderWrap-sc-1a98puu-7 bGSvtn">
 								<h1 class="styled__Title-sc-1a98puu-3 lmqlXb">
@@ -366,8 +367,8 @@
 								</button>
 							</div>
 						</div>
-						<!-- 상세 창5 -->
-					</div>
+						<!-- 상세 창5
+					</div>-->
 					<!-- 준공년차 -->
 					<!--<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
 						<div class="styled__Btn-sc-1a98puu-1 fUMVvC">
@@ -755,13 +756,24 @@
 					</div>
 					<div class="styled__ListWrap-ityzo6-4 cDzGDZ">
 						<ul class="styled__Ul-ityzo6-5 fxRDHg">
-
-							<c:forEach var="room" items="${rooms}">
-
+	
+							<c:forEach var="room" items="${rooms}" varStatus="status">
 								<li class="styled__Li-sc-84urxt-0 hxpbDF">
 									<div class="styled__Card-fi3k4t-0 OUJOU">
 										<div class="styled__BtnWrap-sc-3yrk4m-0 gYMri">
-											<div class="styled__Like-sc-3yrk4m-1 hjVNgq" value="${room.roomId}" style="background: url(/images/like.svg)"></div>
+											<div class="styled__Like-sc-3yrk4m-1 
+												 <c:choose>
+													<c:when test="${room.likeId ne 0}">doWxJj</c:when>
+													<c:otherwise>hjVNgq</c:otherwise>
+												</c:choose> " 
+											value="${room.roomId}" 
+											name="${room.likeId}" id="likeNum_${status.count}"
+											<%--  style="<c:choose>
+													<c:when test="${room.likeId ne 0}">background: url(/images/like_fill.svg)</c:when>
+													<c:otherwise>background: url(/images/like.svg)</c:otherwise>
+												   </c:choose> --%>" 
+											>
+											</div>
 										</div>
 										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank" 
 											rel="noopener noreferrer" class="styled__A-fi3k4t-1 kpKjGs">
@@ -793,7 +805,7 @@
 											</div>
 											<p
 												class="styled__Text-fi3k4t-7 styled__RoomType-fi3k4t-8 iKMmNd">
-												${room.roomType}   ${like.roomId}</p>
+												${room.roomType}</p>
 											<p
 												class="styled__Text-fi3k4t-7 styled__Price-fi3k4t-9 bNBYTU">
 												<span>${room.dealType} <c:choose>
@@ -1427,24 +1439,155 @@
 	<input type="hidden" id="roomType" name="roomType" value="">
 	<input type="hidden" id="dealType" name="dealType" value="">
 </form>
-<script src="../js/all.min.js"></script>
 <script>
 	$('#ftco-navbar').removeClass("bg-dark");
 	$('#ftco-navbar').removeClass("navbar-dark");
 </script>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=clusterer&services"></script>
-
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <script>
-	var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+console.log('mapContainer : ',mapContainer);
+console.log('mapOption : ',mapOption);
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(); 
+
+// 키워드로 장소를 검색합니다
+ps.keywordSearch('수영구', placesSearchCB); 
+//var data = {positions: ${map}};
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new kakao.maps.LatLngBounds();
+		console.log('data : ',data);
+         for (var i=0; i<data.length; i++) {
+            /*  displayMarker(data[i]);    */  
+            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        }        
+
+      
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+    } 
+}
+
+// 마커 클러스터러를 생성합니다 
+var clusterer = new kakao.maps.MarkerClusterer({
+    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+    minLevel: 10 // 클러스터 할 최소 지도 레벨 
+});
+
+ var data2 = {positions = ${map}}; 
+// 데이터를 가져오기 위해 jQuery를 사용합니다
+// 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+/* $.get("/download/web/data/chicken.json", function(data) { */
+    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+    var markers = $(data2.positions).map(function(i, position) {
+        return new kakao.maps.Marker({
+            position : new kakao.maps.LatLng(position.lat, position.lng)
+        });
+    });
+
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(markers);
+//});
+
+
+/*  var positions = [
+	{
+	    latlng: new kakao.maps.LatLng(35.1531932736837, 129.118976093583)
+	},
+	{
+	    latlng: new kakao.maps.LatLng(35.1417681131185, 129.10960043917)
+	},
+	{
+	    latlng: new kakao.maps.LatLng(35.1508708395273, 129.116357196067)
+	}
+	];  */
+/* 
+	//마커 이미지의 이미지 주소입니다
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+	for (var i = 0; i < positions.length; i ++) {
+
+	// 마커 이미지의 이미지 크기 입니다
+	var imageSize = new kakao.maps.Size(24, 35); 
+
+	// 마커 이미지를 생성합니다    
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    map: map, // 마커를 표시할 지도
+	    position: positions[i].latlng, // 마커를 표시할 위치
+	     title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+	    image : markerImage // 마커 이미지 
+	});
+	}  */
+/* var data2 = {positions: ${map}};
+console.log('data2 : ',data2);
+var markers = $(data2.positions).map(function(i, position) {
+    return new kakao.maps.Marker({
+        position : new kakao.maps.LatLng(position.lat, position.lng)
+    	
+    });
+});
+
+marker.setMap(map); */
+/* console.log(data); */
+// 데이터를 가져오기 위해 jQuery를 사용합니다
+// 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+    
+
+  
+// 지도에 마커를 표시하는 함수입니다
+function displayMarker(place) {
+    
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
+}
+</script>
+<script src="../js/all.min.js"></script>
+
+
+<!--  
+<script>
+
+	 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 	    center : new kakao.maps.LatLng(35.165001, 129.114666), // 지도의 중심좌표 
 	    level : 6 // 지도의 확대 레벨 
-	});
+	}); 
 	
 	// 마커 클러스터러를 생성합니다 
 	var clusterer = new kakao.maps.MarkerClusterer({
-	    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+	    map: mapContainer, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
 	    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
 	    minLevel: 10 // 클러스터 할 최소 지도 레벨 
 	});
@@ -1470,78 +1613,30 @@
 	
 	        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
 	        map.setLevel(level, {anchor: cluster.getCenter()});
-	    });  
+	    });   
 </script>
-
+-->
 <script>
-
-var searchForm = $("#SearchForm");
-
-function search(){
-	var keyword = $('.keOJyH').val();
-	if(keyword == ''){
-		keywordval = $('.keOJyH').attr('placeholder'); 
-	}else {
-		keywordval = keyword; 
-	}
-	
-	document.getElementById('keyword').value = keywordval;
-	searchForm.attr('action', '/filter').attr('method', 'get');
-	searchForm.submit();
-
-}
-
-var pmdSliderValueRange = document.getElementById('pmd-slider-value-range');
-
-noUiSlider.create(pmdSliderValueRange, {
-	start: [ 0, 99999 ], // Handle start position
-	connect: true, // Display a colored bar between the handles
-	 tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ], 
-	format: wNumb({
-		decimals: 0,
-		thousand: '',
-		postfix: '',
-	}),
-	range: { // Slider can select '0' to '100'
-		'min': 0,
-		'max': 100
-	},
-step: 5,
-	  pips: { 
-		  mode: 'steps',
-		  density: 10
-	  }
-});
-
-var valueMax = document.getElementById('value-max'),
-	valueMin = document.getElementById('value-min');
-
-// When the slider value changes, update the input and span
-pmdSliderValueRange.noUiSlider.on('update', function( values, handle ) {
-	if ( handle ) {
-		let pvalue = values[handle];
-		console.log(values[handle]);
-		$('.eavwzc').val(pvalue);
-		//valueMax.value = values[handle];
-	} else {
-		//valueMin.value = values[handle];
-	}
-});	
-
 
 $('.hjVNgq').on('click',function(){
 
-
+	let id_like = $(this).attr("id");
+	console.log(id_like);
+	
 	let roomId = $(this).attr('value');
 	let userId = $('#userId').val();
+	let likeId = $(this).attr('name');
+	
 	if(userId == ""){
 		location.href = "/login"
 	}else{
+		
 		let data = { 
 				userId : userId,
 				roomId : roomId
 		};
-
+		console.log('likeId : ',likeId);
+		
 	 	$.ajax({
 			type:'POST',
 			url:'/likeroom',
@@ -1551,14 +1646,57 @@ $('.hjVNgq').on('click',function(){
 		}).done(function(result){
 			if(result.statusCode==200){
 				alert('찜등록 성공.');
+				//$('#id_like').css('background','url(/images/like_fill.svg)');
+				//$('#id_like').trigger("create");
+				//document.getElementById('id_like').style.background = 'url(/images/like_fill.svg)';
+				$(this).removeClass("hjVNgq");
+				$(this).addClass("doWxJj");
 			}
 		}).fail(function(result){
 			alert('찜등록 실패.');
 		}); 
-
-		
 	}
 });
+
+$('.doWxJj').on('click',function(){
+	
+	let id_like = $(this).attr("id");
+	console.log(id_like);
+
+	let roomId = $(this).attr('value');
+	let userId = $('#userId').val();
+	let likeId = $(this).attr('name');
+	
+	if(userId == ""){
+		location.href = "/login"
+	}else{
+		
+		let data = { 
+				userId : userId,
+				roomId : roomId
+		};
+		console.log('likeId : ',likeId);
+		
+	 	$.ajax({
+			type:'DELETE',
+			url:'/likeroom/'+likeId,
+			data:JSON.stringify(data),
+			contentType:'application/json; charset=utf-8',
+			dataType:'json'			
+		}).done(function(result){
+			if(result.statusCode==200){
+				alert('찜삭제 성공.');
+				//$('#id_like').css('background','url(/images/like.svg)');
+				$(this).removeClass("doWxJj");
+				$(this).addClass("hjVNgq");
+			}
+		}).fail(function(result){
+			alert('찜삭제 실패.');
+		});
+			
+	}
+});
+
 </script>
 <script src="/js/search.js"></script>
 </body>

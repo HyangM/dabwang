@@ -17,11 +17,12 @@ public interface RoomRepository {
 	
 	public List<Options> findAlloption(int roomId);
 		
-	public List<RespSearchListDto> findBySearchList();
+	public List<RespSearchListDto> findBySearchList(int userId, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
+			String dealType1, String dealType2, String dealType3);
 	
 	public int upload(ReqUploadDto dto);
 	
-	public List<RespSearchListDto> findByFilterSearchList(String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
+	public List<RespSearchListDto> findByFilterSearchList(int userId, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
 			String dealType1, String dealType2, String dealType3);
 	
 	
