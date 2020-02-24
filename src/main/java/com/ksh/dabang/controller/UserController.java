@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ksh.dabang.model.RespCM;
@@ -81,7 +82,9 @@ public class UserController {
 	@GetMapping("/typeApprList/{pageNo}")
 	public String typeCerList(@PathVariable int pageNo,Model model) {
 		List<BoardTypeListDto> typeCers=boardService.공인중개사승인게시판(pageNo);
+		int lastPageNo = boardService.마지막게시글번호();
 		model.addAttribute("typeCers",typeCers);
+		model.addAttribute("lastPageNo",lastPageNo);
 		return "typeApprList";
 	}
 		
@@ -153,17 +156,39 @@ public class UserController {
 	}
 	
 	
+//	@PutMapping("/mypage/update")
+//	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
+//		
+//		int result = userService.회원수정(updatedto);
+//		if (result == 1) {
+//			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+//		}
+//	}
+	
 	@PutMapping("/mypage/update")
-	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
-		
-		int result = userService.회원수정(updatedto);
-		if (result == 1) {
-			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+	public @ResponseBody String update(@RequestParam int userId, 
+			@RequestParam String password,
+			@RequestParam MultipartFile profile) {
+		System.out.println("ㅁㄴㅇㄹ");
+		UUID uuid = UUID.randomUUID();
+		String uuidFilename = "/userProfileImage/" + uuid + "_" + profile.getOriginalFilename();
+		Path filePath = Paths.get(fileRealPath + uuidFilename);
+
+		try {
+			Files.write(filePath, profile.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		int result = userService.회원수정(userId,password,uuidFilename);
+
+		if(result == 1) {
+			return "index";
+		}else {
+			return "index";
 		}
 	}
-	
 	
 	
 	@GetMapping("/mypage/typeCer")

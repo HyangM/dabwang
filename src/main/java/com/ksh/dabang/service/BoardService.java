@@ -19,7 +19,14 @@ public class BoardService {
 
 	@Transactional
 	public List<BoardTypeListDto> 공인중개사승인게시판(int pageNo) {
-		return BoardRepository.findAll(pageNo);
+		int pageLimit = (pageNo-1)*10;
+		return BoardRepository.findAll(pageLimit);
+	}
+	
+	@Transactional
+	public int 마지막게시글번호() {
+		int lastPageNo = (int) Math.ceil(BoardRepository.findAllBoard()/10.0);
+		return lastPageNo;
 	}
 	
 	@Transactional

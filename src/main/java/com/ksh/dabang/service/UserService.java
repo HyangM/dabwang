@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
-import com.ksh.dabang.model.user.dto.TypeDto;
-import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.repository.UserRepository;
 
 
@@ -40,7 +38,7 @@ public class UserService {
 	   }
 	
 	@Transactional
-	public int 회원수정(UpdateDto updateDto) {
-	      return userRepository.updateUser(updateDto);
+	public int 회원수정(int userId, String password, String profile) {
+	      return userRepository.updateUser(userId,password,profile);
 		}
 }

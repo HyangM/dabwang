@@ -36,11 +36,54 @@
 				</c:forEach>
 			</tbody>
 		</table>
-			<a href="#" class="btn btn-info col-2 float-left">prev</a>
-			<a href="#" class="btn btn-info col-2 float-right">Next</a>	
+		<c:choose>
+			<c:when test="${pageNo-1 == 0 }">
+				<a href="#" onclick="prev()" class="btn btn-info col-2 float-left">이전페이지</a>
+			</c:when>
+			<c:otherwise>
+				<a href="/typeApprList/${pageNo-1}"  class="btn btn-info col-2 float-left">이전페이지</a>
+			</c:otherwise>	
+		</c:choose>
+
+<%-- 		<c:forTokens var="item" items="1,2,3,4,5" delims=",">
+			<a href="/"class="btn btn-ingo btn-sm">${item}</a>
+		</c:forTokens>
+ --%>
+
+		<c:choose>
+			<c:when test="${pageNo>=lastPageNo}">
+					<a href="#" onclick="next()" class="btn btn-info col-2 float-right">다음페이지</a>	
+			</c:when>
+			<c:otherwise>
+				<a href="/typeApprList/${pageNo+1}" class="btn btn-info col-2 float-right">다음페이지</a>
+			</c:otherwise>	
+		</c:choose>	
+		
+	
+	
+	
 	</div>
 	<br/>
 	<br/>
 	<br/>
 	
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/jquery.animateNumber.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script>
+	function prev() {
+ 		alert('1페이지 입니다.');
+	}
+	
+	function next() {
+		alert('마지막 페이지입니다.');
+	}
+</script>
+
+
 <%@ include file="include/footer.jsp"%>
