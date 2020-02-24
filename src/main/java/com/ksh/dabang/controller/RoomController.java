@@ -151,6 +151,10 @@ public class RoomController {
 	public String clusteringtest() {
 		return "clustering-test";
 	}
+	@GetMapping("/kkoMap")
+	public String kkoMapTest() {
+		return "kkoMap";
+	}
 	
 	
 
