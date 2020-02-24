@@ -30,9 +30,9 @@
 	
 	
 	
-	<!-- 회원 수정(비밀번호 수정만 가능)-->
+	<!-- 회원 수정(비밀번호, 프로필사진)-->
 	<update id="updateUser" >
-		UPDATE user SET password = #{password} WHERE email = #{email} 
+		UPDATE user SET password = #{password} profile = #{password} WHERE userId = #{userId}
 	</update>
 
 	

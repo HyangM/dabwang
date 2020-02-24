@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><span>전세 ${room.yearRent}만원</span></td>
+				<td><span>${room.dealType} - ${room.yearRent}만원</span></td>
 				<td><span>${room.areaM}㎡</span>
 					<button type="button">평</button></td>
 				<td>
@@ -71,7 +71,7 @@
 			<tr class="item text-center">
 
 				<c:forEach var="room_pic" items="${room_pics}" varStatus="status">
-					<td><img src="/media/room_pic/${room_pic.picName}" style="width: 270px; height: 180px;" onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
+					<td><img src="/media/${room_pic.picName}" style="width: 270px; height: 180px;" onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
 					<c:if test="${((status.index+1) mod 4) == 0}">
 			</tr>
 			<tr>

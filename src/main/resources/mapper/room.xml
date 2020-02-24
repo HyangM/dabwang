@@ -25,40 +25,25 @@
 		where roomId = #{roomId}
 	</select>
 	
-	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
-		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
-			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
-			   hostId, agentId, lat, lng, picName, likeId
-	      from room left outer join room_pic
-								on room_pic.roomId = room.roomId
-							   and room_pic.picId = 1 
-                               
-					left outer join ( select roomId, likeId
-										from like_room
-									   where userId = #{userId}
-									 ) like_room
-								 on like_room.roomId = room.roomId
-								 
-	     where room.addr like CONCAT('%',#{keyword},'%')	    
-	       and (roomType like #{roomType1}	
-	       		 or roomType like #{roomType2} 
-	       		 or roomType like #{roomType3} 
-	       		 or roomType like #{roomType4} 
-	       		 or roomType like #{roomType5} 
-	       	   )   			    
-	       and (dealType like #{dealType1}	
-	       		 or dealType like #{dealType2} 
-	       		 or dealType like #{dealType3}
-	       	   )  
-	</select>
-	
 	<insert id="upload">
-		insert into room(roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, areaP, areaM, 
-		floor, moveDay, mCost, parking, elevator, lof, title, content, createDate, hostId, lat, lng) 
-		values(#{roomType}, #{addr}, #{detailAddr}, #{dealType}, #{yearRent}, #{deposit}, #{monthRent}, #{areaP}, #{areaM}, 
-		#{floor}, #{moveDay}, #{mCost}, #{parking}, #{elevator}, #{lof}, #{areaM}title, #{content}, now(), #{hostId}, #{lat}, #{lng})
+		insert into room(roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent, areaP, areaM, 
+		floor, moveDay, mCost, parking, elevator, lof, title, content, createDate, hostId, agentId, lat, lng) 
+		values(#{roomType}, #{addr}, #{detailAddr}, #{dealType}, #{yearRent}, #{deposit}, #{monthRent}, #{dealRent}, #{areaP}, #{areaM}, 
+		#{floor}, #{moveDay}, #{mCost}, #{parking}, #{elevator}, #{lof}, #{title}, #{content}, now(), #{hostId}, #{agentId}, #{lat}, #{lng})
 	</insert>
 	
+	<select id="uploadSelectKey" resultType="int">
+		select max(roomId) from room		
+	</select>
+	<insert id="saveOption">
+		insert into room_option(roomId, optionId) values (#{selectKey}, #{optionOne})
+	</insert>
+	<insert id="saveRoomPic">
+		insert into room_pic(roomId, picId, picName, createDate) 
+		values(#{selectKey}, #{num}, #{OnepicName}, now())
+	
+	</insert>
+		
 	<select id="findByFilterSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
 			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
@@ -84,6 +69,34 @@
 	       		 or dealType like #{dealType2} 
 	       		 or dealType like #{dealType3}
 	       	   )   
+	</select>
+	
+	
+	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
+		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
+			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
+			   hostId, agentId, lat, lng, picName, likeId
+	      from room left outer join room_pic
+								on room_pic.roomId = room.roomId
+							   and room_pic.picId = 1 
+                               
+					left outer join ( select roomId, likeId
+										from like_room
+									   where userId = #{userId}
+									 ) like_room
+								 on like_room.roomId = room.roomId
+								 
+	     where room.addr like CONCAT('%',#{keyword},'%')	    
+	       and (roomType like #{roomType1}	
+	       		 or roomType like #{roomType2} 
+	       		 or roomType like #{roomType3} 
+	       		 or roomType like #{roomType4} 
+	       		 or roomType like #{roomType5} 
+	       	   )   			    
+	       and (dealType like #{dealType1}	
+	       		 or dealType like #{dealType2} 
+	       		 or dealType like #{dealType3}
+	       	   )  
 	</select>
 	
 		
