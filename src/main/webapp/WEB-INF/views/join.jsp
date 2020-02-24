@@ -34,7 +34,7 @@
 			<label for="type">구분</label> <select id="type" size="1"
 				class="form-control">
 				<option selected="selected" id="1">세입자</option>
-				<option id="2">방 주인</option>
+				<option id="2">방주인</option>
 				<option id="3">공인중개사</option>
 			</select>
 		</div>

@@ -1,6 +1,9 @@
 package com.ksh.dabang.model.room.dto;
 
 import java.sql.Timestamp;
+
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +41,7 @@ public class ReqUploadDto {
 	private double lat;
 	private double lng;
 	
-
+	//옵션항목들 추가.
+	private String[] optionId;
+	
 }

@@ -39,19 +39,18 @@
 	<br /> <br /> <br />
 
 
-<!-- 	<form action="/uploadTest" method="POST"> -->
 	<form action="/uploadProc" method="POST" enctype="multipart/form-data">
 	
 	
 		<div class="card">
-			<div class="card-header">매물 종류</div>
+			<div class="card-header text-center">매물 종류</div>
 			<div class="card-body pb-0">
 				<table class="table table-borderless pb-0">
 					<tbody>
 						<tr>
-							<td colspan="1">종류선택</td>
+							<td colspan="1" class="text-center">종류선택</td>
 							
-							<td colspan="5">
+							<td colspan="5" class="text-left">
 							<div class="form-group">					
 							<label for ="option1" class="btn btn-outline-primary"> 
 							<input type="radio" style="display: none;" name="roomType" value="원룸" id="option1" autocomplete="off">원룸
@@ -86,13 +85,14 @@
 
 		<br /> <br />
 		<div class="card">
-			<div class="card-header">
-				<span class="">위치 정보</span> <span class="text-secondary">*등기부등본 상의 주소를 입력해 주세요.</span>
+			<div class="card-header text-center">
+				<span class="">위치 정보</span> 
+				<span class="text-secondary">*등기부등본 상의 주소를 입력해 주세요.</span>
 			</div>
 
-			<div class="card-body pb-0">
+			<div class="card-body">
 				<div class="row">
-					<div class="col-sm-2 text-center">주소</div>
+					<div class="col-sm-1 text-center">주소</div>
 
 					<div class="col-sm-6">
 						<!--               	<form action="#" method="GET"> -->
@@ -106,15 +106,16 @@
 								
 								<input type="text" name="detailAddr" class="form-control" placeholder="" id="detailAddr" />
 								
-								<input type="hidden" name="lat" value="37.58625" id="lat" />
-								<input type="hidden" name="lng" value="126.94960" id="lng" />
+								<input type="hidden" name="lat" value="0.00" id="lat" />
+								<input type="hidden" name="lng" value="0.00" id="lng" />
 								
-							</span> <span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br /> <a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
+							</span> <span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br /> 
+							<a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
 						</div>
 						<!-- 				</form>                -->
 					</div>
-					<div class="col-sm-4">
-						<img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 300px;" />
+					<div class="col-sm-5 text-center">
+						<img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 250px;" />
 					</div>
 				</div>
 			</div>
@@ -123,7 +124,7 @@
 		<br />
 		<!-- 거래정보 -->
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header text-center">
 				<span>거래정보 *처음에 선택한 거래 종류가 우선노출됩니다. 예치금이 있는 경우 보증금 입력란에 필히 입력하세요.</span>
 			</div>
 
@@ -136,20 +137,25 @@
 						<div>
 							<label class="btn btn-primary btn-small"> 
 							<input type="radio" name="dealType" value="월세" id="option1" autocomplete="off">월세
-							</label> <span class="text-secondary"> <input type="text" name="deposit" placeholder="보증금" /> / <input type="text" name="monthRent" placeholder="월세" />(예: 월세
-								1000만원/50만원)
+							</label> <span class="text-secondary"> 
+							<input type="text" name="deposit" value="0" placeholder="보증금" style="width:120px;" />만원  / 
+							<input type="text" name="monthRent" value="0" placeholder="월세금" style="width:120px;"/>만원   (예: 월세 1000만원/50만원)
 							</span>
 						</div>
 						<br />
 						<div>
-							<label class="btn btn-primary btn-small"> <input type="radio" name="dealType" value="전세" id="option2" autocomplete="off">전세
-							</label> <span class="text-secondary"> <input type="text" name="yearRent" placeholder="전세" /> (예: 전세 1000만원)
+							<label class="btn btn-primary btn-small"> 
+							<input type="radio" name="dealType" value="전세" id="option2" autocomplete="off">전세
+							</label> <span class="text-secondary"> 
+							<input type="text" name="yearRent" value="0" placeholder="전세금" style="width:120px;" />만원 (예: 전세 1000만원)
 							</span>
 						</div>
 						<br />
 						<div>
-							<label class="btn btn-primary btn-small"> <input type="radio" name="dealType" value="매매" id="option3" autocomplete="off">매매
-							</label> <span class="text-secondary"> <input type="text" name="dealRent" placeholder="매매가" />(예: 매매 1000만원)
+							<label class="btn btn-primary btn-small"> 
+							<input type="radio" name="dealType" value="매매" id="option3" autocomplete="off">매매
+							</label> <span class="text-secondary"> 
+							<input type="text" name="dealRent" value="0" placeholder="매매가" style="width:120px;" />만원 (예: 매매 1000만원)
 							</span>
 						</div>
 					</div>
@@ -168,13 +174,13 @@
 				<table class="table table-borderless">
 					<tbody>
 	
-						<tr>
+						<tr class="text-center">
 							<td>건물크기<br />(1P=3.3058㎡)
 							</td>
 							<td colspan="2">
 							<div class="form-group">
 							<span>공급면적 
-							<input type="number" style="width: 70px;" name="areaP" id="areaP" />평 <input type="text" style="width: 70px;" name="areaM"
+							<input type="number" style="width:60px;" name="areaP" id="areaP" />평 <input type="text" style="width: 60px;" name="areaM"
 									id="areaM" />㎡
 							</span>
 							</div>
@@ -212,7 +218,7 @@
 		<br />
 		<!-- 추가정보 ----------->
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header text-center">
 				<span>추가정보</span>
 			</div>
 			
@@ -224,7 +230,7 @@
 							<td colspan="2">관리비</td>
 							<td colspan="2">
 							<div class="form-group">
-							<input type="number" name="mCost" style="width: 50px;" />만원</div></td>
+							<input type="number" name="mCost" value="0" style="width: 50px;" />만원  (없으면 공백)</div></td>
 							<td colspan="2"></td>
 							<td colspan="2"></td>
 						</tr>
@@ -256,79 +262,79 @@
 							<div class="form-group">							
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op1" id="option1" autocomplete="off">에어컨
+							<input type="checkbox" class="form-check-label" name="optionId" value="op1" id="option1" autocomplete="off">에어컨
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op2" id="option2" autocomplete="off">세탁기
+							<input type="checkbox" class="form-check-label" name="optionId" value="op2" id="option2" autocomplete="off">세탁기
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op3" id="option3" autocomplete="off">옷장
+							<input type="checkbox" class="form-check-label" name="optionId" value="op3" id="option3" autocomplete="off">옷장
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op4" id="option4" autocomplete="off">냉장고
+							<input type="checkbox" class="form-check-label" name="optionId" value="op4" id="option4" autocomplete="off">냉장고
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op5" id="option5" autocomplete="off">전자도어락
+							<input type="checkbox" class="form-check-label" name="optionId" value="op5" id="option5" autocomplete="off">전자도어락
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op6" id="option6" autocomplete="off">가스레인지
+							<input type="checkbox" class="form-check-label" name="optionId" value="op6" id="option6" autocomplete="off">가스레인지
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op7" id="option7" autocomplete="off">비데
+							<input type="checkbox" class="form-check-label" name="optionId" value="op7" id="option7" autocomplete="off">비데
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op8" id="option8" autocomplete="off">신발장
+							<input type="checkbox" class="form-check-label" name="optionId" value="op8" id="option8" autocomplete="off">신발장
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op9" id="option9" autocomplete="off">인덕션
+							<input type="checkbox" class="form-check-label" name="optionId" value="op9" id="option9" autocomplete="off">인덕션
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op10" id="option10" autocomplete="off">전자레인지
+							<input type="checkbox" class="form-check-label" name="optionId" value="op10" id="option10" autocomplete="off">전자레인지
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op11" id="option11" autocomplete="off">책상
+							<input type="checkbox" class="form-check-label" name="optionId" value="op11" id="option11" autocomplete="off">책상
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op12" id="option12" autocomplete="off">침대
+							<input type="checkbox" class="form-check-label" name="optionId" value="op12" id="option12" autocomplete="off">침대
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op13" id="option13" autocomplete="off">TV
+							<input type="checkbox" class="form-check-label" name="optionId" value="op13" id="option13" autocomplete="off">TV
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op14" id="option14" autocomplete="off">비디오폰
+							<input type="checkbox" class="form-check-label" name="optionId" value="op14" id="option14" autocomplete="off">비디오폰
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op15" id="option15" autocomplete="off">공동현관
+							<input type="checkbox" class="form-check-label" name="optionId" value="op15" id="option15" autocomplete="off">공동현관
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op16" id="option16" autocomplete="off">경비원
+							<input type="checkbox" class="form-check-label" name="optionId" value="op16" id="option16" autocomplete="off">경비원
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op17" id="option17" autocomplete="off">CCTV
+							<input type="checkbox" class="form-check-label" name="optionId" value="op17" id="option17" autocomplete="off">CCTV
 							</label>
 							
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op18" id="option18" autocomplete="off">방범창
+							<input type="checkbox" class="form-check-label" name="optionId" value="op18" id="option18" autocomplete="off">방범창
 							</label>
 						
 							<label class="btn btn-outline-info btn-small"> 
-							<input type="checkbox" class="form-check-label" name="options" value="op19" id="option19" autocomplete="off">인터폰
+							<input type="checkbox" class="form-check-label" name="optionId" value="op19" id="option19" autocomplete="off">인터폰
 							</label></div>	
 							</td>
 						</tr>	
@@ -371,21 +377,21 @@
 						<td>글내용</td>
 						<td colspan="5">
 						<div class="form-group">
-						<textarea name="content" rows="10" cols="90" class="text-small"
-							placeholder="">
-	                                               상세설명 작성 주의사항<br />
-	                     -방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.<br />
-	                     -중개수수료를 언급한 내용은 입력할 수 없습니다.<br /><br />
-	                     *주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용 제한이 있음<br />
-	                     *다방의 매물등록 규정에 위반되는 금칙어는 등록이 불가합니다.<br />
-	                     </textarea></div></td>
+						<textarea name="content" rows="5" cols="80" placeholder="글내용"></textarea>
+						</div></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<br />
-	
+<!-- 	                                               상세설명 작성 주의사항<br /> -->
+<!-- 	                     -방 정보와 관련없는 홍보성 정보는 입력하실 수 없습니다.<br /> -->
+<!-- 	                     -중개수수료를 언급한 내용은 입력할 수 없습니다.<br /><br /> -->
+<!-- 	                     *주의사항 위반시 허위매물로 간주되어 매물 삭제 및 이용 제한이 있음<br /> -->
+<!-- 	                     *다방의 매물등록 규정에 위반되는 금칙어는 등록이 불가합니다.<br /> -->
+
+
 	
 	
 	<!-- 사진 등록 -->
@@ -403,11 +409,10 @@
 			
 			<div class="form-group">
 			<label for="picName">프로필 사진</label> 
-			<input type="file" class="form-control" name="picName" />
+			<input type="file" class="form-control" name="picFiles" id="picFiles" readonly="readonly" multiple />
 			<span class="text-primary">허위 매물을 등록할 경우 다방에서 임의로 계정 및 매물 전체 삭제 처리 됩니다.</span>
 <%-- 			<p class="my__profile">${sessionScope.principal.profile}</p> --%>
 
-			<input type="hidden" name="agentId" value="0" id="agentId" />
 
 			</div>
 		</div>
@@ -419,17 +424,19 @@
 	
 		<!--       <button type="button" class="btn btn-outline-secondary">취소</button> -->
 
-		<!-- 여기가 form 끝 -->
-		<button type="submit" class="btn btn-primary">매물등록</button>
-	</form>
 
+<input type="hidden" name="agentId" value="1" id="agentId" />
+
+<!-- 여기가 form 끝 -->
+<button type="submit" id="room--upload--submit" class="btn btn-primary">매물등록</button>
+</form>
+	
 
 	<br /> <br />
 
-
-
-	<!--전체 컨테이너 끝 div -->
+<!--전체 컨테이너 끝 div -->
 </div>
+
 
 
 
