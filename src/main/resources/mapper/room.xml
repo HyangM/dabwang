@@ -99,5 +99,9 @@
 	       	   )  
 	</select>
 	
+	<!-- 서하 오늘 본 방 저장하기 -->	
+	<insert id="saveToday">
+		insert into today_recode(roomId,userId) value (#{roomId},#{userId} );
+	</insert>
 		
 </mapper>

@@ -39,6 +39,7 @@ import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
 import com.ksh.dabang.model.user.dto.OverlapDto;
+import com.ksh.dabang.model.user.dto.TodayRecodeDto;
 import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.UserService;
@@ -59,8 +60,19 @@ public class UserController {
 	BoardService boardService;
 
 	@GetMapping({ "", "/" })
-	public String index() {
+	public String index(Model model) {
+		
+		User user = (User) session.getAttribute("principal");
+		
+		if(user != null) {
+			int userId=user.getUserId();
+			List<TodayRecodeDto> todayRecodes = userService.오늘본방(userId);
+			
+			model.addAttribute("todayRecodes",todayRecodes);
+		}
+		
 		return "index";
+		
 	}
 
 	@GetMapping("/login")
@@ -156,37 +168,14 @@ public class UserController {
 	}
 	
 	
-//	@PutMapping("/mypage/update")
-//	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
-//		
-//		int result = userService.회원수정(updatedto);
-//		if (result == 1) {
-//			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
-//		}
-//	}
-	
 	@PutMapping("/mypage/update")
-	public @ResponseBody String update(@RequestParam int userId, 
-			@RequestParam String password,
-			@RequestParam MultipartFile profile) {
-		System.out.println("ㅁㄴㅇㄹ");
-		UUID uuid = UUID.randomUUID();
-		String uuidFilename = "/userProfileImage/" + uuid + "_" + profile.getOriginalFilename();
-		Path filePath = Paths.get(fileRealPath + uuidFilename);
-
-		try {
-			Files.write(filePath, profile.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		int result = userService.회원수정(userId,password,uuidFilename);
-
-		if(result == 1) {
-			return "index";
-		}else {
-			return "index";
+	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
+		
+		int result = userService.회원수정(updatedto);
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
 		}
 	}
 	

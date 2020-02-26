@@ -31,6 +31,66 @@
 
 <hr />
 
+<c:choose>
+		<c:when test="${not empty sessionScope.principal}">
+			<section class="ftco-section contact-section" id="contact-section">
+				<div class="container">
+					<div class="row justify-content-center mb-5 pb-3">
+						<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
+							<h2 class="mb-4 text-center">${sessionScope.principal.name}님의 최근 본 방</h2>
+							<c:choose>
+							<c:when test="${empty todayRecodes}">
+								<p class="text-center">최근에본 방이 없어요
+								<a href ="/search" class="btn btn-info">다방에 준비된 많은 방들 보러가기</a></p>
+							</c:when>
+							<c:otherwise>	
+								<p class="text-center">최근에 본 방을 볼 수 있어요
+								<a href ="/search" class="btn btn-info">더 많은 방 찾아보기</a></p>
+							</c:otherwise>
+							</c:choose>
+						</div>
+			
+						
+							<c:forEach var="todayRecode" items="${todayRecodes}">
+								<div class="card m-2" style="width: 300px; height: 330px;">
+								<a href="#" onclick="roomDetail(${todayRecode.roomId})"><img class="card-img-top" src="/media/${todayRecode.picName}"></a>
+								<div class="card-body">
+									<%-- <h1>${todayRecode.roomType}</h1>투룸
+									<h1>${todayRecode.dealType}</h1>월세,전세
+									<h1>${todayRecode.yearRent}</h1>전세
+									<h1>${todayRecode.deposit}</h1>보증금
+									<h1>${todayRecode.monthRent}</h1>월세
+									<h1>${todayRecode.title}</h1>타이틀
+									<h1>${todayRecode.floor}</h1>층수
+									<h1>${todayRecode.areaP}</h1>평수
+									<h1>${todayRecode.MCost}</h1>관리비
+									<h1>${todayRecode.picName}</h1>사진경로 --%>
+									<p class="card-title text-Strong" style="font-size: 20px">${todayRecode.dealType} <c:choose>
+														<c:when test="${0 ne todayRecode.yearRent}">${todayRecode.yearRent}</c:when>
+														<c:when test="${0 ne todayRecode.monthRent}">${todayRecode.deposit}/${todayRecode.monthRent}</c:when>
+														<c:otherwise>${todayRecode.dealRent}</c:otherwise>
+													</c:choose>
+									</p>
+									<p style="font-size: 12px">${todayRecode.floor}층,${todayRecode.areaP}m²,관리비
+												${todayRecode.MCost} 만</p>
+									<p style="font-size: 15px">${todayRecode.title}</p>
+									</div>
+								</div>
+							</c:forEach>
+						
+						
+						
+					</div>
+				</div>
+			</section>
+			<br />
+			<hr />
+		</c:when>
+	</c:choose>
+
+
+
+
 <section class="ftco-section contact-section" id="contact-section">
 	<div class="container">
 		<div class="row justify-content-center mb-5 pb-3">

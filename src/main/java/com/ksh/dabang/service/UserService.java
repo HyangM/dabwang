@@ -1,5 +1,7 @@
 package com.ksh.dabang.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
+import com.ksh.dabang.model.user.dto.TodayRecodeDto;
+import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.repository.UserRepository;
 
 
@@ -38,7 +42,12 @@ public class UserService {
 	   }
 	
 	@Transactional
-	public int 회원수정(int userId, String password, String profile) {
-	      return userRepository.updateUser(userId,password,profile);
+	public int 회원수정(UpdateDto updateDto) {
+	      return userRepository.updateUser(updateDto);
 		}
+	
+	@Transactional
+	public List<TodayRecodeDto> 오늘본방(int userId) {
+	      return userRepository.findTodayRecode(userId);
+	   }
 }
