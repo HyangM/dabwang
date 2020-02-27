@@ -108,4 +108,10 @@
 	    ]]>
     </select>
 	
+
+	<!-- 서하 최근 본 방 저장하기 -->	
+	<insert id="saveToday">
+		insert into today_recode(roomId,userId) value (#{roomId},#{userId} );
+	</insert>
+		
 </mapper>

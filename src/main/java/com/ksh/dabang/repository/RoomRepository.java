@@ -34,4 +34,7 @@ public interface RoomRepository {
 	public List<RespSearchListDto> listPage(Criteria cri);
 	public int totalCount(Criteria cri);
 	
+	//서하추가 최근본방 테이블에 저장
+	public int saveToday(int roomId, int userId);
+		
 }

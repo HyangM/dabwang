@@ -37,10 +37,14 @@
 
 	
 	
-	<!--  -->
+	<!-- 공인중개사 승인 -->
 	<update id="typeSave">
 		UPDATE user SET typeName=#{typeName}, typeNum = #{typeNum}, typeImage = #{typeImage} WHERE userId = #{userId} 
 	</update>
 
+	<!-- 유저별로 오늘 본 방 조인해서 방3개만 들고오기-->
+	<select resultType="com.ksh.dabang.model.user.dto.TodayRecodeDto" id="findTodayRecode">
+		select * from today_recode, room, room_pic where today_recode.roomId = room.roomId and room.roomId = room_pic.roomId and today_recode.userId = #{userId} group by room.roomId limit 0,3
+	</select>
 	
 </mapper>
