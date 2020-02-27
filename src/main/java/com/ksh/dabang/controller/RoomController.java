@@ -36,7 +36,9 @@ import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.user.User;
+import com.ksh.dabang.repository.RoomRepository;
 import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.RoomService;
 import com.ksh.dabang.util.Script;
@@ -55,9 +57,6 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-	@Autowired
-	private BoardService BoardService;
-	
 	@GetMapping("/detail/{roomId}")
 	public String roomOne(@PathVariable int roomId, Model model) {
 		
@@ -69,8 +68,9 @@ public class RoomController {
 				System.out.println("오늘본방저장완료");
 			}
 		}
-		
-		
+		RespOtherRoomDto dto = roomService.룸아이디로공인중개사찾기(roomId);
+		int agentId = dto.getAgentId();
+		model.addAttribute("otherRooms",roomService.공인중개사의방보기(agentId));
 		model.addAttribute("room", roomService.방상세보기(roomId));
 		model.addAttribute("room_pics", roomService.방사진들보기(roomId));
 		model.addAttribute("room_options", roomService.방옵션보기(roomId));

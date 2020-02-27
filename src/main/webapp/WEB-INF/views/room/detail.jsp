@@ -341,56 +341,38 @@
 	<br /> <br /> <br />
 
 
-
+</div>
 	<hr />
 	<br /> <br />
 
-	<section id="other-section">
-		<div class="row">
-			<div class="col-sm-1"></div>
-
-			<div class="col-sm-10">
-				<h3 class="text-center">이 공인중개사의 다른 방</h3>
-				<br />
-				<div class="card-deck">
-					<div class="card">
-						<img class="card-img-top" src="/images/kwon/room/room1.png" alt="">
-						<div class="card-body">
-							<p class="card-title">
-								원룸<br />전세9000
-							</p>
-							<p class="card-text">5층, 23.14m², 관리비 6만 🇰🇷🍀💞9호선초역세권전세!!</p>
-						</div>
-					</div>
-					<div class="card">
-						<img class="card-img-top" src="/images/kwon/room/room2.png" alt="">
-						<div class="card-body">
-							<p class="card-title">
-								원룸<br />전세5000
-							</p>
-							<p class="card-text">4층, 19.83m², 관리비 5만 ✨☘✅중기청 100%나오는 한번은 봐야하는 꿀방</p>
-						</div>
-					</div>
-					<div class="card">
-						<img class="card-img-top" src="/images/kwon/room/room3.png" alt="">
-						<div class="card-body">
-							<p class="card-title">
-								투룸<br />전세 1억7000
-							</p>
-							<p class="card-text">4층, 56.19m², 관리비 7만 ✨☘✅탁트인 투룸 화곡역 5분거리 역세권까지!!</p>
-
-						</div>
-					</div>
-
+	<section class="ftco-section contact-section" id="contact-section">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
+					<h3 class="text-center">이 공인중개사의 다른 방</h3><br/><br/>
 				</div>
+					<c:forEach var="otherRoom" items="${otherRooms}">
+						<div class="card m-2" style="width: 300px; height: 330px;">
+						<a href="#" onclick="roomDetail(${otherRoom.roomId})"><img class="card-img-top" src="/media/${otherRoom.picName}" style="width:300px; height:160px; "></a>
+						<div class="card-body">
+							<p class="card-title text-Strong" style="font-size: 20px">${otherRoom.dealType} <c:choose>
+												<c:when test="${0 ne otherRoom.yearRent}">${otherRoom.yearRent}</c:when>
+												<c:when test="${0 ne otherRoom.monthRent}">${otherRoom.deposit}/${otherRoom.monthRent}</c:when>
+												<c:otherwise>${otherRoom.dealRent}</c:otherwise>
+											</c:choose>
+							</p>
+							<p style="font-size: 12px">${otherRoom.floor}층,${otherRoom.areaP}m²,관리비
+										${otherRoom.MCost} 만</p>
+							<p style="font-size: 15px">${otherRoom.title}</p>
+							</div>
+						</div>
+					</c:forEach>
 			</div>
-			<div class="col-sm-1"></div>
 		</div>
 	</section>
 	<br /> <br /> <br />
 
 
-</div>
 
 <script>
 	function goSection() {
@@ -410,6 +392,15 @@
 	};
 
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+
+	function roomDetail(roomId){
+		location.href='/detail/'+roomId;
+	}
+
+
+
+	
 </script>
 
 

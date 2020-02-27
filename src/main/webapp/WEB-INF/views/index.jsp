@@ -53,18 +53,8 @@
 						
 							<c:forEach var="todayRecode" items="${todayRecodes}">
 								<div class="card m-2" style="width: 300px; height: 330px;">
-								<a href="#" onclick="roomDetail(${todayRecode.roomId})"><img class="card-img-top" src="/media/${todayRecode.picName}"></a>
+								<a href="#" onclick="roomDetail(${todayRecode.roomId})"><img class="card-img-top" src="/media/${todayRecode.picName}" style="width:300px; height:160px; "></a>
 								<div class="card-body">
-									<%-- <h1>${todayRecode.roomType}</h1>투룸
-									<h1>${todayRecode.dealType}</h1>월세,전세
-									<h1>${todayRecode.yearRent}</h1>전세
-									<h1>${todayRecode.deposit}</h1>보증금
-									<h1>${todayRecode.monthRent}</h1>월세
-									<h1>${todayRecode.title}</h1>타이틀
-									<h1>${todayRecode.floor}</h1>층수
-									<h1>${todayRecode.areaP}</h1>평수
-									<h1>${todayRecode.MCost}</h1>관리비
-									<h1>${todayRecode.picName}</h1>사진경로 --%>
 									<p class="card-title text-Strong" style="font-size: 20px">${todayRecode.dealType} <c:choose>
 														<c:when test="${0 ne todayRecode.yearRent}">${todayRecode.yearRent}</c:when>
 														<c:when test="${0 ne todayRecode.monthRent}">${todayRecode.deposit}/${todayRecode.monthRent}</c:when>

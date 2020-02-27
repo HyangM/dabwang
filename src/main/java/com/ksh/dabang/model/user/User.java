@@ -17,7 +17,7 @@ public class User {
 	private String type;
 	private String typeCer;
 	private String typeName;
-	private String typeNum;
+	private int typeNum;
 	private String typeImage;
 	private String role;
 	private Timestamp createDate;
@@ -25,7 +25,7 @@ public class User {
 	
 	@Builder
 	public User(String email, String name, String password, String phone, String type, String typeCer, String typeName,
-			String typeNum, String typeImage, String role, Timestamp createDate,String profile) {
+			int typeNum, String typeImage, String role, Timestamp createDate,String profile) {
 		this.email = email;
 		this.name = name;
 		this.password = password;

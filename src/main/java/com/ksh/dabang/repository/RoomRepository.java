@@ -7,6 +7,7 @@ import com.ksh.dabang.model.room.Options;
 import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
 
@@ -44,5 +45,10 @@ public interface RoomRepository {
 	
 	//서하추가 최근본방 테이블에 저장
 	public int saveToday(int roomId, int userId);
-		
+	
+	//서하추가 roomId로 공인중개사 찾기
+	public RespOtherRoomDto findAgent(int roomId);
+	
+	//서하추가 보고있는 페이지를 올린 공인중개사의 다른 방 보기
+	public List<RespOtherRoomDto> findByOtherRoom(int agentId);
 }
