@@ -24,7 +24,7 @@ spring:
       max-file-size: 1MB    
       
 file:
-  path: C:/src/springbootProject/dabwang/media/
+  path:  C:/src/springbootProject/dabwang/media/
   
   
   

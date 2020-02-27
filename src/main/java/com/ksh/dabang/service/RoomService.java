@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ksh.dabang.model.room.Options;
 import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
+import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespRoomApprDto;
 import com.ksh.dabang.repository.RoomRepository;
 
 @Service
@@ -43,7 +45,7 @@ public class RoomService {
 		int result1 = roomRepository.upload(reqUploadDto);  //이게 1이면 성공인데,,
 		if(result1 == 1) {
 			
-			int selectKey = roomRepository.uploadSelectKey(reqUploadDto);
+			int selectKey = roomRepository.uploadSelectKey();
 			
 			if (selectKey >0) {
 				//방 옵션 저장하기.
@@ -61,17 +63,11 @@ public class RoomService {
 					
 					roomRepository.saveRoomPic(selectKey, roomNum, OnepicName);	
 					System.out.println(reqSavePicDto);
-					roomNum ++;
-					
-					
+					roomNum ++;				
 				}
-
-						
 				
 				
-
-				
-				return 1;
+			return 1;
 			} else {
 				return -1;
 			}
@@ -79,6 +75,30 @@ public class RoomService {
 			return -1;
 		}	
 	}
+	
+	public int 매물승인신청(int hostId, String addr) {
+		
+		int selectKey = roomRepository.uploadSelectKey();
+		
+		//reqRoomApprDto.setRoomId(selectKey);		
+		System.out.println("룸서비스:매물승인신청 성공????????");
+		 return roomRepository.dealBoardWrite(selectKey, hostId, addr);
+	}
+	
+	public List<RespRoomApprDto> 매물승인게시판(int pageNo) {
+		int pageLimit = (pageNo-1)*10;
+		return roomRepository.findAllroomAppr(pageLimit);
+		
+	}
+	public int 매물승인하기(int roomId, int agentId) {
+		return roomRepository.roomApprove(roomId, agentId);  //성공하면, 매물승인 게시판에도 Y로 바꾸기.
+	}
+	public int 승인받은매물(int roomId, int agentId) {
+		return roomRepository.updatePostdeal(roomId, agentId);
+	}
+	
+
+	
 		
 //		int result = roomRepository.upload(reqUploadDto);
 //		if (result == 1) {
