@@ -134,5 +134,15 @@
 	<insert id="saveToday">
 		insert into today_recode(roomId,userId) value (#{roomId},#{userId} );
 	</insert>
+	
+	<!-- 해당 룸 올린 공인중개사 찾기 -->
+	<select id="findAgent" resultType="com.ksh.dabang.model.room.dto.RespOtherRoomDto">
+		select * from room where roomId = #{roomId} 
+    </select>
+	
+	<!-- 공인중개사의 다른 방 찾기 -->
+	<select id="findByOtherRoom" resultType="com.ksh.dabang.model.room.dto.RespOtherRoomDto">
+		select * from room,room_pic where room.roomId=room_pic.roomId and room.agentId = #{agentId} group by room.roomId limit 0,3 
+    </select>
 		
 </mapper>
