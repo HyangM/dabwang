@@ -121,18 +121,18 @@ document.getElementById('dealType').value = checkArr2;
 
 var searchForm = $("#SearchForm");
 
-document.getElementById('keyword').value = '';
 
 function search(){
-	var keyword = $('.keOJyH').val();
+	
+	var keyword = $('#keyword1').val();
+	console.log('keyword1 : ',keyword)
 	if(keyword == ''){
-		keywordval = $('.keOJyH').attr('placeholder'); 
+		keywordval = $('#keyword1').attr('placeholder'); 
 	}else {
 		keywordval = keyword; 
 	}
-	
 	document.getElementById('keyword').value = keywordval;
-	searchForm.attr('action', '/filter').attr('method', 'get');
+	searchForm.attr('action', '/search').attr('method', 'get');
 	searchForm.submit();
 
 }

@@ -73,8 +73,9 @@
 	
 	
 	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
+		<![CDATA[
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
-			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
+			   areaP, areaM, floor, moveDay, mCost, parking, elevator, lof, title, content, room.createDate, 
 			   hostId, agentId, lat, lng, picName, likeId
 	      from room left outer join room_pic
 								on room_pic.roomId = room.roomId
@@ -96,8 +97,15 @@
 	       and (dealType like #{dealType1}	
 	       		 or dealType like #{dealType2} 
 	       		 or dealType like #{dealType3}
-	       	   )  
+	       	   )
+	     
+ 	 	 ]]>
 	</select>
 	
-		
+	<select id="totalCount" resultType="int">
+	    <![CDATA[
+	    select count(*) from room where roomId > 0
+	    ]]>
+    </select>
+	
 </mapper>

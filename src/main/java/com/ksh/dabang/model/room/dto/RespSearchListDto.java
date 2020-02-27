@@ -38,12 +38,15 @@ public class RespSearchListDto {
 	private double lng;
 	private String picName;
 	private int likeId;
+	private String keyword;
+	private String filterRoomType;
+	private String filterDealType;
 
 	@Builder
 	public RespSearchListDto(String roomType, String addr, String detailAddr, int yearRent, int deposit, int monthRent, int dealRent,
 			double areaP, double areaM, int floor, String moveDay, int mCost, String parking, String elevator,
 			String lof, String title, String content, Date createDate, int hostId, int agentId, double lat,
-			double lng, String picName, int likeId) {
+			double lng, String picName, int likeId, String keyword, String filterRoomType, String filterDealType) {
 		this.roomType = roomType;
 		this.addr = addr;
 		this.detailAddr = detailAddr;
@@ -68,5 +71,8 @@ public class RespSearchListDto {
 		this.lng = lng;
 		this.picName = picName;
 		this.likeId = likeId;
+		this.keyword = keyword;
+		this.filterRoomType = filterRoomType;
+		this.filterDealType = filterDealType;
 	}
 }

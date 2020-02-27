@@ -34,47 +34,47 @@ CREATE TABLE user (
 	name varchar(20) NOT NULL,
 	password varchar(20) NOT NULL,
 	phone varchar(11) NOT NULL,
-	type varchar(10) NOT NULL,
+	type varchar(10) DEFAULT '',
 	typeName varchar(20) DEFAULT '',
 	typeNum varchar(100) DEFAULT '',
 	typeImage varchar(1000) DEFAULT '',
-	typeCer varchar(1) DEFAULT '',
+	typeCer varchar(1) DEFAULT 'N',
 	role varchar(10) DEFAULT '',
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	profile varchar(1000),
+	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
+	profile varchar(1000) DEFAULT '',
 	UNIQUE KEY email_UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert INTO user VALUES (1, 'ssar@nate.com', '쌀쌀', '1234','01011113333', '3', '공인자격증.jpg', 'not', now(),'내사진.jpg');
-insert INTO user VALUES (2, 'cos@nate.com', '코스', '1234','01011113333', '2', null , 'not', now(),'내사진.jpg');
-insert INTO user VALUES (3, 'kyj@nate.com', '세입자', '1234','01011113333', '1', null , 'not', now(),'내사진.jpg');
+관리자 (최초생성해주세요)
+insert INTO user(email, name, password, phone, role) VALUES ('admin@nate.com', '관리자', '1234','00000000','관리자');
+
 ```
 ```sql
 CREATE TABLE room(
 	roomId int PRIMARY KEY AUTO_INCREMENT,
-	roomType varchar(20) not null,
-	addr varchar(200) not null,
-	detailAddr varchar(100) not null,
-	dealType varchar(10) not null,
+	roomType varchar(20) NOT NULL,
+	addr varchar(200) NOT NULL,
+	detailAddr varchar(100) NOT NULL,
+	dealType varchar(10) NOT NULL,
 	yearRent int default 0,
 	deposit int default 0,
 	monthRent int default 0,
 	dealRent int default 0,
-	areaP double default 0,
-	areaM double default 0,
-	floor int default 0,
-	moveDay varchar(10) not null,
+	areaP double NOT NULL,
+	areaM double NOT NULL,
+	floor int NOT NULL,
+	moveDay varchar(10) NOT NULL,
 	mCost int default 0,
-	parking varchar(1) not null,
-	elevator varchar(1) not null,
-	lof varchar(1) not null,
-	title varchar(50) not null,
-	content varchar(200) not null,
-	createDate timestamp not null,
-	hostId int not null,
-	agentId int default 0,
-	lat double  not null default 0,
-	lng double  not null default 0,
+	parking varchar(1) NOT NULL,
+	elevator varchar(1) NOT NULL,
+	lof varchar(1) NOT NULL,
+	title varchar(50) NOT NULL,
+	content varchar(200) NOT NULL,
+	createDate timestamp NOT NULL,
+	hostId int NOT NULL,
+	agentId int,
+	lat double NOT NULL default 0,
+	lng double NOT NULL default 0,
 	FOREIGN KEY (hostId) REFERENCES user (userId),
 	FOREIGN KEY (agentId) REFERENCES user (userId)    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -91,7 +91,7 @@ CREATE TABLE room_pic (
 	roomId int(11) NOT NULL,
 	picId int(11) NOT NULL,
 	picName varchar(200) NOT NULL,
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(roomId, picId)   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
@@ -147,24 +147,25 @@ insert INTO floor VALUES (7, '7층');
 ```sql
 CREATE TABLE post_deal (
 	postId int auto_increment PRIMARY KEY,
-	roomId int DEFAULT 0,
-	agentId int DEFAULT 0,
-	title varchar(40) NOT NULL,
-	hostId int DEFAULT 0,
-	confirmYN varchar(1) NOT NULL,
-	confirmDate datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	createDate datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	foreign key (roomId) references room (roomId) on delete set null,
-	foreign key (hostId) references user (userId) on delete set null,
+	roomId int NOT NULL,
+	hostId int NOT NULL,
+	agentId int,
+	title varchar(40) NOT NULL default '매물 승인 요청합니다.',
+	addr varchar(200),
+	confirmYN varchar(1) NOT NULL default 'N',
+	confirmDate datetime,
+	createDate datetime DEFAULT CURRENT_TIMESTAMP,
+	foreign key (roomId) references room (roomId),
+	foreign key (hostId) references user (userId),
 	foreign key (agentId) references user (userId) on delete set null
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE post_auth (
 	postId int AUTO_INCREMENT PRIMARY KEY,
-	title varchar(40) NOT NULL,
+	title varchar(40) NOT NULL default '공인중개사 인증 요청합니다.',
 	agentId int default 0,
-	confirmYN varchar(1) NOT NULL,
+	confirmYN varchar(1) NOT NULL default 'N',
 	createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	foreign key (agentId) references user (userId) on delete set null    
 ) engine=InnoDB default charset=utf8;
@@ -174,10 +175,20 @@ CREATE TABLE like_room (
 	likeId int AUTO_INCREMENT PRIMARY KEY,
 	userId int NOT NULL,
 	roomId int NOT NULL,
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
 	foreign key (userId) references user(userId) on delete cascade,
 	foreign key (roomId) references room (roomId) on delete cascade 
 ) engine=InnoDB default charset=utf8;
+```
+```sql
+CREATE TABLE today_recode (
+	recodeId int(11) PRIMARY KEY AUTO_INCREMENT,
+	roomId int(11) NOT NULL,
+	userId int(11) NOT NULL,
+	createDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	FOREIGN KEY (roomId) REFERENCES room (roomId) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (userId) REFERENCES user (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 ```sql
 select * from user;

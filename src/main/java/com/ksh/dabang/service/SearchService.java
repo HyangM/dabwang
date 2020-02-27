@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ksh.dabang.model.room.Criteria;
 import com.ksh.dabang.model.room.Room_like;
 import com.ksh.dabang.model.room.dto.RespLatlngDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
@@ -27,11 +28,11 @@ public class SearchService {
 		return searchRepository.findBylatlng();
 	}
 	
-	public List<RespSearchListDto> 방리스트(int userId) {
+	public List<RespSearchListDto> 방리스트(int userId, String keyword, String roomType, String dealType) {
 		
-		String keyword = "";
-		String roomType = "1,2,3";
-		String dealType = "월세,전세,매매";
+//		String keyword = "";
+//		String roomType = "1,2,3";
+//		String dealType = "월세,전세,매매";
 		String[] roomTypeArr = roomType.split(",");
 		String roomType1 = "";
 		String roomType2 = "";
@@ -127,6 +128,10 @@ public class SearchService {
 	@Transactional
 	public int 찜한방삭제(int likeId) {
 		return searchRepository.likeDelete(likeId);
+	}
+	
+	public int totalcount(Criteria cri) {
+		return roomRepository.totalCount(cri);
 	}
 
 
