@@ -91,33 +91,25 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-sm-1 text-center">주소</div>
-
 					<div class="col-sm-6">
-						<!--               	<form action="#" method="GET"> -->
 						<div class="form-group">
-							<span><label for="addr" class="text-smaller">도로명,건물면,지번에 대해 통합검색이 가능합니다.</label></span> 
+							<span><label for="addr" class="text-smaller">도로명,건물명,지번에 대해 통합검색이 가능합니다.</label></span> 
 							<span>
-						
 							<button onclick="goPopup()" type="button" class="btn btn-dark float-right btn-sm">주소찾기</button>
-							<input type="text" id="addr" name="addr" class="addr form-control" placeholder="주소정보 입력" required="required"/>
-							<input type="text" name="detailAddr" class="form-control" placeholder="상세주소 입력" id="detailAddr" />
-								
-							X좌표 : <input type="text" name="entX" id="entX" style="width:80px;" />
-							Y좌표 : <input type="text" name="entY" id="entY" style="width:80px;" /> <br/>
-							
-							위도 : <input type="hidden" name="lat" id="lat" style="width:80px;" />
-							경도 : <input type="hidden" name="lng" id="lng" style="width:80px;" /> <br/>
-								
+							<input type="text" id="addr" name="addr" class="addr form-control" placeholder="도로명 주소" required="required" />
+							<input type="text" name="detailAddr" class="form-control" placeholder="상세 주소" id="detailAddr" />
+													
+							<input type="hidden" name="lat" id="lat" />
+							<input type="hidden" name="lng" id="lng" /> 
+							<br/>
 							</span> 
 							<span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br /> 
-							<a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
+							<span class="text-primary">주소가 검색되지 않는다면 고객센터(1899-6840)로 문의주세요.</span><br />
 						</div>
 					</div>
-					<!-- 지도를 표시할 div 입니다 -->
-					
-					
+					<!-- 지도를 표시할 div -->
 					<div class="col-sm-5 text-center">
-					<div id="map" style="width: 350px; height: 350px;"></div>
+					<div id="map" style="width: 420px; height: 350px;"></div>
 <!-- 				<img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 250px;" /> -->
 					</div>
 				</div>
@@ -193,6 +185,7 @@
 							<td>해당 층수</td>
 							<td colspan="2">
 							<div class="form-group">
+							
 							<select class="form-control" name="floor">
 									<option>1</option>
 									<option>2</option>
@@ -201,6 +194,30 @@
 									<option>5</option>
 									<option>6</option>
 									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+									<option>11</option>
+									<option>12</option>
+									<option>13</option>
+									<option>14</option>
+									<option>15</option>
+									<option>16</option>
+									<option>17</option>
+									<option>18</option>
+									<option>19</option>
+									<option>20</option>
+									<option>21</option>
+									<option>22</option>
+									<option>23</option>
+									<option>24</option>
+									<option>25</option>
+									<option>26</option>
+									<option>27</option>
+									<option>28</option>
+									<option>29</option>
+									<option>30</option>
+									
 							</select></div></td>
 							
 
@@ -439,74 +456,11 @@
 
 <!--전체 컨테이너 끝 div -->
 </div>
-<script>
-// $('#room--upload--submit').on('click',function(){
-// 	let aa = $('#deposit').val();
-// 	let bb = $('#monthRent').val();
-// 	alert(aa + ' and '+bb);
-// });
-</script>
+
 <script src="/js/upload.js" type="text/javascript">
 // 평수랑 제곱미터 변환하기 들어있음.
 </script>
 
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 위치인 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표 (카카오본사 위치)
-        level: 3 // 지도의 확대 레벨
-    };
-// 지도를 표시할 div와  지도 옵션으로  지도를 생성!!
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-
-//주소를 좌표로 변환하기.
-// var geocoder = new kakao.maps.services.Geocoder();
-
-// var callback = function(result, status) {
-//     if (status === kakao.maps.services.Status.OK) {
-//         console.log(result);
-//     }
-// };
-// geocoder.addressSearch('부산광역시 남구 유엔평화로42번길 20, 222 (대연동, 명성금강빌라)', callback);
-
-function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, entX, entY){
-// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-	
-	$('#addr').val(roadFullAddr);
-	$('#detailAddr').val(addrDetail);
-	
-	$('#entX').val(entX);
-	$('#entY').val(entY);
-	
-	
-	var data = roadAddrPart1;
-
-	var geocoder = new kakao.maps.services.Geocoder();
-	var valX = "";
-	var valY = "";
-	var callback = function(result, status) {
-	    if (status === kakao.maps.services.Status.OK) {
-	    	
-	        console.log('rrrr:', result);
-//	        console.log('rrrr xxx:',result[0].x);
-
-	        valX = result[0].x;
-	        valY = result[0].y;
-	        
-	        $('#lat').val(valY);
-	    	$('#lng').val(valX);
-	               
-	    }
-	};
-	alert(data);
-	geocoder.addressSearch(data, callback);
-//	var data2 = geocoder.addressSearch(data, callback);
-//	data1 = event.target.attributes.rtype.value;
-//	console.log("data2:"+data2);
-		
-}
-</script>
 
 
 

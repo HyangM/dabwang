@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/nav.jsp"%>
 <!-- 윤정추가 -->
@@ -29,22 +28,18 @@
 				<td>
 					<div class="text-primary">(${room.mcost})만 원 + α</div>
 				</td>
-				<td class="text-right"><span>(주)래미안복덕방부동산중개법인(수정)</span><br />
-					<span>김정식(수정)</span></td>
-				<td><span><button type="button"
-							class="btn btn-outline-primary ml-auto">연락처보기</button></span></td>
+				<td class="text-right"><span>(주)래미안복덕방부동산중개법인(수정)</span><br /> <span>김정식(수정)</span></td>
+				<td><span><button type="button" class="btn btn-outline-primary ml-auto">연락처보기</button></span></td>
 			</tr>
 		</tbody>
 	</table>
-	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span> <span>🚨
-		허위매물신고</span>
+	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span> <span>🚨 허위매물신고</span>
 
 	<table class="table pb-0">
 
 		<tbody>
 			<tr>
-				<td style="background-color: #0649C0; color: white;"><span
-					style="font-size: small;">확인매물 20.01.31 </span></td>
+				<td style="background-color: #0649C0; color: white;"><span style="font-size: small;">확인매물 20.01.31 </span></td>
 				<td colspan="9" style="background-color: #3665CE; color: white;">
 					<p style="font-size: small;">방주인과 공인중개사가 거래정보를 확인한 매물입니다. ▦</p>
 				</td>
@@ -76,9 +71,7 @@
 			<tr class="item text-center">
 
 				<c:forEach var="room_pic" items="${room_pics}" varStatus="status">
-					<td><img src="/media/${room_pic.picName}"
-						style="width: 270px; height: 180px;"
-						onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
+					<td><img src="/media/${room_pic.picName}" style="width: 270px; height: 180px;" onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
 					<c:if test="${((status.index+1) mod 4) == 0}">
 			</tr>
 			<tr>
@@ -106,14 +99,10 @@
 
 			<div class="container">
 				<div class="dropdown">
-					<button type="button" class="btn btn-primary dropdown-toggle"
-						data-toggle="dropdown">상세설명 더보기</button>
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">상세설명 더보기</button>
 					<div class="dropdown-menu">
-						<span class="dropdown-item-text"> ★ 계약시 항상 임차인 선순위 보장<br />
-							<br /> ▣매물종류 : 투룸<br /> ▣실평수 : 15~16평<br /> ▣주차 : 가능<br />
-							▣엘레베이터 : 있음<br /> ▣가격대비 많이 큰집<br /> ▣이.자.지.원 적용된 금액입니다 (최대지원)<br />
-							▣전세자금은 만기일시상환으로 원금상환을 따로 안하셔도 됩니다<br /> <br /> ◎마음에 드시는 방 나올때까지
-							보여드립니다<br /> ◎매일 매일 답사를 거쳐 빠르게 매물업데이트하고있습니다<br /> ◎실사진만 올려서
+						<span class="dropdown-item-text"> ★ 계약시 항상 임차인 선순위 보장<br /> <br /> ▣매물종류 : 투룸<br /> ▣실평수 : 15~16평<br /> ▣주차 : 가능<br /> ▣엘레베이터 : 있음<br /> ▣가격대비 많이 큰집<br />
+							▣이.자.지.원 적용된 금액입니다 (최대지원)<br /> ▣전세자금은 만기일시상환으로 원금상환을 따로 안하셔도 됩니다<br /> <br /> ◎마음에 드시는 방 나올때까지 보여드립니다<br /> ◎매일 매일 답사를 거쳐 빠르게 매물업데이트하고있습니다<br /> ◎실사진만 올려서
 							광고합니다<br /> ◎권리분석,공제증서등기본!!<br />
 						</span>
 					</div>
@@ -202,64 +191,62 @@
 			<div class="col-sm-10">
 				<h2 class="text-center">옵션</h2>
 				<br />
+
+
 				<table class="table table-borderless">
 					<tbody>
 						<tr class="item text-center">
-						
 							<c:forEach var="room_option" items="${room_options}" varStatus="status">
-							
-							<c:choose>
-								<c:when test="${room_option.optionType eq 1}">
-								<td><img src="/images/kwon/options/${room_option.optionName}" style="width:70px; height:80px;" 
-									onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
+								<td><img src="/images/kwon/options/${room_option.optionName}" onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
 								<c:if test="${((status.index+1) mod 6) == 0}">
 						</tr>
 						<tr class="item text-center">
-								</c:if>
-								</c:when>
-								<c:otherwise></c:otherwise>
-							</c:choose>
+							</c:if>
 							</c:forEach>
 						</tr>
+
+
 					</tbody>
+
 				</table>
+
 				<br />
+
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
 	</section>
 	<br /> <br /> <br />
+
+
 	<hr />
 	<br /> <br />
 
 	<div class="row">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-			<h2 class="text-center">보안/안전시설</h2>
+			<h2 class="text-center">보안/안전시설(데이터 어디서 불러옴??)</h2>
 			<br />
+
 			<table class="table table-borderless">
 				<tbody>
-					<tr class="item text-center">
-					
-					
-				<c:forEach var="room_option" items="${room_options}" varStatus="status">
-							
-							<c:choose>
-								<c:when test="${room_option.optionType eq 2}">
-								<td><img src="/images/kwon/options/${room_option.optionName}" style="width:70px; height:80px;"
-									onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
-								<c:if test="${((status.index+1) mod 6) == 0}">
-						</tr>
-						<tr class="item text-center">
-								</c:if>
-								</c:when>
-								<c:otherwise></c:otherwise>
-							</c:choose>
-							</c:forEach>					
+					<tr class="text-center">
+						<td><img src="/images/kwon/safety/sft1.png" /><br /> 비디오폰</td>
+						<td><img src="/images/kwon/safety/sft2.png" /><br /> 공동현관</td>
+						<td><img src="/images/kwon/safety/sft3.png" /><br /> 경비원</td>
+						<td><img src="/images/kwon/safety/sft4.png" /><br /> CCTV</td>
+						<td><img src="/images/kwon/safety/sft5.png" /><br /> 방범창</td>
+						<td><img src="/images/kwon/safety/sft6.png" /><br /> 인터폰</td>
 					</tr>
 				</tbody>
 			</table>
+
+
+
+
+
 			<br />
+
 		</div>
 		<div class="col-sm-1"></div>
 	</div>
@@ -381,8 +368,7 @@
 							<p class="card-title">
 								원룸<br />전세5000
 							</p>
-							<p class="card-text">4층, 19.83m², 관리비 5만 ✨☘✅중기청 100%나오는 한번은
-								봐야하는 꿀방</p>
+							<p class="card-text">4층, 19.83m², 관리비 5만 ✨☘✅중기청 100%나오는 한번은 봐야하는 꿀방</p>
 						</div>
 					</div>
 					<div class="card">
@@ -391,8 +377,7 @@
 							<p class="card-title">
 								투룸<br />전세 1억7000
 							</p>
-							<p class="card-text">4층, 56.19m², 관리비 7만 ✨☘✅탁트인 투룸 화곡역 5분거리
-								역세권까지!!</p>
+							<p class="card-text">4층, 56.19m², 관리비 7만 ✨☘✅탁트인 투룸 화곡역 5분거리 역세권까지!!</p>
 
 						</div>
 					</div>
@@ -413,13 +398,13 @@
 	}
 </script>
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <!-- 지도를 띄우는 코드 작성하기 -->
 <script>
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		center : new kakao.maps.LatLng(33.450701,
+				126.570667), //지도의 중심좌표.
 		level : 3
 	//지도의 레벨(확대, 축소 정도)
 	};

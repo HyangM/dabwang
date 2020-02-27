@@ -19,7 +19,7 @@
 	
 	
 	<select id="findAlloption" resultType="com.ksh.dabang.model.room.Options">
-		select op.optionId, op.optionName
+		select op.optionId, op.optionName, op.optionType
 		from room_option rop inner join options op 
 		on rop.optionId = op.optionId 
 		where roomId = #{roomId}
