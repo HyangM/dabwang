@@ -91,7 +91,7 @@
 	       		 or dealType like #{dealType3}
 	       	   )
 	   order by roomId desc
-    	  limit (#{page}-1)*#{perPageNum},10
+    	  limit #{page},24
  	 	 ]]>
 	</select>
 	

@@ -34,7 +34,7 @@
 		<div class="styled__Top-sc-36tku2-1 hJtKYy">
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
-					<input id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
+					<input onkeyup="enterkey();"id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
 						autocomplete="off" placeholder="수영구" value="${filtermodel.keyword}" />
 					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
@@ -804,14 +804,12 @@
 							<div class="styled__Wrap-sc-14n2m5h-0 hZjLUp">
 								<div class="styled__Pagination-sc-14n2m5h-1 ijgAzA">
 									
-									<c:if test="${pageMaker.prev}">	
-									<a href="${pageMaker.startPage - 1}">이전</a>
-									<!-- <button
+									<a href="${pageMaker.startPage - 1}"
 										class="styled__Btn-sc-14n2m5h-2 styled__PrevBtn-sc-14n2m5h-3 bAopv" >
 										<i width="12" height="12"
 											class="fas fa-angle-left  wrap__page__prevBtn__icon"></i>
-									</button> -->
-									</c:if>
+									</a>
+									
 									<ul class="styled__Items-sc-14n2m5h-5 gGZMTf">
 										<c:forEach begin="${pageMaker.startPage}"	end="${pageMaker.endPage}" var="i">
 											<c:choose>
@@ -822,22 +820,13 @@
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										<!-- <li><a class="styled__Item-sc-14n2m5h-6 bbapQa">1</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">2</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">3</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">4</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">5</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">6</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">7</a></li> -->
 									</ul>
-									<c:if test="${pageMaker.next}">	
-									<a href="${pageMaker.endPage + 1}">다음</a>
-									<!-- <button
+									<a href="${pageMaker.endPage + 1}" 
 										class="styled__Btn-sc-14n2m5h-2 styled__NextBtn-sc-14n2m5h-4 ffbDEJ">
 										<i width="12" height="12"
 											class="fas fa-angle-right wrap__page__nextBtn__icon"></i>
-									</button> -->
-									</c:if>
+									</a>
+									
 								</div>								
 								<p class="styled__CopyRight-sc-14n2m5h-7 jdQaIx">Station3,
 									Inc. All rights reserved.</p>
@@ -881,6 +870,8 @@
 	<input type="hidden" name="type" value="${pageMaker.cri.type}"/>
 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"/>
 </form>
+	<input type="hidden" id="startPage" name="startPage" value="${pageMaker.startPage}"/>
+	<input type="hidden" id="endPage" name="endPage" value="${pageMaker.endPage}"/>
 <script>
 	$('#ftco-navbar').removeClass("bg-dark");
 	$('#ftco-navbar').removeClass("navbar-dark");
@@ -888,6 +879,12 @@
 <script src="../js/all.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <script>
+	function enterkey() {
+	    if (window.event.keyCode == 13) {
+	    	search();
+	    }
+	}
+	
     var keywordval = '';
    // document.getElementById('keyword').value = '';
 	var keyword = $('#keyword1').val();

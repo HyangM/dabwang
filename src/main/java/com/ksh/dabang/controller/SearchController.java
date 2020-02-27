@@ -64,10 +64,8 @@ public class SearchController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
-		System.out.println("getKeyword :???????????????????????" +cri.getKeyword());
 		
 		model.addAttribute("pageMaker", pageMaker);
-//		model.addAttribute("list", service.selectAll(cri));
 		
 		ObjectMapper mapper = new ObjectMapper();
     

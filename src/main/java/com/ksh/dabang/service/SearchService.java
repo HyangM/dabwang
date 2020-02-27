@@ -30,9 +30,8 @@ public class SearchService {
 	
 	public List<RespSearchListDto> 방리스트(int userId, String keyword, String roomType, String dealType, Criteria cri) {
 		
-		System.out.println("cri ========================================"+cri);
-		int page = cri.getPage();
 		int perPageNum = cri.getPerPageNum();
+		int page = (cri.getPage() - 1) * perPageNum;
 //		String keyword = "";
 //		String roomType = "1,2,3";
 //		String dealType = "월세,전세,매매";
