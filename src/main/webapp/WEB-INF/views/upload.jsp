@@ -10,8 +10,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-
+<!-- 카카오 지도 APL 라이브러리 걸기. -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 
 <div class="container">
 	<h2 class="text-center">방 내놓기</h2>
@@ -38,9 +38,7 @@
 	</div>
 	<br /> <br /> <br />
 
-
 	<form action="/uploadProc" method="POST" enctype="multipart/form-data">
-	
 	
 		<div class="card">
 			<div class="card-header text-center">매물 종류</div>
@@ -97,25 +95,30 @@
 					<div class="col-sm-6">
 						<!--               	<form action="#" method="GET"> -->
 						<div class="form-group">
-							<span> <label for="addr" class="text-smaller">도로명,건물면,지번에 대해 통합검색이 가능합니다.</label>
-							</span> <span>
+							<span><label for="addr" class="text-smaller">도로명,건물면,지번에 대해 통합검색이 가능합니다.</label></span> 
+							<span>
+						
+							<button onclick="goPopup()" type="button" class="btn btn-dark float-right btn-sm">주소찾기</button>
+							<input type="text" id="addr" name="addr" class="addr form-control" placeholder="주소정보 입력" required="required"/>
+							<input type="text" name="detailAddr" class="form-control" placeholder="상세주소 입력" id="detailAddr" />
 								
-								<button onclick="goPopup()" type="button" class="btn btn-dark float-right btn-sm">주소찾기</button> 
+							X좌표 : <input type="text" name="entX" id="entX" style="width:80px;" />
+							Y좌표 : <input type="text" name="entY" id="entY" style="width:80px;" /> <br/>
+							
+							위도 : <input type="hidden" name="lat" id="lat" style="width:80px;" />
+							경도 : <input type="hidden" name="lng" id="lng" style="width:80px;" /> <br/>
 								
-								<input type="text" name="addr" class="form-control" placeholder="" id="address" />
-								
-								<input type="text" name="detailAddr" class="form-control" placeholder="" id="detailAddr" />
-								
-								<input type="hidden" name="lat" value="0.00" id="lat" />
-								<input type="hidden" name="lng" value="0.00" id="lng" />
-								
-							</span> <span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br /> 
+							</span> 
+							<span><input type="checkbox" />등본에 동정보가 없는 경우 선택해 주세요.</span><br /> 
 							<a href="" class="text-primary">주소가 검색되지 않으세요?</a> <br />
 						</div>
-						<!-- 				</form>                -->
 					</div>
+					<!-- 지도를 표시할 div 입니다 -->
+					
+					
 					<div class="col-sm-5 text-center">
-						<img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 250px;" />
+					<div id="map" style="width: 350px; height: 350px;"></div>
+<!-- 				<img src="/images/kwon/map1.png" id="location_map" style="width: 400px; height: 250px;" /> -->
 					</div>
 				</div>
 			</div>
@@ -138,8 +141,8 @@
 							<label class="btn btn-primary btn-small"> 
 							<input type="radio" name="dealType" value="월세" id="option1" autocomplete="off">월세
 							</label> <span class="text-secondary"> 
-							<input type="text" name="deposit" value="0" placeholder="보증금" style="width:120px;" />만원  / 
-							<input type="text" name="monthRent" value="0" placeholder="월세금" style="width:120px;"/>만원   (예: 월세 1000만원/50만원)
+							<input id="deposit" type="text" name="deposit" value="0" placeholder="보증금" style="width:120px;" />만원  / 
+							<input id="monthRent"type="text" name="monthRent" value="0" placeholder="월세금" style="width:120px;"/>만원   (예: 월세 1000만원/50만원)
 							</span>
 						</div>
 						<br />
@@ -425,7 +428,7 @@
 		<!--       <button type="button" class="btn btn-outline-secondary">취소</button> -->
 
 
-<input type="hidden" name="agentId" value="1" id="agentId" />
+<!-- <input type="hidden" name="agentId" value="1" id="agentId" /> -->
 
 <!-- 여기가 form 끝 -->
 <button type="submit" id="room--upload--submit" class="btn btn-primary">매물등록</button>
@@ -436,14 +439,78 @@
 
 <!--전체 컨테이너 끝 div -->
 </div>
+<script>
+// $('#room--upload--submit').on('click',function(){
+// 	let aa = $('#deposit').val();
+// 	let bb = $('#monthRent').val();
+// 	alert(aa + ' and '+bb);
+// });
+</script>
+<script src="/js/upload.js" type="text/javascript">
+// 평수랑 제곱미터 변환하기 들어있음.
+</script>
+
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 위치인 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표 (카카오본사 위치)
+        level: 3 // 지도의 확대 레벨
+    };
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성!!
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+
+//주소를 좌표로 변환하기.
+// var geocoder = new kakao.maps.services.Geocoder();
+
+// var callback = function(result, status) {
+//     if (status === kakao.maps.services.Status.OK) {
+//         console.log(result);
+//     }
+// };
+// geocoder.addressSearch('부산광역시 남구 유엔평화로42번길 20, 222 (대연동, 명성금강빌라)', callback);
+
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, entX, entY){
+// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	
+	$('#addr').val(roadFullAddr);
+	$('#detailAddr').val(addrDetail);
+	
+	$('#entX').val(entX);
+	$('#entY').val(entY);
+	
+	
+	var data = roadAddrPart1;
+
+	var geocoder = new kakao.maps.services.Geocoder();
+	var valX = "";
+	var valY = "";
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	    	
+	        console.log('rrrr:', result);
+//	        console.log('rrrr xxx:',result[0].x);
+
+	        valX = result[0].x;
+	        valY = result[0].y;
+	        
+	        $('#lat').val(valY);
+	    	$('#lng').val(valX);
+	               
+	    }
+	};
+	alert(data);
+	geocoder.addressSearch(data, callback);
+//	var data2 = geocoder.addressSearch(data, callback);
+//	data1 = event.target.attributes.rtype.value;
+//	console.log("data2:"+data2);
+		
+}
+</script>
 
 
 
 
-
-
-
-<script src="/js/upload.js" type="text/javascript"></script>
 
 <br />
 <br />

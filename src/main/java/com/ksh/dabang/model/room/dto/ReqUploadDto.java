@@ -5,12 +5,14 @@ import java.sql.Timestamp;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ReqUploadDto {
 	
 	private String roomType;
@@ -37,11 +39,17 @@ public class ReqUploadDto {
 	private Timestamp createDate;
 
 	private int hostId;
-	private int agentId;
+//	private int agentId;
 	private double lat;
 	private double lng;
 	
 	//옵션항목들 추가.
 	private String[] optionId;
+
+	
+	
+	
+	
+	
 	
 }
