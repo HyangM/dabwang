@@ -9,10 +9,10 @@
 				<div class="ftco-footer-widget mb-4 ml-md-4">
 					<h2 class="ftco-heading-2">형태별검색</h2>
 					<ul class="list-unstyled">
-						<li><a href="/">원룸</a></li>
-						<li><a href="/">투·쓰리룸</a></li>
-						<li><a href="/">오피스텔</a></li>
-						<li><a href="/">아파트</a></li>
+						<li><a href="/search">원룸</a></li>
+						<li><a href="/search">투·쓰리룸</a></li>
+						<li><a href="/search">오피스텔</a></li>
+						<li><a href="/search">아파트</a></li>
 					</ul>
 				</div>
 			</div>
@@ -28,10 +28,10 @@
 				<div class="ftco-footer-widget mb-4">
 					<h2 class="ftco-heading-2">상품소개</h2>
 					<ul class="list-unstyled">
-						<li><a href="/">일반상품</a></li>
-						<li><a href="/">단지상품</a></li>
-						<li><a href="/">프리미엄 상품</a></li>
-						<li><a href="/">패키지 상품</a></li>
+						<li><a href="/search">일반상품</a></li>
+						<li><a href="/search">단지상품</a></li>
+						<li><a href="/search">프리미엄 상품</a></li>
+						<li><a href="/search">패키지 상품</a></li>
 					</ul>
 				</div>
 			</div>
@@ -40,8 +40,8 @@
 				<div class="ftco-footer-widget mb-4">
 					<h2 class="ftco-heading-2">다봥 뉴스</h2>
 					<ul class="list-unstyled">
-						<li><a href="/">공지사항</a></li>
-						<li><a href="/">이벤트</a></li>
+						<li><a href="#" onclick="prepar()">공지사항</a></li>
+						<li><a href="#" onclick="prepar()">이벤트</a></li>
 					</ul>
 				</div>
 			</div>
@@ -72,6 +72,14 @@
 <script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/jquery.waypoints.min.js"></script>
 <script src="/js/jquery.stellar.min.js"></script>
+ 
+ <script>
+	function prepar(){
+		alert('서비스 준비중입니다.');
+	}
+ </script>
+ 
+ 
  
 <!-- 제이쿼리 끝-->
 

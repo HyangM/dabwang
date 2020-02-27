@@ -111,7 +111,12 @@ public class RoomService {
 //	}
 		
 	
-	
+	//서하 오늘 본방 저장하기
+		@Transactional
+		public int 오늘본방저장(int roomId,int userId) {
+			return roomRepository.saveToday(roomId,userId);
+		}
+		
 	
 		
 

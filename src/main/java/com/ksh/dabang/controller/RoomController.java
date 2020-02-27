@@ -66,6 +66,16 @@ public class RoomController {
 	@GetMapping("/detail/{roomId}")
 	public String roomOne(@PathVariable int roomId, Model model) {
 		
+		User user = (User) session.getAttribute("principal");
+		if(user != null) {
+			int userId = user.getUserId();
+			int result = roomService.오늘본방저장(roomId,userId);
+			if (result ==1) {
+				System.out.println("오늘본방저장완료");
+			}
+		}
+		
+		
 		model.addAttribute("room", roomService.방상세보기(roomId));
 		model.addAttribute("room_pics", roomService.방사진들보기(roomId));
 		model.addAttribute("room_options", roomService.방옵션보기(roomId));
