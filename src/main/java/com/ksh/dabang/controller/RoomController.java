@@ -31,9 +31,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ksh.dabang.model.RespCM;
+import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.user.User;
+import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.RoomService;
 import com.ksh.dabang.util.Script;
 
@@ -47,8 +49,12 @@ public class RoomController {
 	private String fileRealPath;
 	
 	
+	
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private BoardService BoardService;
 	
 	@GetMapping("/saleconfirm")
 	public String confirm() {
@@ -156,6 +162,14 @@ public class RoomController {
 		return "kkoMap";
 	}
 	
+	
+   @GetMapping("/roomApprList/{pageNo}")
+   public String roomApprList(@PathVariable int pageNo,Model model) {
+      List<BoardTypeListDto> roomCers=BoardService.공인중개사승인게시판(pageNo);
+      model.addAttribute("roomCers",roomCers);
+      return "roomApprList";
+   }
+	   
 	
 
 	

@@ -242,12 +242,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/roomApprList/{pageNo}")
-	public String roomApprList(@PathVariable int pageNo,Model model) {
-		List<BoardTypeListDto> roomCers=boardService.공인중개사승인게시판(pageNo);
-		model.addAttribute("roomCers",roomCers);
-		return "roomApprList";
-	}
+
 	
 	
 }
