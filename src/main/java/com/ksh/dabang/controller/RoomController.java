@@ -157,7 +157,7 @@ public class RoomController {
 	
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
-		return "popup/jusoPopup";
+		return "/popup/jusoPopup";
 	}
 	
 	

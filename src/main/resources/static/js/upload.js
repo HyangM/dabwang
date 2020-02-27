@@ -18,7 +18,7 @@ $('label').on('click', function(){
 //도로명 주소검색
 function goPopup() {
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrCoordUrl.do)를 호출함.
-	var pop = window.open("/popup/jusoPopup.jsp", "pop", "width=570, height=420, scrollbars=yes, resizable=yes");
+	var pop = window.open("popup/jusoPopup.jsp", "pop", "width=570, height=420, scrollbars=yes, resizable=yes");
 }
 
 //function jusoCallBack(roadFullAddr, addrDetail, entX, entY){

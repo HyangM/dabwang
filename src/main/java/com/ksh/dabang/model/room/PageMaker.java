@@ -17,17 +17,20 @@ public class PageMaker {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+		System.out.println("totalCount : ????????????????"+totalCount);
 		calcData();
 	}
 	private void calcData() {
+		System.out.println("cri.getPage() : ????????????????"+cri.getPage());
 		endPage=(int)(Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);
 		System.out.println("endPage : ????????????????"+endPage);
 		startPage=(endPage-displayPageNum)+1;
-		int tendPage=(int)(Math.ceil(totalCount)/(double)cri.getPerPageNum());
+		int tendPage= (int)Math.ceil(totalCount/(double)cri.getPerPageNum());
 		
-		if(endPage>tendPage) endPage=tendPage;
+		if(endPage > tendPage) endPage = tendPage;
 		prev= startPage == 1 ? false : true;
 		next= endPage >= tendPage ? false : true;
+		System.out.println("endPage222222 : ????????????????"+endPage);
 	}
 
 	public int getStartPage() {

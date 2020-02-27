@@ -137,6 +137,64 @@ function search(){
 
 }
 
+/* 찜등록, 삭제 */
+$('.hjVNgq').on('click',function(){
+
+	let id_like = $(this).attr("id");
+	console.log(id_like);
+	
+	let roomId = $(this).attr('value');
+	let userId = $('#userId').val();
+	let likeId = $(this).attr('name');
+	
+	if(userId == ""){
+		location.href = "/login"
+	}else{
+
+		let data = { 
+				userId : userId,
+				roomId : roomId
+		};
+		//console.log('likeId : ',likeId);
+		
+		if(likeId == 0){
+
+		 	$.ajax({
+				type:'POST',
+				url:'/likeroom',
+				data:JSON.stringify(data),
+				contentType:'application/json; charset=utf-8',
+				dataType:'json'			
+			}).done(function(result){
+				if(result.statusCode == 200){
+					//alert('찜등록 성공.');
+					$('#'+id_like).css('background','url(/images/like_fill.svg)');
+					document.getElementById(id_like).setAttribute('name', result.likeId);
+				}
+			}).fail(function(result){
+				//alert('찜등록 실패.');
+			}); 
+		}else {
+
+		 	$.ajax({
+				type:'DELETE',
+				url:'/likeroom/'+likeId,
+				data:JSON.stringify(data),
+				contentType:'application/json; charset=utf-8',
+				dataType:'json'			
+			}).done(function(result){
+				if(result.statusCode==200){
+					//alert('찜삭제 성공.');
+					$('#'+id_like).css('background','url(/images/like.svg)');
+					document.getElementById(id_like).setAttribute('name', 0);
+				}
+			}).fail(function(result){
+				//alert('찜삭제 실패.');
+			});
+		}
+		
+	}
+});
 
 /* 
 var pmdSliderValueRange = document.getElementById('pmd-slider-value-range');

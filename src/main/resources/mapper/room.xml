@@ -64,35 +64,6 @@
 		update post_deal set agentId = #{agentId}, confirmYN = 'Y' where roomId = #{roomId}
 	</update>
 	
-		
-	<select id="findByFilterSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
-		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
-			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
-			   hostId, agentId, lat, lng, picName, likeId
-	      from room left outer join room_pic
-	      						 on room_pic.roomId = room.roomId
-	      				        and room_pic.picId = 1
-                               
-					left outer join ( select roomId, likeId
-										from like_room
-									   where userId = #{userId}
-									 ) like_room
-								 on like_room.roomId = room.roomId 
-	      				   
-	     where room.addr like CONCAT('%',#{keyword},'%')	    
-	       and (roomType like #{roomType1}	
-	       		 or roomType like #{roomType2} 
-	       		 or roomType like #{roomType3} 
-	       		 or roomType like #{roomType4} 
-	       		 or roomType like #{roomType5} 
-	       	   )   			    
-	       and (dealType like #{dealType1}	
-	       		 or dealType like #{dealType2} 
-	       		 or dealType like #{dealType3}
-	       	   )   
-	</select>
-	
-	
 	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
 		<![CDATA[
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
@@ -119,7 +90,8 @@
 	       		 or dealType like #{dealType2} 
 	       		 or dealType like #{dealType3}
 	       	   )
-	     
+	   order by roomId desc
+    	  limit (#{page}-1)*#{perPageNum},10
  	 	 ]]>
 	</select>
 	
