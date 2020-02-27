@@ -15,6 +15,7 @@ public class TodayRecodeDto {
 	private int userId;
 	private String roomType;
 	private String dealType;
+	private String dealRent;
 	private int yearRent;
 	private int deposit;
 	private int monthRent;

@@ -78,7 +78,7 @@ public class SearchController {
 			e.printStackTrace();
 		}
   
-		return "/search/search";
+		return "/room/search";
 	} 
    
 	/*
@@ -115,11 +115,6 @@ public class SearchController {
 	 * 
 	 * return "/search/search"; }
 	 */
-	@GetMapping("/test")
-	public String test() {
- 
-		return "/search/test";
-	} 
 	
 	@PostMapping("/likeroom")
 	public ResponseEntity<?> likeroom(@RequestBody Room_like roomlike){

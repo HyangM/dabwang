@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="include/nav.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 <div class="container col-md-4 bg-light p-5 contact-form">
 	<form>
 		<h3>로그인</h3>
@@ -111,4 +111,4 @@
 
 </script>
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>

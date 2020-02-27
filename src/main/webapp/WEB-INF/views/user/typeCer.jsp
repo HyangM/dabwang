@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="include/nav.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 <div class="container bg-light col-md-4 p-5">
 	<form action ="/mypage/typeCer" method="POST" enctype="multipart/form-data">
 		<h3>중개사무소 정보</h3>
@@ -33,4 +33,4 @@
 <br />
 <br />
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>

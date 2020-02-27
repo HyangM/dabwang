@@ -58,11 +58,6 @@ public class RoomController {
 	@Autowired
 	private BoardService BoardService;
 	
-	@GetMapping("/saleconfirm")
-	public String confirm() {
-		return "saleconfirm";
-	}
-
 	@GetMapping("/detail/{roomId}")
 	public String roomOne(@PathVariable int roomId, Model model) {
 		
@@ -80,14 +75,14 @@ public class RoomController {
 		model.addAttribute("room_pics", roomService.방사진들보기(roomId));
 		model.addAttribute("room_options", roomService.방옵션보기(roomId));
 		
-		return "detail";	
+		return "room/detail";	
 	}  
 	
 	
 	// 방등록 페이지로 이동하기.
 	@GetMapping("/upload")
 	public String upload() {
-		return "upload";
+		return "room/upload";
 	}
 	// 실제 방등록 처리 과정 실행하기.
 	@PostMapping("/uploadProc")
@@ -162,28 +157,15 @@ public class RoomController {
 	
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
-		return "jusoPopup";
+		return "popup/jusoPopup";
 	}
 	
-	//지도 테스트
-	@GetMapping("/maptest")
-	public String maptest() {
-		return "map-test";
-	}
-	@GetMapping("/clusteringtest")
-	public String clusteringtest() {
-		return "clustering-test";
-	}
-	@GetMapping("/kkoMap")
-	public String kkoMapTest() {
-		return "kkoMap";
-	}
 	
 	//매물승인 게시판 리스트로 이동.
    @GetMapping("/roomApprList/{pageNo}")
    public String roomApprList(@PathVariable int pageNo, Model model) {
 	   model.addAttribute("roomApprBoard", roomService.매물승인게시판(pageNo));
-	   return "roomApprList";
+	   return "board/roomApprList";
    }
    
    //매물승인을 위한 상세보기 페이지로 이동.
@@ -194,7 +176,7 @@ public class RoomController {
 		model.addAttribute("room_pics", roomService.방사진들보기(roomId));
 		model.addAttribute("room_options", roomService.방옵션보기(roomId));
 		
-		return "roomAppr";	
+		return "board/roomAppr";	
 	} 
    
    // form:form 사용. 매물승인 버튼 눌렀을때.

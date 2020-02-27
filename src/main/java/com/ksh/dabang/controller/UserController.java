@@ -77,7 +77,7 @@ public class UserController {
 
 	@GetMapping("/login")
 	public String login() {
-		return "login";
+		return "/user/login";
 	}
 	
 	@GetMapping("/logout")
@@ -88,7 +88,7 @@ public class UserController {
 	
 	@GetMapping("/mypage")
 	public String mypage() {
-		return "mypage";
+		return "user/mypage";
 	}
 	
 	@GetMapping("/typeApprList/{pageNo}")
@@ -97,7 +97,7 @@ public class UserController {
 		int lastPageNo = boardService.마지막게시글번호();
 		model.addAttribute("typeCers",typeCers);
 		model.addAttribute("lastPageNo",lastPageNo);
-		return "typeApprList";
+		return "board/typeApprList";
 	}
 		
 	@PostMapping("/login")
@@ -127,7 +127,7 @@ public class UserController {
 
 	@GetMapping("/join")
 	public String join() {
-		return "join";
+		return "user/join";
 	}
 
 	@PostMapping("/join")
@@ -182,7 +182,7 @@ public class UserController {
 	
 	@GetMapping("/mypage/typeCer")
 	public String typeCer() {
-		return "typeCer";
+		return "user/typeCer";
 	}
 
 	@PostMapping("/mypage/typeCer")
@@ -217,7 +217,7 @@ public class UserController {
 	public String typeAppr(@PathVariable int postId,Model model) {
 		BoardTypeCerDto postAuth = boardService.공인중개사승인디테일(postId);
 		model.addAttribute("postAuth",postAuth);
-		return "typeAppr";
+		return "board/typeAppr";
 	}
 
 	@PutMapping("/typeAppr")

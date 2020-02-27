@@ -89,10 +89,15 @@
 							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
 						</c:when>
 						
-						
-						<c:when test="${sessionScope.principal.type eq '공인중개사'}">
+						<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer eq 'Y'}">
 							<li class="nav-item"><a href="/search" class="nav-link"><span>방 찾기</span></a></li>
 							<li class="nav-item"><a href="/roomApprList/1" class="nav-link"><span>매물 승인하기</span></a></li>
+							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
+							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
+						</c:when>
+						
+						<c:when test="${sessionScope.principal.type eq '공인중개사' && sessionScope.principal.typeCer eq 'N'}">
+							<li class="nav-item"><a href="/search" class="nav-link"><span>방 찾기</span></a></li>
 							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
 							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
 						</c:when>

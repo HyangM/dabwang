@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="include/nav.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 <div class="container bg-light col-md-4 p-5">
 	<form>
 		<h3>중개사무소 정보</h3>
@@ -50,7 +50,7 @@
 		.done(function(r) {
 			if (r.msg == 'ok') {
 			alert('권한 승인 완료');
-			location.href = '/typeApprList';
+			location.href = '/typeApprList/1';
 			}else if (r.msg == 'fail') {
 				alert('권한 승인 실패');
 			}
@@ -61,4 +61,4 @@
 	});
 
 </script>
-<%@ include file="include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>

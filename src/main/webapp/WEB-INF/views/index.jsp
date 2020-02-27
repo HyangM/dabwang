@@ -314,7 +314,13 @@
 		</div>
 	</div>
 </section>
+<script>
 
 
+function roomDetail(roomId){
+	location.href='/detail/'+roomId;
+}
+
+</script>
 <%@ include file="include/footer.jsp"%>
 
