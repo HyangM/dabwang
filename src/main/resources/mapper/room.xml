@@ -5,11 +5,15 @@
 <mapper namespace="com.ksh.dabang.repository.RoomRepository">
 
 	<select id="findAll" resultType="com.ksh.dabang.model.room.Room">
-		select * from room
+		select * from room 
 	</select>
 	
-	<select id="findByroomId" resultType="com.ksh.dabang.model.room.Room">
-		select * from room where roomId = #{roomId}	
+	<select id="findByroomId" resultType="com.ksh.dabang.model.room.dto.RespRoomDto">
+		select r.roomId, r.roomType, r.addr, r.detailAddr, r.dealType, r.yearRent, r.deposit, r.monthRent, r.dealRent, r.areaP, r.areaM, 
+		r.floor, r.moveDay, r.mCost, r.parking, r.elevator, r.lof, r.title, r.content, r.createDate, r.hostId, r.agentId, r.lat, r.lng, 
+		u.typeName, u.phone, u.name 
+		from room r, user u 
+		where r.roomId = #{roomId} and r.agentId = u.userId   	
 	</select>
 	
 	<select id="findAllpics" resultType="com.ksh.dabang.model.room.Room_pic">

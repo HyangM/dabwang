@@ -15,6 +15,7 @@ import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
+import com.ksh.dabang.model.room.dto.RespRoomDto;
 import com.ksh.dabang.repository.RoomRepository;
 
 @Service
@@ -25,7 +26,7 @@ public class RoomService {
 	@Autowired
 	private RoomRepository roomRepository;
 
-	public Room 방상세보기(int roomId) {
+	public RespRoomDto 방상세보기(int roomId) {
 		return roomRepository.findByroomId(roomId);
 	}
 

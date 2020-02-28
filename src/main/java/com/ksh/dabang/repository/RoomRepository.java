@@ -8,13 +8,14 @@ import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
+import com.ksh.dabang.model.room.dto.RespRoomDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
 
 public interface RoomRepository {
 	
 	public int findAll();
 	
-	public Room findByroomId(int roomId);
+	public RespRoomDto findByroomId(int roomId);
 	
 	public List<Room_pic> findAllpics(int roomId);
 	public List<Options> findAlloption(int roomId);

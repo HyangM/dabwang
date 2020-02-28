@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 <%@ include file="../include/nav.jsp"%>
-<!-- 윤정추가 -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">    -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
-<!-- 윤정추가 -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<!-- 윤정추가  -->
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">    -->
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <div class="container">
 	<br /> <br />
 	<table class="table table-borderless">
 		<thead>
-			<tr class="text-smaller text-secondary">
-				<th>${room.roomType}(주방분리형)</th>
-				<th>전용면적</th>
+			<tr class="text-secondary">
+				<th>${room.roomType}</th>
+				<th>공급면적</th>
 				<th>한달생활비</th>
 				<th></th>
 				<th></th>
@@ -23,61 +27,93 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><span>${room.dealType} - ${room.yearRent}만원</span></td>
-				<td><span>${room.areaM}㎡</span>
-					<button type="button">평</button></td>
-				<td>
-					<div class="text-primary">(${room.mcost})만 원 + α</div>
+				<td><span>${room.dealType}
+						<c:choose>
+							<c:when test="${0 ne room.yearRent}">${room.yearRent} 만원</c:when>
+							<c:when test="${0 ne room.monthRent}">${room.deposit}/${room.monthRent} 만원</c:when>
+							<c:otherwise>${room.dealRent} 만원</c:otherwise>
+						</c:choose>
+				</span></td>
+				<td><span> 
+					<fmt:formatNumber value="${room.areaM}" pattern=".00"></fmt:formatNumber>㎡</span>				
+					<a href="#" data-toggle="tooltip" title="${room.areaP}평">
+					<button type="button" class="btn btn-outline-info" id="areaP--button">평수</button>
+					</a>
 				</td>
-				<td class="text-right"><span>(주)래미안복덕방부동산중개법인(수정)</span><br />
-					<span>김정식(수정)</span></td>
-				<td><span><button type="button"
-							class="btn btn-outline-primary ml-auto">연락처보기</button></span></td>
+				<td><div class="text-primary">
+					<c:choose>
+						<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 + α</c:when>
+						<c:otherwise>없음</c:otherwise>
+					</c:choose></div>
+				</td>
+				<td class="text-right"><span>(주)${room.typeName}</span><br />
+					<span>${room.name}</span></td>
+				<td><span>
+					<a href="#" data-toggle="popover" title="연락처 :<fmt:formatNumber var="phone" value="82${room.phone}" pattern="#####,####,####"></fmt:formatNumber><c:out value="${fn:replace(phone, ',', '-')}"/>" data-content="">
+  					<button type="button" class="btn btn-outline-primary ml-auto">연락처보기</button></a></span>
+  				</td>
 			</tr>
 		</tbody>
 	</table>
-	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span> <span>🚨
-		허위매물신고</span>
+	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span><span>🚨	허위매물신고</span>
 
-	<table class="table pb-0">
 
+	<table class="table">
 		<tbody>
 			<tr>
-				<td style="background-color: #0649C0; color: white;"><span
-					style="font-size: small;">확인매물 20.01.31 </span></td>
-				<td colspan="9" style="background-color: #3665CE; color: white;">
-					<p style="font-size: small;">방주인과 공인중개사가 거래정보를 확인한 매물입니다. ▦</p>
-				</td>
+				<td colspan="3" style="background-color: #0649C0; color: white;">
+					<span style="font-size: small;">확인매물 [<fmt:formatDate value="${room.createDate}" pattern="yy.MM.dd"></fmt:formatDate>]</span></td>
+				<td colspan="6" style="background-color: #3665CE; color: white;">
+					<span style="font-size: small;">방주인과 공인중개사가 거래정보를 확인한 매물입니다.</span></td>
+				
 			</tr>
-			<tr style="font-size: small;">
-				<td>• 해당층</td>
-				<td>${room.floor}층</td>
-				<td>• 공급면적</td>
-				<td><span>${room.areaM}㎡</span><span>
-						<button type="button" class="btn btn-outline-secondary btn-sm">평</button>
-				</span></td>
-				<td>• 엘리베이터</td>
-				<td>${room.elevator}</td>
-				<td>• 전세자금대출</td>
-				<td>${room.lof}</td>
-				<td>• 입주가능일</td>
-				<td>${room.moveDay}</td>
+			<tr>
+				<td colspan="1" style="font-size: small;">• 해당층</td>
+				<td colspan="2" style="font-size: small;">${room.floor}층</td>
+				<td colspan="1" style="font-size: small;">• 공급면적</td> 
+				<td colspan="2" style="font-size: small;">${room.areaM}㎡
+					<span><button type="button" class="btn btn-outline-secondary btn-sm">평</button></span></td>
+				<td colspan="1" style="font-size: small;">• 입주가능일</td>
+				<td colspan="2" style="font-size: small;">${room.moveDay}</td>
+			</tr>
+			<tr>
+				<td colspan="1" style="font-size: small;">• 전세자금대출</td>
+				<td colspan="2" style="font-size: small;">
+					<c:choose>
+						<c:when test="${room.lof eq 'P'}">가능</c:when>
+						<c:otherwise>불가능</c:otherwise>
+					</c:choose>
+				</td>
+				<td colspan="1" style="font-size: small;">• 엘리베이터</td>
+				<td colspan="2" style="font-size: small;">
+					<c:choose>
+						<c:when test="${room.elevator eq 'P'}">있음</c:when>
+						<c:otherwise>없음</c:otherwise>
+					</c:choose>
+				</td>	
+				<td colspan="1" style="font-size: small;">• 주차여부</td>
+				<td colspan="2" style="font-size: small;">
+					<c:choose>
+						<c:when test="${room.parking eq 'P'}">가능</c:when>
+						<c:otherwise>불가능</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<hr />
+	
 </div>
 <br />
 <br />
 <!-- 매물 사진들 -->
 <div class="container">
-	<table>
-		<tbody>
+	<table class="text-center">
+		<tbody class="text-center">
 			<tr class="item text-center">
 
 				<c:forEach var="room_pic" items="${room_pics}" varStatus="status">
-					<td><img src="/media/${room_pic.picName}"
-						style="width: 270px; height: 180px;"
+				
+ 					<td><img src="/media/${room_pic.picName}" style="width: 275px; height: 180px;"
 						onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
 					<c:if test="${((status.index+1) mod 4) == 0}">
 			</tr>
@@ -88,6 +124,48 @@
 		</tbody>
 	</table>
 	<br /> <br />
+	
+	
+	<div class="container">
+  <h2>Modal Example</h2>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Open modal
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	<div class="row">
@@ -205,19 +283,22 @@
 				<table class="table table-borderless">
 					<tbody>
 						<tr class="item text-center">
-						
-							<c:forEach var="room_option" items="${room_options}" varStatus="status">
-							
-							<c:choose>
-								<c:when test="${room_option.optionType eq 1}">
-								<td><img src="/images/kwon/options/${room_option.optionName}" style="width:70px; height:80px;" 
-									onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
-								<c:if test="${((status.index+1) mod 6) == 0}">
+
+							<c:forEach var="room_option" items="${room_options}"
+								varStatus="status">
+
+								<c:choose>
+									<c:when test="${room_option.optionType eq 1}">
+										<td><img
+											src="/images/kwon/options/${room_option.optionName}"
+											style="width: 70px; height: 80px;"
+											onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
+										<c:if test="${((status.index+1) mod 6) == 0}">
 						</tr>
 						<tr class="item text-center">
-								</c:if>
-								</c:when>
-								<c:otherwise></c:otherwise>
+							</c:if>
+							</c:when>
+							<c:otherwise></c:otherwise>
 							</c:choose>
 							</c:forEach>
 						</tr>
@@ -240,22 +321,25 @@
 			<table class="table table-borderless">
 				<tbody>
 					<tr class="item text-center">
-					
-					
-				<c:forEach var="room_option" items="${room_options}" varStatus="status">
-							
+
+
+						<c:forEach var="room_option" items="${room_options}"
+							varStatus="status">
+
 							<c:choose>
 								<c:when test="${room_option.optionType eq 2}">
-								<td><img src="/images/kwon/options/${room_option.optionName}" style="width:70px; height:80px;"
-									onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
-								<c:if test="${((status.index+1) mod 6) == 0}">
-						</tr>
-						<tr class="item text-center">
-								</c:if>
-								</c:when>
-								<c:otherwise></c:otherwise>
-							</c:choose>
-							</c:forEach>					
+									<td><img
+										src="/images/kwon/options/${room_option.optionName}"
+										style="width: 70px; height: 80px;"
+										onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
+									<c:if test="${((status.index) mod 6) == 0}">
+					</tr>
+					<tr class="item text-center">
+						</c:if>
+						</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>
+						</c:forEach>
 					</tr>
 				</tbody>
 			</table>
@@ -269,29 +353,21 @@
 
 	<hr />
 	<br /> <br />
+
 	<section id="location-section">
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10 text-center">
 				<h3 class="text-center">
 					위치 및 주변 시설 <a href="#" data-toggle="tooltip" data-placement="right"
-						title="다방은 공인중개사무소의 매물정보 기밀 유지를 위해 매물의 정확한 위치를 표기하지 않습니다.
-                    단, 매물 주변 지역 및 편의시설 정보를 확인할 수 있도록 반경 30m 안에서 매물이 위치해 있습니다.">⁙</a>
+						title="다방은 공인중개사무소의 매물정보 기밀 유지를 위해 매물의 정확한 위치를 표기하지 않습니다. 단, 매물 주변 지역 및 편의시설 정보를 확인할 수 있도록 반경 30m 안에서 매물이 위치해 있습니다.">⁙</a>
 				</h3>
 				<br />
 				<h5>서울특별시 강서구 화곡동</h5>
 				<br />
-				<div class="card" id="map_card" style="width: 400px m-auto">
-					<!--  <img class="card-img-top" src="/images/kwon/map1.png" alt=""> -->
-
-					<!-- 실제 지도를 그리는 javascript API 불러오기. -->
-
-					<!-- <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-					<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
-
-
+				<div class="card" id="map_card">
 					<!-- 지도 담을 영역 만들기 -->
-					<div id="map" style="width: 800px; height: 400px;"></div>
+					<div id="map" style="width: 100%; height: 400px;"></div>
 
 
 
@@ -407,11 +483,24 @@
 
 </div>
 
+<!-- <script src="/js/detail.js" type="text/javascript"></script> -->
+
 <script>
+
+
+
+
+
+
 	function goSection() {
 		document.location.href = "#option-section";
 	}
+
+	
 </script>
+
+
+
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
