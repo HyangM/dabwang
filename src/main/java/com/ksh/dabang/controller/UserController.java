@@ -35,9 +35,11 @@ import com.ksh.dabang.model.board.dto.BoardTypeApprDto;
 import com.ksh.dabang.model.board.dto.BoardTypeCerDto;
 import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.user.User;
+import com.ksh.dabang.model.user.dto.IdentifyDto;
 import com.ksh.dabang.model.user.dto.JoinDto;
 import com.ksh.dabang.model.user.dto.LoginDto;
 import com.ksh.dabang.model.user.dto.OverlapDto;
+import com.ksh.dabang.model.user.dto.ResetPasswordDto;
 import com.ksh.dabang.model.user.dto.TodayRecodeDto;
 import com.ksh.dabang.model.user.dto.UpdateDto;
 import com.ksh.dabang.service.BoardService;
@@ -100,10 +102,10 @@ public class UserController {
 	}
 		
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto,HttpServletResponse response) {
+	public ResponseEntity<?> login(@Valid @RequestBody LoginDto dto,HttpServletResponse response) {
 		
-		if(loginDto.getRememberMe().equals("true")) {
-			Cookie cookie = new Cookie("emailCookie", loginDto.getEmail());
+		if(dto.getRememberMe().equals("true")) {
+			Cookie cookie = new Cookie("emailCookie", dto.getEmail());
 			cookie.setMaxAge(60*60*24*7);
 			cookie.setPath("/");
 			response.addCookie(cookie);
@@ -114,7 +116,7 @@ public class UserController {
 			response.addCookie(cookie);
 		}
 	
-		User principal = userService.로그인(loginDto);
+		User principal = userService.로그인(dto);
 		
 	    if(principal != null) {
 	         session.setAttribute("principal", principal);
@@ -130,7 +132,7 @@ public class UserController {
 	}
 
 	@PostMapping("/join")
-	public ResponseEntity<?> join(@Valid @RequestBody JoinDto joinDto, BindingResult bindingResult, Model model) {
+	public ResponseEntity<?> join(@Valid @RequestBody JoinDto dto, BindingResult bindingResult, Model model) {
 	  if (bindingResult.hasErrors()) {
 	         Map<String, String> errorMap = new HashMap<>();
 
@@ -143,10 +145,10 @@ public class UserController {
 	         return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
 	      }
 		
-		int result = userService.회원가입(joinDto);
-		User principal = userService.가입시자동로그인(joinDto.getEmail(),joinDto.getPassword());
+		int result = userService.회원가입(dto);
+		User principal = userService.가입시자동로그인(dto.getEmail(),dto.getPassword());
 		if (result == 1) {
-			if (joinDto.getType().equals("공인중개사")) {
+			if (dto.getType().equals("공인중개사")) {
 				session.setAttribute("principal", principal);
 				return new ResponseEntity<RespCM>(new RespCM(200, "typeImage"), HttpStatus.OK);
 			}
@@ -170,9 +172,9 @@ public class UserController {
 	
 	
 	@PutMapping("/mypage/update")
-	public ResponseEntity<?> update(@RequestBody UpdateDto updatedto) {
+	public ResponseEntity<?> update(@RequestBody UpdateDto dto) {
 		
-		int result = userService.회원수정(updatedto);
+		int result = userService.회원수정(dto);
 		if (result == 1) {
 			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
 		} else {
@@ -222,8 +224,8 @@ public class UserController {
 	}
 
 	@PutMapping("/typeAppr")
-	public ResponseEntity<?> typeAppr(@RequestBody BoardTypeApprDto typeApprDto) {
-		int result = boardService.공인중개사권한부여(typeApprDto.getAgentId());
+	public ResponseEntity<?> typeAppr(@RequestBody BoardTypeApprDto dto) {
+		int result = boardService.공인중개사권한부여(dto.getAgentId());
 		System.out.println(result);
 		if (result == 1) {
 			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
@@ -232,7 +234,34 @@ public class UserController {
 		}
 	}
 	
-
 	
+	// 패스워드 변경을 위한 본인인증
+	@GetMapping("/identifyVer")
+	public String IdentifyVer() {
+		return "user/identifyVer";
+	}
+	
+	// 패스워드 변경을 위한 본인인증
+	@PostMapping("/identifyVer")
+	public ResponseEntity<?> identifyVer(@RequestBody IdentifyDto dto) {
+		int result = userService.본인확인하기(dto);
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	@PostMapping("/resetPassword")
+	public ResponseEntity<?> identifyVer(@RequestBody ResetPasswordDto dto) {
+		int result = userService.비밀번호변경하기(dto);
+		System.out.println(result);
+		if (result == 1) {
+			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
+		}
+	}
 	
 }

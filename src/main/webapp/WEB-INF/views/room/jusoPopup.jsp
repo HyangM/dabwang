@@ -42,11 +42,7 @@ function init(){
 	<form id="form" name="form" method="post">
 		<input type="hidden" id="confmKey" name="confmKey" value="" /> 
 		<input type="hidden" id="returnUrl" name="returnUrl" value="" /> 
-<<<<<<< HEAD
-			<input type="hidden" id="resultType" name="resultType" value="" />
-=======
 		<input type="hidden" id="resultType" name="resultType" value="" />
->>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 	</form>
 </body>
 </html>
