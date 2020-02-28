@@ -10,8 +10,13 @@ $('label').on('click', function(){
 
 //도로명 주소검색
 function goPopup() {
+<<<<<<< HEAD
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrCoordUrl.do)를 호출.
 	var pop = window.open("/popup/jusoPopup.jsp", "pop", "width=570, height=420, scrollbars=yes, resizable=yes");
+=======
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrCoordUrl.do)를 호출함.
+	var pop = window.open("popup/jusoPopup.jsp", "pop", "width=570, height=420, scrollbars=yes, resizable=yes");
+>>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 }
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

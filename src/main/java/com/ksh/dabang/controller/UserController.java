@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ksh.dabang.model.RespCM;
@@ -143,13 +142,15 @@ public class UserController {
 	         }
 	         return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
 	      }
-		  
+		
 		int result = userService.회원가입(joinDto);
+		User principal = userService.가입시자동로그인(joinDto.getEmail(),joinDto.getPassword());
 		if (result == 1) {
 			if (joinDto.getType().equals("공인중개사")) {
+				session.setAttribute("principal", principal);
 				return new ResponseEntity<RespCM>(new RespCM(200, "typeImage"), HttpStatus.OK);
 			}
-
+			session.setAttribute("principal", principal);
 			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);

@@ -23,6 +23,7 @@ import com.ksh.dabang.model.RespCM;
 import com.ksh.dabang.model.room.Criteria;
 import com.ksh.dabang.model.room.PageMaker;
 import com.ksh.dabang.model.room.Room_like;
+import com.ksh.dabang.model.room.dto.ReqRoomLikeDto;
 import com.ksh.dabang.model.room.dto.RespLatlngDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
 import com.ksh.dabang.model.user.User;
@@ -50,7 +51,7 @@ public class SearchController {
 			userId = principal.getUserId();		
 		}
 		
-		List<RespSearchListDto> rooms = searchService.방리스트(userId, keyword, roomType, dealType);				
+		List<RespSearchListDto> rooms = searchService.방리스트(userId, keyword, roomType, dealType, cri);				
 		model.addAttribute("rooms", rooms);
 		
 		RespSearchListDto filtermodel = new RespSearchListDto();
@@ -60,14 +61,11 @@ public class SearchController {
 		model.addAttribute("filtermodel", filtermodel);
 		
 		int totalCount=searchService.totalcount(cri);
-		System.out.println("totalCount : "+totalCount);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
-		System.out.println("getKeyword :???????????????????????" +cri.getKeyword());
 		
 		model.addAttribute("pageMaker", pageMaker);
-//		model.addAttribute("list", service.selectAll(cri));
 		
 		ObjectMapper mapper = new ObjectMapper();
     
@@ -80,49 +78,19 @@ public class SearchController {
   
 		return "/room/search";
 	} 
-   
-	/*
-	 * @GetMapping("/filter") public String filter(@RequestParam String
-	 * keyword, @RequestParam String roomType,
-	 * 
-	 * @RequestParam String dealType, Model model) {
-	 * 
-	 * String[] roomTypeArr = roomType.split(",");
-	 * 
-	 * List<RespLatlngDto> dto = searchService.지도위치찾기();
-	 * 
-	 * User principal = (User)session.getAttribute("principal"); int userId = 0; if
-	 * (principal != null) { userId = principal.getUserId(); }
-	 * 
-	 * List<RespSearchListDto> rooms = searchService.방검색조회(userId, keyword,
-	 * roomType, dealType); RespSearchListDto filtermodel = new RespSearchListDto();
-	 * 
-	 * for(RespSearchListDto room:rooms) {
-	 * System.out.println("getRoomType :"+room.getRoomType()); }
-	 * System.out.println("rooms : "+rooms);
-	 * 
-	 * model.addAttribute("rooms", rooms);
-	 * 
-	 * model.addAttribute("filtermodel", filtermodel);
-	 * 
-	 * ObjectMapper mapper = new ObjectMapper();
-	 * 
-	 * try { String jsonString = mapper.writeValueAsString(dto);
-	 * model.addAttribute("map", jsonString); // System.out.println("dto : "+dto);
-	 * // System.out.println(jsonString); } catch (JsonProcessingException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * 
-	 * return "/search/search"; }
-	 */
-	
+   	
 	@PostMapping("/likeroom")
 	public ResponseEntity<?> likeroom(@RequestBody Room_like roomlike){
 		
 		int result = searchService.찜한방추가(roomlike);
 		
 		if (result == 1) {
-			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
+			int likeId = searchService.찜한방Id찾기();
+			ReqRoomLikeDto dto = new ReqRoomLikeDto();
+			dto.setLikeId(likeId);
+			dto.setStatusCode(200);
+			dto.setMsg("ok");
+			return new ResponseEntity<ReqRoomLikeDto>(dto, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);
 		}

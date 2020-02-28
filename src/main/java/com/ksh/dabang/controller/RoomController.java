@@ -25,7 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
+import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.user.User;
+import com.ksh.dabang.repository.RoomRepository;
 import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.RoomService;
 import com.ksh.dabang.util.Script;
@@ -44,9 +47,6 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-	@Autowired
-	private BoardService BoardService;
-	
 	@GetMapping("/detail/{roomId}")
 	public String roomOne(@PathVariable int roomId, Model model) {
 		
@@ -58,8 +58,9 @@ public class RoomController {
 				System.out.println("오늘본방저장완료");
 			}
 		}
-		
-		
+		RespOtherRoomDto dto = roomService.룸아이디로공인중개사찾기(roomId);
+		int agentId = dto.getAgentId();
+		model.addAttribute("otherRooms",roomService.공인중개사의방보기(agentId));
 		model.addAttribute("room", roomService.방상세보기(roomId));
 		model.addAttribute("room_pics", roomService.방사진들보기(roomId));
 		model.addAttribute("room_options", roomService.방옵션보기(roomId));
@@ -146,7 +147,7 @@ public class RoomController {
 	
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
-		return "popup/jusoPopup";
+		return "/popup/jusoPopup";
 	}
 	
 	
@@ -187,10 +188,27 @@ public class RoomController {
 
 	}
 	   
+<<<<<<< HEAD
 	
    
 	   
 	
+=======
+	@GetMapping("/likeRoom")
+	public String likeRoom(Model model) {
+		
+		User user = (User) session.getAttribute("principal");
+		System.out.println(user);
+		if(user != null) {
+		List<RespLikeRoomDto> likeRooms = roomService.관심목록보기(user.getUserId());
+		int likeRoomCount = roomService.관심목록갯수(user.getUserId());
+		model.addAttribute("likeRoomCount",likeRoomCount);
+		model.addAttribute("likeRooms",likeRooms);
+		}
+		
+		return "/room/likeRoom";
+	}
+>>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 
 	
 }

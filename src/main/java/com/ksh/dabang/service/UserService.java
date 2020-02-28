@@ -50,4 +50,9 @@ public class UserService {
 	public List<TodayRecodeDto> 오늘본방(int userId) {
 	      return userRepository.findTodayRecode(userId);
 	   }
+	
+	@Transactional
+	public User 가입시자동로그인(String email, String password) {
+	      return userRepository.autoLogin(email,password);
+	}
 }

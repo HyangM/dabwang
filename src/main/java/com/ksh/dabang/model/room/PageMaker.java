@@ -21,11 +21,10 @@ public class PageMaker {
 	}
 	private void calcData() {
 		endPage=(int)(Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);
-		System.out.println("endPage : ????????????????"+endPage);
 		startPage=(endPage-displayPageNum)+1;
-		int tendPage=(int)(Math.ceil(totalCount)/(double)cri.getPerPageNum());
+		int tendPage= (int)Math.ceil(totalCount/(double)cri.getPerPageNum());
 		
-		if(endPage>tendPage) endPage=tendPage;
+		if(endPage > tendPage) endPage = tendPage;
 		prev= startPage == 1 ? false : true;
 		next= endPage >= tendPage ? false : true;
 	}

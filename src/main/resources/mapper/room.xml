@@ -68,35 +68,6 @@
 		update post_deal set agentId = #{agentId}, confirmYN = 'Y' where roomId = #{roomId}
 	</update>
 	
-		
-	<select id="findByFilterSearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
-		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
-			   areaP, areaM, floor, moveDay,mCost, parking, elevator, lof, title, content, room.createDate, 
-			   hostId, agentId, lat, lng, picName, likeId
-	      from room left outer join room_pic
-	      						 on room_pic.roomId = room.roomId
-	      				        and room_pic.picId = 1
-                               
-					left outer join ( select roomId, likeId
-										from like_room
-									   where userId = #{userId}
-									 ) like_room
-								 on like_room.roomId = room.roomId 
-	      				   
-	     where room.addr like CONCAT('%',#{keyword},'%')	    
-	       and (roomType like #{roomType1}	
-	       		 or roomType like #{roomType2} 
-	       		 or roomType like #{roomType3} 
-	       		 or roomType like #{roomType4} 
-	       		 or roomType like #{roomType5} 
-	       	   )   			    
-	       and (dealType like #{dealType1}	
-	       		 or dealType like #{dealType2} 
-	       		 or dealType like #{dealType3}
-	       	   )   
-	</select>
-	
-	
 	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">
 		<![CDATA[
 		select room.roomId, roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent,
@@ -123,7 +94,8 @@
 	       		 or dealType like #{dealType2} 
 	       		 or dealType like #{dealType3}
 	       	   )
-	     
+	   order by roomId desc
+    	  limit #{page},24
  	 	 ]]>
 	</select>
 	
@@ -138,5 +110,26 @@
 	<insert id="saveToday">
 		insert into today_recode(roomId,userId) value (#{roomId},#{userId} );
 	</insert>
+	
+	<!-- 해당 룸 올린 공인중개사 찾기 -->
+	<select id="findAgent" resultType="com.ksh.dabang.model.room.dto.RespOtherRoomDto">
+		select * from room where roomId = #{roomId} 
+    </select>
+	
+	<!-- 공인중개사의 다른 방 찾기 -->
+	<select id="findByOtherRoom" resultType="com.ksh.dabang.model.room.dto.RespOtherRoomDto">
+		select * from room,room_pic where room.roomId=room_pic.roomId and room.agentId = #{agentId} group by room.roomId limit 0,3 
+    </select>
+    
+    <!-- 관심목록 뿌리기 -->
+    <select id="findLikeRoom" resultType="com.ksh.dabang.model.room.dto.RespLikeRoomDto">
+		select * from user,like_room,room,room_pic where user.userId = like_room.userId and like_room.roomId = room.roomId and room.roomId = room_pic.roomId and user.userId=#{userId} group by room.roomId limit 0,50 
+    </select>
+    
+     <!-- 관심목록 갯수 구하기-->
+    <select id="findLikeRoomCount" resultType="int">
+		select count(distinct(room.roomId))  from user,like_room,room,room_pic where user.userId = like_room.userId and like_room.roomId = room.roomId and room.roomId = room_pic.roomId and user.userId=#{userId} limit 0,50
+    </select>
+    
 		
 </mapper>

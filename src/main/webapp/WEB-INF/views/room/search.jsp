@@ -34,7 +34,7 @@
 		<div class="styled__Top-sc-36tku2-1 hJtKYy">
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
-					<input id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
+					<input onkeyup="enterkey();"id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
 						autocomplete="off" placeholder="수영구" value="${filtermodel.keyword}" />
 					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
@@ -761,18 +761,11 @@
 								<li class="styled__Li-sc-84urxt-0 hxpbDF">
 									<div class="styled__Card-fi3k4t-0 OUJOU">
 										<div class="styled__BtnWrap-sc-3yrk4m-0 gYMri">
-											<div class="styled__Like-sc-3yrk4m-1 
-												 <c:choose>
-													<c:when test="${room.likeId ne 0}">doWxJj</c:when>
-													<c:otherwise>hjVNgq</c:otherwise>
-												</c:choose> " 
-											value="${room.roomId}" 
-											name="${room.likeId}" id="likeNum_${status.count}"
-											<%--  style="<c:choose>
+											<div class="styled__Like-sc-3yrk4m-1 hjVNgq" value="${room.roomId}"	name="${room.likeId}" id="likeNum_${status.count}"
+											 style="<c:choose>
 													<c:when test="${room.likeId ne 0}">background: url(/images/like_fill.svg)</c:when>
 													<c:otherwise>background: url(/images/like.svg)</c:otherwise>
-												   </c:choose> --%>" 
-											>
+												   </c:choose>" >
 											</div>
 										</div>
 										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank" 
@@ -782,7 +775,7 @@
 											<div class="styled__BadgeWrap-fi3k4t-3 gAdXIp">
 												
 												<div class="styled__ConfirmBadge-fi3k4t-4 gekGFB">
-													<span>확인매물</span> <font>20.02.14</font>
+													<span>확인매물</span>${room.roomId} <font>20.02.14</font>
 												</div>
 											</div>
 											<p
@@ -811,58 +804,30 @@
 							<div class="styled__Wrap-sc-14n2m5h-0 hZjLUp">
 								<div class="styled__Pagination-sc-14n2m5h-1 ijgAzA">
 									
-										
-									<button
+									<a href="${pageMaker.startPage - 1}"
 										class="styled__Btn-sc-14n2m5h-2 styled__PrevBtn-sc-14n2m5h-3 bAopv" >
 										<i width="12" height="12"
 											class="fas fa-angle-left  wrap__page__prevBtn__icon"></i>
-									</button>
-								
+									</a>
+									
 									<ul class="styled__Items-sc-14n2m5h-5 gGZMTf">
-										<c:forEach begin="${pageMaker.startPage }"	end="${pageMaker.endPage}" var="i">
+										<c:forEach begin="${pageMaker.startPage}"	end="${pageMaker.endPage}" var="i">
 											<c:choose>
 												<c:when test="${pageMaker.cri.page==i}">
-													<li><a class="styled__Item-sc-14n2m5h-6 bbapQa">${i }</a></li></c:when>
+													<li><a class="styled__Item-sc-14n2m5h-6 bbapQa">${i}</a></li></c:when>
 												<c:otherwise>
-													<a href="${i }"></a>
+													<li><a href="${i}" class="styled__Item-sc-14n2m5h-6 jZMeEh">${i}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
-										<!-- <li><a class="styled__Item-sc-14n2m5h-6 bbapQa">1</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">2</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">3</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">4</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">5</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">6</a></li>
-										<li><a class="styled__Item-sc-14n2m5h-6 jZMeEh">7</a></li> -->
 									</ul>
-									<button
+									<a href="${pageMaker.endPage + 1}" 
 										class="styled__Btn-sc-14n2m5h-2 styled__NextBtn-sc-14n2m5h-4 ffbDEJ">
 										<i width="12" height="12"
 											class="fas fa-angle-right wrap__page__nextBtn__icon"></i>
-									</button>
-								</div>
-								
-					<input type='text' name='keyword' value="${pageMaker.cri.keyword}">
-					<input type='text' name='page' value="${pageMaker.cri.page}" > 
-					<input type='text' name='perPageNum' value="${pageMaker.cri.perPageNum}">
-					<input type='text' name='perPageNum' value="${pageMaker.startPage}">
-					<input type='text' name='perPageNum' value="${pageMaker.endPage}">
-								<tr>
-									<td id="pagenate" colspan="5" align="center">
-										
-										<c:forEach begin="${pageMaker.startPage }"
-											end="${pageMaker.endPage}" var="i">
-											<c:choose>
-												<c:when test="${pageMaker.cri.page==i}">${i }</c:when>
-												<c:otherwise>
-													<a href="${i }">${i}</a>
-												</c:otherwise>
-											</c:choose>
-										</c:forEach> <c:if test="${pageMaker.next }">
-											<a href="${pageMaker.endPage+1 }">다음</a>
-										</c:if></td>
-								</tr>
+									</a>
+									
+								</div>								
 								<p class="styled__CopyRight-sc-14n2m5h-7 jdQaIx">Station3,
 									Inc. All rights reserved.</p>
 							</div>
@@ -899,6 +864,14 @@
 	<input type="hidden" id="roomType" name="roomType" value="">
 	<input type="hidden" id="dealType" name="dealType" value="">
 </form>
+<form id="pageForm">
+	<input type="hidden" name="page" value="${pageMaker.cri.page}"/>
+	<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
+	<input type="hidden" name="type" value="${pageMaker.cri.type}"/>
+	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"/>
+</form>
+	<input type="hidden" id="startPage" name="startPage" value="${pageMaker.startPage}"/>
+	<input type="hidden" id="endPage" name="endPage" value="${pageMaker.endPage}"/>
 <script>
 	$('#ftco-navbar').removeClass("bg-dark");
 	$('#ftco-navbar').removeClass("navbar-dark");
@@ -906,6 +879,12 @@
 <script src="../js/all.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <script>
+	function enterkey() {
+	    if (window.event.keyCode == 13) {
+	    	search();
+	    }
+	}
+	
     var keywordval = '';
    // document.getElementById('keyword').value = '';
 	var keyword = $('#keyword1').val();
@@ -952,6 +931,18 @@
 
 </script>
 <script>
+var pageForm = $("#pageForm")
+ $('.ijgAzA a').on('click', function(event){
+	 event.preventDefault();
+
+		var targetPage = $(this).attr("href");
+
+		pageForm.find("[name='page']").val(targetPage);
+		pageForm.attr("action", "/search").attr("method", "get");
+		pageForm.submit(); 
+ });
+</script>
+<script>
 //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -961,11 +952,9 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 3 // 지도의 확대 레벨
     };  
 
-console.log('mapContainer : ',mapContainer);
-console.log('mapOption : ',mapOption);
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-
+/* 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(); 
 
@@ -983,7 +972,7 @@ function placesSearchCB (data, status, pagination) {
         var bounds = new kakao.maps.LatLngBounds();
 		console.log('data : ',data);
          for (var i=0; i<data.length; i++) {
-            /*  displayMarker(data[i]);    */  
+            //displayMarker(data[i]);   
             bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }        
 
@@ -991,8 +980,35 @@ function placesSearchCB (data, status, pagination) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
     } 
-}
+} */
 
+//주소-좌표 변환 객체를 생성합니다
+ var geocoder = new kakao.maps.services.Geocoder();
+
+ // 주소로 좌표를 검색합니다
+ geocoder.addressSearch(keywordval, function(result, status) {
+
+     // 정상적으로 검색이 완료됐으면 
+      if (status === kakao.maps.services.Status.OK) {
+
+         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+         // 결과값으로 받은 위치를 마커로 표시합니다
+        // var marker = new kakao.maps.Marker({
+        //     map: map,
+        //     position: coords
+        // });
+
+         // 인포윈도우로 장소에 대한 설명을 표시합니다
+         //var infowindow = new kakao.maps.InfoWindow({
+         //    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+         //});
+         //infowindow.open(map, marker);
+
+         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+         map.setCenter(coords);
+     } 
+ });   
 // 마커 클러스터러를 생성합니다 
 var clusterer = new kakao.maps.MarkerClusterer({
     map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -1032,88 +1048,6 @@ function displayMarker(place) {
 }
 </script>
 
-<script>
-
-$('.hjVNgq').on('click',function(){
-
-	let id_like = $(this).attr("id");
-	console.log(id_like);
-	
-	let roomId = $(this).attr('value');
-	let userId = $('#userId').val();
-	let likeId = $(this).attr('name');
-	
-	if(userId == ""){
-		location.href = "/login"
-	}else{
-		
-		let data = { 
-				userId : userId,
-				roomId : roomId
-		};
-		console.log('likeId : ',likeId);
-		
-	 	$.ajax({
-			type:'POST',
-			url:'/likeroom',
-			data:JSON.stringify(data),
-			contentType:'application/json; charset=utf-8',
-			dataType:'json'			
-		}).done(function(result){
-			if(result.statusCode==200){
-				alert('찜등록 성공.');
-				//$('#id_like').css('background','url(/images/like_fill.svg)');
-				//$('#id_like').trigger("create");
-				//document.getElementById('id_like').style.background = 'url(/images/like_fill.svg)';
-				$(this).removeClass("hjVNgq");
-				$(this).addClass("doWxJj");
-			}
-		}).fail(function(result){
-			alert('찜등록 실패.');
-		}); 
-	}
-});
-
-$('.doWxJj').on('click',function(){
-	
-	let id_like = $(this).attr("id");
-	console.log(id_like);
-
-	let roomId = $(this).attr('value');
-	let userId = $('#userId').val();
-	let likeId = $(this).attr('name');
-	
-	if(userId == ""){
-		location.href = "/login"
-	}else{
-		
-		let data = { 
-				userId : userId,
-				roomId : roomId
-		};
-		console.log('likeId : ',likeId);
-		
-	 	$.ajax({
-			type:'DELETE',
-			url:'/likeroom/'+likeId,
-			data:JSON.stringify(data),
-			contentType:'application/json; charset=utf-8',
-			dataType:'json'			
-		}).done(function(result){
-			if(result.statusCode==200){
-				alert('찜삭제 성공.');
-				//$('#id_like').css('background','url(/images/like.svg)');
-				$(this).removeClass("doWxJj");
-				$(this).addClass("hjVNgq");
-			}
-		}).fail(function(result){
-			alert('찜삭제 실패.');
-		});
-			
-	}
-});
-
-</script>
 <script src="/js/search.js"></script>
 </body>
 </html>

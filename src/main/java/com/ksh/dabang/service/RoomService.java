@@ -14,6 +14,8 @@ import com.ksh.dabang.model.room.Room_pic;
 import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
+import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
 import com.ksh.dabang.model.room.dto.RespRoomDto;
 import com.ksh.dabang.repository.RoomRepository;
@@ -113,12 +115,35 @@ public class RoomService {
 		
 	
 	//서하 오늘 본방 저장하기
-		@Transactional
-		public int 오늘본방저장(int roomId,int userId) {
-			return roomRepository.saveToday(roomId,userId);
-		}
-		
+	@Transactional
+	public int 오늘본방저장(int roomId,int userId) {
+		return roomRepository.saveToday(roomId,userId);
+	}
 	
-		
-
+	//보고있는 페이지 공인중개사의 다른 방 보기
+	@Transactional
+	public RespOtherRoomDto 룸아이디로공인중개사찾기(int roomId) {
+		return roomRepository.findAgent(roomId);
+	}
+	
+	//보고있는 페이지 공인중개사의 다른 방 보기
+	@Transactional
+	public List<RespOtherRoomDto> 공인중개사의방보기(int agentId) {
+		return roomRepository.findByOtherRoom(agentId);
+	}
+	
+	//관심목록 담아서 뿌리기
+	@Transactional
+	public List<RespLikeRoomDto> 관심목록보기(int userId) {
+		return roomRepository.findLikeRoom(userId);
+	}
+	
+	//관심목록 담아서 뿌리기
+	@Transactional
+	public int 관심목록갯수(int userId) {
+		return roomRepository.findLikeRoomCount(userId);
+	}
+	
+	
+	
 }
