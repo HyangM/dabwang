@@ -1,16 +1,14 @@
 package com.ksh.dabang.model.user.dto;
 
-import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-
-public class ResetPasswordDto {
+public class RespOverlapDto {
 	private String email;
-	private String password;
 }

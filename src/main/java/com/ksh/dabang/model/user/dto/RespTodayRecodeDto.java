@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-public class TodayRecodeDto {
+public class RespTodayRecodeDto {
 	private int roomId;
 	private int userId;
 	private String roomType;

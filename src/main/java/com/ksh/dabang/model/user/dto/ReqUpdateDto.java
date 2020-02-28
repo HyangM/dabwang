@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+public class ReqUpdateDto {
 
-public class TypeDto {
-	private int userId;
-	private String typeName;
-	private int typeNum;
-	private String typeImage;
+	private String email;
+	private String password;
+	
 }
 

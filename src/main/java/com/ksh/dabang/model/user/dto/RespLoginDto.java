@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoginDto {
+public class RespLoginDto {
 
 	@Size(max = 30, message = "이메일을 확인하세요.")
 	@NotBlank(message = "이메일을 확인하세요.")

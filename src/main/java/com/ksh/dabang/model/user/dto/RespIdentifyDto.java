@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 
-public class IdentifyDto {
+public class RespIdentifyDto {
 	private String email;
 	private String phone;
 }

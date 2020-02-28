@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-public class JoinDto {
+public class RespJoinDto {
 
 	@Size(max=30, message = "이메일을 확인하세요.")
 	@NotBlank(message = "이메일을 확인하세요.")

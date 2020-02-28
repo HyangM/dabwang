@@ -12,16 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 
-public class BoardTypeCerDto {
+public class RespBoardTypeListDto {
 	private int agentId;
 	private String email;
 	private String name;
-	private String type;
-	private String typeCer;
-	private String typeName;
-	private String typeNum;
-	private String typeImage;
 	private String title;
+	private String typeCer;
 	private int postId;
 	private Timestamp createDate;
 	private Timestamp confirmDate;

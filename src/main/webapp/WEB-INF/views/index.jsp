@@ -91,7 +91,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="/images/sl_1.jpg"></a>
+				<a href="/search"><img class="card-img-top" src="/images/sl_1.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">월세 + 관리비</p>
 					<p style="font-size: 12px">월 50 이하 원룸</p>
@@ -99,7 +99,7 @@
 
 			</div>
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="/images/sl_2.jpg"></a>
+				<a href="/search"><img class="card-img-top" src="/images/sl_2.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">전세자금대출</p>
 					<p style="font-size: 12px">가능한 투쓰리룸</p>
@@ -107,7 +107,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="/images/sl_3.jpg"></a>
+				<a href="/search"><img class="card-img-top" src="/images/sl_3.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">반려동물</p>
 					<p style="font-size: 12px">가능한 원룸</p>
@@ -115,7 +115,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="/images/sl_4.jpg"></a>
+				<a href="/search"><img class="card-img-top" src="/images/sl_4.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">낭만적인</p>
 					<p style="font-size: 12px">옥탑방 원룸</p>
@@ -123,7 +123,7 @@
 			</div>
 
 			<div class="card m-2" style="width: 200px; height: 210px;">
-				<a href="/"><img class="card-img-top" src="/images/sl_5.jpg"></a>
+				<a href="/search"><img class="card-img-top" src="/images/sl_5.jpg"></a>
 				<div class="card-body">
 					<p class="card-title" style="font-size: 15px">2억 이하</p>
 					<p style="font-size: 12px">전세 투 쓰리룸</p>
@@ -138,7 +138,7 @@
 
 
 <section class="ftco-section testimony-section img"
-	style="background-image: url(images/main33.jpg);">
+	style="background-image: url(../images/main33.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row justify-content-center pb-3">
@@ -154,15 +154,15 @@
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(/images/profile1.jpg)">
+								style="background-image: url(../images/profile1.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
 								</span>
 							</div>
 							<div class="text px-4">
-								<p class="mb-4">다방이 다방했네요! 반려묘와 함께 살수있는 곳을 원했는데 다방으로 구했습니다!</p>
-								<p class="name">혜리</p>
+								<p class="mb-4">급하게 방을 구해야 하는데 반려견과 함께 살수있는 투룸을 다방으로 빠르게 구했습니다.</p>
+								<p class="name">윤정</p>
 								<span class="position">2019년 10월 이용자</span>
 							</div>
 						</div>
@@ -170,32 +170,32 @@
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(/images/profile2.jpg)">
+								style="background-image: url(../images/profile2.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
 								</span>
 							</div>
 							<div class="text px-4">
-								<p class="mb-4">다방이 다방했네요! 반려묘와 함께 살수있는 곳을 원했는데 다방으로 구했습니다!</p>
-								<p class="name">혜리</p>
-								<span class="position">2019년 10월 이용자</span>
+								<p class="mb-4">허위매물인지 아닌지를 확인해주어서 좋았습니다. 감사합니다.</p>
+								<p class="name">향미</p>
+								<span class="position">2019년 12월 이용자</span>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="testimony-wrap text-center py-4 pb-5">
 							<div class="user-img"
-								style="background-image: url(/images/profile3.jpg)">
+								style="background-image: url(../images/profile3.jpg)">
 								<span
 									class="quote d-flex align-items-center justify-content-center">
 									<i class="icon-quote-left"></i>
 								</span>
 							</div>
 							<div class="text px-4">
-								<p class="mb-4">다방이 다방했네요! 반려묘와 함께 살수있는 곳을 원했는데 다방으로 구했습니다!</p>
-								<p class="name">혜리</p>
-								<span class="position">2019년 10월 이용자</span>
+								<p class="mb-4">전세자금대출이 꼭 가능한 곳이여야했어요 미리 정보를 알고 빠르게 구할수있었습니다.</p>
+								<p class="name">서하</p>
+								<span class="position">2020년 01월 이용자</span>
 							</div>
 						</div>
 					</div>
@@ -221,16 +221,16 @@
 		<div class="row d-flex">
 			<div class="col-md-6 col-lg-5 d-flex">
 				<div class="img d-flex align-self-stretch align-items-center"
-					style="background-image: url(/images/header.jpg);"></div>
+					style="background-image: url(../images/header.jpg);"></div>
 			</div>
 			<div class="col-md-6 col-lg-7 pl-lg-5 py-md-5">
 				<div class="py-md-5">
 					<div class="row justify-content-start pb-3">
 						<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
 							<h3 class="mb-4">다봥 허위매물 예방하기</h3>
-							<p>첫번재, 광학렌즈로 넓어보이는 사진 등 지나치게 보정된 사진이나 구조를 알아보기 힘든 사진은 허위매물의
+							<p>첫번째, 광학렌즈로 넓어보이는 사진 등 지나치게 보정된 사진이나 구조를 알아보기 힘든 사진은 허위매물의
 								가능성이 있으니 주의해주세요.</p>
-							<p>두번재, 다봥에서 주변의 평균월세와 전세 시세를 집계하고있습니다. 해당지역의 평균 시세를 확인해보실 것을
+							<p>두번째, 다봥에서 주변의 평균월세와 전세 시세를 집계하고있습니다. 해당지역의 평균 시세를 확인해보실 것을
 								추천합니다.</p>
 							<p>세번째, 실제 위치와 상이할 수 있다는 문구가 노출된 매물일 경우 허위매물 가능성이 높으니 주의하시기
 								바랍니다.</p>
@@ -249,7 +249,7 @@
 
 
 <section class="ftco-facts img ftco-counter"
-	style="background-image: url(/images/dabang.jpg);">
+	style="background-image: url(../images/dabang.jpg);">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row d-flex align-items-center">

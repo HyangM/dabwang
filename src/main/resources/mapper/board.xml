@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ksh.dabang.repository.BoardRepository">
 	
-	<select id="findAll" resultType="com.ksh.dabang.model.board.dto.BoardTypeListDto"> 
+	<select id="findAll" resultType="com.ksh.dabang.model.board.dto.RespBoardTypeListDto"> 
 		select * from user join post_auth on user.userId = post_auth.agentId order by post_auth.postId desc limit #{pageLimit}, 10 
 	</select>
 
@@ -12,9 +12,9 @@
 		insert into post_auth(agentId,createDate) values(#{agentId},now()); 
 	</insert>
 	
-	<select id="findByPostId" resultType="com.ksh.dabang.model.board.dto.BoardTypeCerDto">
+	<select id="findByPostId" resultType="com.ksh.dabang.model.board.dto.RespBoardTypeCerDto">
 		 select * from user join post_auth on user.userId = post_auth.agentId where postId = #{postId} 
-		</select>
+	</select>
 	
 	<update id="saveTypeAppr"> 
 		UPDATE user SET typeCer='Y' WHERE userId = #{agentId} 
