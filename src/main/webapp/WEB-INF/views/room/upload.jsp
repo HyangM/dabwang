@@ -457,16 +457,6 @@
 <!--전체 컨테이너 끝 div -->
 </div>
 
-<<<<<<< HEAD
-=======
-<script>
-// $('#room--upload--submit').on('click',function(){
-// 	let aa = $('#deposit').val();
-// 	let bb = $('#monthRent').val();
-// 	alert(aa + ' and '+bb);
-// });
-</script>
->>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 <script src="/js/upload.js" type="text/javascript">
 // 평수랑 제곱미터 변환하기 들어있음.
 </script>

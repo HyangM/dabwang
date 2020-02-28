@@ -177,9 +177,10 @@ public class RoomController {
 		
 		if(result == 1) {
 			roomService.승인받은매물(roomId, agentId);
-			
+			System.out.println("성공======================================");
 			return Script.href("매물승인 성공", "/roomApprList/1");
 		}else {
+			System.out.println("실패======================================");
 			return Script.back("매물승인 실패");
 		}	
 
