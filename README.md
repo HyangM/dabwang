@@ -1,4 +1,4 @@
-# 스프링 부트 프로젝트
+﻿# 스프링 부트 프로젝트
 
 ## 다봥
 
@@ -97,29 +97,52 @@ CREATE TABLE room_pic (
 ```
 ```sql
 CREATE TABLE options (
-	optionId varchar(5) PRIMARY KEY,
-	optionName varchar(20) not null  
+	
+optionId varchar(5) PRIMARY KEY,
+	
+optionName varchar(20) not null,
+    
+optionType int not null 
+
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
-insert INTO options VALUES ('op1', '에어컨.png');
-insert INTO options VALUES ('op2', '세탁기.png');
-insert INTO options VALUES ('op3', '침대.png');
-insert INTO options VALUES ('op4', '책상.png');
-insert INTO options VALUES ('op5', '옷장.png');
-insert INTO options VALUES ('op6', 'TV.png');
-insert INTO options VALUES ('op7', '신발장.png');
-insert INTO options VALUES ('op8', '냉장고.png');
-insert INTO options VALUES ('op9', '가스레인지.png');
-insert INTO options VALUES ('op10', '인덕션.png');
-insert INTO options VALUES ('op11', '전자레인지.png');
-insert INTO options VALUES ('op12', '전자도어락.png');
-insert INTO options VALUES ('op13', '비데.png');
-insert INTO options VALUES ('op14', '비디오폰.png');
-insert INTO options VALUES ('op15', '공동현관.png');
-insert INTO options VALUES ('op16', '경비원.png');
-insert INTO options VALUES ('op17', 'CCTV.png');
-insert INTO options VALUES ('op18', '방범창.png');
-insert INTO options VALUES ('op19', '인터폰.png');
+
+insert INTO options VALUES ('op1', '에어컨.png', 1);
+
+insert INTO options VALUES ('op2', '세탁기.png', 1);
+
+insert INTO options VALUES ('op3', '침대.png', 1);
+insert INTO options VALUES ('op4', '책상.png', 1);
+
+insert INTO options VALUES ('op5', '옷장.png', 1);
+
+insert INTO options VALUES ('op6', 'TV.png', 1);
+
+insert INTO options VALUES ('op7', '신발장.png', 1);
+
+insert INTO options VALUES ('op8', '냉장고.png', 1);
+
+insert INTO options VALUES ('op9', '가스레인지.png', 1);
+
+insert INTO options VALUES ('op10', '인덕션.png', 1);
+
+insert INTO options VALUES ('op11', '전자레인지.png', 1);
+
+insert INTO options VALUES ('op12', '전자도어락.png', 1);
+
+insert INTO options VALUES ('op13', '비데.png', 1);
+
+insert INTO options VALUES ('op14', '비디오폰.png', 2);
+
+insert INTO options VALUES ('op15', '공동현관.png', 2);
+
+insert INTO options VALUES ('op16', '경비원.png', 2);
+
+insert INTO options VALUES ('op17', 'CCTV.png', 2);
+
+insert INTO options VALUES ('op18', '방범창.png', 2);
+
+insert INTO options VALUES ('op19', '인터폰.png', 2);
 ```
 ```sql
 CREATE TABLE room_option(
@@ -144,6 +167,7 @@ insert INTO floor VALUES (5, '5층');
 insert INTO floor VALUES (6, '6층');
 insert INTO floor VALUES (7, '7층');
 ```
+-- 층수 30층까지 추가함.
 ```sql
 CREATE TABLE post_deal (
 	postId int auto_increment PRIMARY KEY,

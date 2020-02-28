@@ -5,35 +5,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ksh.dabang.model.RespCM;
 import com.ksh.dabang.model.board.dto.BoardTypeListDto;
-import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
@@ -168,6 +157,7 @@ public class RoomController {
 	   model.addAttribute("roomApprBoard", roomService.매물승인게시판(pageNo));
 	   return "board/roomApprList";
    }
+  
    
    //매물승인을 위한 상세보기 페이지로 이동.
    @GetMapping("/roomAppr/{roomId}")
@@ -198,6 +188,12 @@ public class RoomController {
 
 	}
 	   
+<<<<<<< HEAD
+	
+   
+	   
+	
+=======
 	@GetMapping("/likeRoom")
 	public String likeRoom(Model model) {
 		
@@ -212,6 +208,7 @@ public class RoomController {
 		
 		return "/room/likeRoom";
 	}
+>>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 
 	
 }
