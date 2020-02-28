@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/nav.jsp"%>
-<div class="container col-md-4 bg-light p-5 contact-form">
+<div class="container col-md-6 bg-light p-5 contact-form">
 	<form>
 		<h3>로그인</h3>
 		<div class="form-group">
@@ -20,7 +20,9 @@
 					<input id="rememberMe" class="form-check-input" type="checkbox" checked="checked"> 아이디 기억하기
 				</c:otherwise>
 			</c:choose>
+			
 			</label> 
+			
 		</div>
 
 	</form>

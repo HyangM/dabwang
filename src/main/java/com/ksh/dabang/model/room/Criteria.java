@@ -23,13 +23,13 @@ public class Criteria {
 	private String keyword;
 	
 	public Criteria() {
-		this.page=1;
-		this.perPageNum=10;
+		this.page = 1;
+		this.perPageNum = 24;
 	
 	}
 	public Criteria(int page, int perPageNum) {
-		this.page=page;
-		this.perPageNum=perPageNum;
+		this.page = page;
+		this.perPageNum = perPageNum;
 	}
 	
 	public String[] getTypeArr() {
@@ -44,8 +44,8 @@ public class Criteria {
 		this.page=page;
 	}
 	public void setPerPageNum(int perPageNum) {
-		if(perPageNum<=0||perPageNum>100) {
-			this.perPageNum=10;
+		if(perPageNum <= 0 || perPageNum > 100 ) {
+			this.perPageNum = 24;
 			return;
 		}
 		this.perPageNum=perPageNum;

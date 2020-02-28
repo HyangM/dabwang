@@ -142,13 +142,15 @@ public class UserController {
 	         }
 	         return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
 	      }
-		  
+		
 		int result = userService.회원가입(joinDto);
+		User principal = userService.가입시자동로그인(joinDto.getEmail(),joinDto.getPassword());
 		if (result == 1) {
 			if (joinDto.getType().equals("공인중개사")) {
+				session.setAttribute("principal", principal);
 				return new ResponseEntity<RespCM>(new RespCM(200, "typeImage"), HttpStatus.OK);
 			}
-
+			session.setAttribute("principal", principal);
 			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<RespCM>(new RespCM(400, "fail"), HttpStatus.BAD_REQUEST);

@@ -9,4 +9,5 @@ public interface SearchRepository {
 	public List<RespLatlngDto> findBylatlng();
 	public int likeInsert(Room_like roomlike);
 	public int likeDelete(int likeId);
+	public int likeSelect();
 }

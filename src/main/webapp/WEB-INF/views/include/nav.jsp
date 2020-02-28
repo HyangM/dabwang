@@ -77,7 +77,7 @@
 					<c:choose>
 						<c:when test="${sessionScope.principal.type eq '세입자'}">
 							<li class="nav-item"><a href="/search" class="nav-link"><span>방찾기</span></a></li>
-							<li class="nav-item"><a href="/" class="nav-link"><span>관심목록</span></a></li>
+							<li class="nav-item"><a href="/likeRoom" class="nav-link"><span>관심목록</span></a></li>
 							<li class="nav-item"><a href="/mypage" class="nav-link"><span>마이페이지</span></a></li>
 							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
 						</c:when>

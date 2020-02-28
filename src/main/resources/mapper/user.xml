@@ -46,4 +46,12 @@
 		select * from today_recode, room, room_pic where today_recode.roomId = room.roomId and room.roomId = room_pic.roomId and today_recode.userId = #{userId} group by room.roomId limit 0,3
 	</select>
 	
+	
+	<!-- 회원가입시 자동로그인 -->
+	<select resultType="com.ksh.dabang.model.user.User" id="autoLogin">
+		select userId,email,name,phone,type,typeCer,typeName,typeNum,typeImage,role,profile from user where email = #{email} and password = #{password}
+	</select>
+	
+	
+	
 </mapper>

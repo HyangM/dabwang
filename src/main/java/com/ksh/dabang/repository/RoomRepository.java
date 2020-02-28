@@ -7,6 +7,7 @@ import com.ksh.dabang.model.room.Options;
 import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
 import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
 import com.ksh.dabang.model.room.dto.RespSearchListDto;
@@ -38,11 +39,8 @@ public interface RoomRepository {
 
 	
 	public List<RespSearchListDto> findBySearchList(int userId, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
-			String dealType1, String dealType2, String dealType3);
-	
-	public List<RespSearchListDto> findByFilterSearchList(int userId, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
-			String dealType1, String dealType2, String dealType3);
-	
+			String dealType1, String dealType2, String dealType3, int page, int perPageNum);
+		
 	public List<RespSearchListDto> listPage(Criteria cri);
 	public int totalCount(Criteria cri);
 	
@@ -54,4 +52,13 @@ public interface RoomRepository {
 	
 	//서하추가 보고있는 페이지를 올린 공인중개사의 다른 방 보기
 	public List<RespOtherRoomDto> findByOtherRoom(int agentId);
+	
+	//서하추가 관심목록보기
+	public List<RespLikeRoomDto> findLikeRoom(int userId);
+	
+	//서하추가 관심목록갯수
+	public int findLikeRoomCount(int userId);
+		
+	
+	
 }

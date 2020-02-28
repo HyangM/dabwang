@@ -8,8 +8,8 @@
 		SELECT lat, lng FROM room 
 	</select>
 	
-	<select id="likeSelect" resultType="com.ksh.dabang.model.room.dto.ReqRoomLikeDto">
-		SELECT * FROM like_room where userId = #{userId}
+	<select id="likeSelect" resultType="int">
+		SELECT max(likeId) FROM like_room
 	</select>
 
 	<insert id="likeInsert">
@@ -19,4 +19,5 @@
 	<delete id="likeDelete">
 		delete from like_room where likeId = #{likeId};
 	</delete>
+	
 </mapper>

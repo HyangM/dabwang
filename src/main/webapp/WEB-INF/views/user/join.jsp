@@ -173,10 +173,10 @@
 						console.log(r);
 						if (r.msg == 'typeImage') {
 							alert('마이페이지에서 공인중개사 인증을 해주세요!');
-							location.href = '/login';
+							location.href = '/mypage';
 						} else if (r.msg == 'ok') {
 							alert('회원가입완료');
-							location.href = '/login';
+							location.href = '/';
 						} else if (r.msg == 'fail') {
 							alert('회원입정보를 확인하여주세요.');
 						}

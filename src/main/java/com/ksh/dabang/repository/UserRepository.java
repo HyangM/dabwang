@@ -18,5 +18,6 @@ public interface UserRepository {
 	User findByUsernameAndPassword(LoginDto loginDto);
 	int updateUser(UpdateDto updateDto);
 	List<TodayRecodeDto> findTodayRecode(int userId);
+	User autoLogin(String email,String password);
 }
 

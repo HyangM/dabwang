@@ -14,6 +14,7 @@ import com.ksh.dabang.model.room.Room_pic;
 import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
 import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.room.dto.RespRoomApprDto;
 import com.ksh.dabang.repository.RoomRepository;
@@ -129,4 +130,19 @@ public class RoomService {
 	public List<RespOtherRoomDto> 공인중개사의방보기(int agentId) {
 		return roomRepository.findByOtherRoom(agentId);
 	}
+	
+	//관심목록 담아서 뿌리기
+	@Transactional
+	public List<RespLikeRoomDto> 관심목록보기(int userId) {
+		return roomRepository.findLikeRoom(userId);
+	}
+	
+	//관심목록 담아서 뿌리기
+	@Transactional
+	public int 관심목록갯수(int userId) {
+		return roomRepository.findLikeRoomCount(userId);
+	}
+	
+	
+	
 }

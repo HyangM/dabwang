@@ -36,6 +36,7 @@ import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
+import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
 import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.user.User;
 import com.ksh.dabang.repository.RoomRepository;
@@ -157,7 +158,7 @@ public class RoomController {
 	
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
-		return "popup/jusoPopup";
+		return "/popup/jusoPopup";
 	}
 	
 	
@@ -197,7 +198,20 @@ public class RoomController {
 
 	}
 	   
-	
+	@GetMapping("/likeRoom")
+	public String likeRoom(Model model) {
+		
+		User user = (User) session.getAttribute("principal");
+		System.out.println(user);
+		if(user != null) {
+		List<RespLikeRoomDto> likeRooms = roomService.관심목록보기(user.getUserId());
+		int likeRoomCount = roomService.관심목록갯수(user.getUserId());
+		model.addAttribute("likeRoomCount",likeRoomCount);
+		model.addAttribute("likeRooms",likeRooms);
+		}
+		
+		return "/room/likeRoom";
+	}
 
 	
 }
