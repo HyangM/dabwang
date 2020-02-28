@@ -22,14 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ksh.dabang.model.board.dto.BoardTypeListDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
 import com.ksh.dabang.model.room.dto.RespOtherRoomDto;
 import com.ksh.dabang.model.user.User;
-import com.ksh.dabang.repository.RoomRepository;
-import com.ksh.dabang.service.BoardService;
 import com.ksh.dabang.service.RoomService;
 import com.ksh.dabang.util.Script;
 
@@ -187,13 +184,7 @@ public class RoomController {
 		}	
 
 	}
-	   
-<<<<<<< HEAD
-	
-   
-	   
-	
-=======
+
 	@GetMapping("/likeRoom")
 	public String likeRoom(Model model) {
 		
@@ -208,7 +199,6 @@ public class RoomController {
 		
 		return "/room/likeRoom";
 	}
->>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 
 	
 }
