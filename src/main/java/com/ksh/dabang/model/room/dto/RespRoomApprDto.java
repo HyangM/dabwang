@@ -1,7 +1,5 @@
 package com.ksh.dabang.model.room.dto;
 
-import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,8 +13,8 @@ public class RespRoomApprDto {
 	private int roomId;
 //	private int agentId;
 	private String title;
-//	private int hostId;
-	private String addr;
+	private int hostId;
+	private String jibunAddr;
 	private String hostName;
 	private String createDate;
 	private String confirmYN;

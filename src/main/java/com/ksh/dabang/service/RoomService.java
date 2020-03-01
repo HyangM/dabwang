@@ -79,13 +79,10 @@ public class RoomService {
 		}	
 	}
 	
-	public int 매물승인신청(int hostId, String addr) {
+	public int 매물승인신청(int hostId, String jibunAddr) {
 		
 		int selectKey = roomRepository.uploadSelectKey();
-		
-		//reqRoomApprDto.setRoomId(selectKey);		
-		System.out.println("룸서비스:매물승인신청 성공????????");
-		 return roomRepository.dealBoardWrite(selectKey, hostId, addr);
+		 return roomRepository.dealBoardWrite(selectKey, hostId, jibunAddr);
 	}
 	
 	public List<RespRoomApprDto> 매물승인게시판(int pageNo) {

@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
 <%@ include file="../include/nav.jsp"%>
 <!-- 윤정추가  -->
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">   
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -43,27 +40,18 @@
 							<c:otherwise>없음</c:otherwise>
 						</c:choose>
 					</div></td>
-				<td class="text-right"><span>(주)${room.typeName}</span><br /> <span>${room.name}</span></td>
-				<td class="text-center"><span> <a href="#" data-toggle="popover"
-						title="연락처"
-						data-content="<fmt:formatNumber var="phone" value="${room.phone}" pattern="###,####,####"></fmt:formatNumber><c:out value="${fn:replace(phone, ',', '-')}"/>">
-							<button type="button" class="btn btn-outline-primary ml-auto">연락처보기</button>
-					</a></span></td>
+				<td class="text-right"></td>
+				<td class="text-center"></td>
 			</tr>
 		</tbody>
 	</table>
-	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span><span>🚨 허위매물신고</span>
 
 
 	<table class="table">
 		<tbody>
 			<tr>
-				<td colspan="3" style="background-color: #0649C0; color: white;"><span style="font-size: small;">확인매물 [<fmt:formatDate
-							value="${room.createDate}" pattern="yy.MM.dd"></fmt:formatDate>]
-				</span></td>
-				<td colspan="6" style="background-color: #3665CE; color: white;"><span style="font-size: small;">방주인과
-						공인중개사가 거래정보를 확인한 매물입니다.</span></td>
-
+				<td colspan="9" style="background-color: #0649C0; color: white;">
+				<span style="font-size: small;">미승인 매물</span></td>
 			</tr>
 			<tr>
 				<td colspan="1" style="font-size: small;">• 해당층</td>
@@ -182,8 +170,7 @@
 				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#price-section">가격정보</a></td>
 				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#option-section">옵션</a></td>
 				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#location-section">위치 및 주변시설</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#score-section">다방면 스코어</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#contact-section">이 공인중개사의 다른 방</a></td>
+				
 			</tr>
 
 
@@ -306,6 +293,9 @@
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
+			
+			
+			
 				<h2 class="text-center">옵션</h2>
 				<br />
 				<table class="table table-borderless">
@@ -354,7 +344,7 @@
 								<c:when test="${room_option.optionType eq 2}">
 									<td><img src="/images/kwon/options/${room_option.optionName}" style="width: 70px; height: 80px;"
 										onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
-									<c:if test="${((status.index) mod 6) == 0}">
+									<c:if test="${((status.index+1) mod 6) == 0}">
 					</tr>
 					<tr class="item text-center">
 						</c:if>
@@ -426,90 +416,45 @@
 			<div class="col-sm-1"></div>
 		</div>
 	</section>
-	<br /> <br /> <br />
-
-	<hr />
 	<br /> <br />
-	<section id="score-section">
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-10 text-center">
-				<h3 class="text-center">다방면스코어</h3>
-				<br /></br>
-				<div>
-					<img src="/images/kwon/multiScore.png" />
-				</div>
-				<br />
-
-
-			</div>
-			<div class="col-sm-1"></div>
+    <hr />
+    <br />
+   
+   <form:form action="/roomAppr" method="PUT">
+	   <div class="text-center">
+			<span class="text-dark">
+				<input type="checkbox" />매물관리규정을 확인하였으며, 입력한 정보는 실제 매물과 다름이 없음을 승인합니다.
+				<input type="hidden" name="agentId" value="${sessionScope.principal.userId}" id="agentId" />
+	     		<input type="hidden" name="roomId" value="${room.roomId}" id="roomId" />
+			</span>
 		</div>
-	</section>
-	<br />
-
-
+		<br/>
+		<div class="text-center">
+			<span>
+				<a href="/roomApprList/1"><button type="button" class="btn btn-outline-secondary">목록보기</button></a>
+				<button type="submit" id="room--Approve" class="btn btn-primary">매물승인</button> 
+			</span>
+		</div>
+   </form:form>
+   
+  
+<br /><br /> 
 </div>
-<hr />
-<br />
+<br /><br /> 
+   
+   
 
 
-
-
-
-<section class="ftco-section contact-section" id="contact-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
-				<h3 class="text-center">이 공인중개사의 다른 방</h3>
-				<br /> <br />
-			</div>
-			<c:forEach var="otherRoom" items="${otherRooms}">
-				<div class="card m-2" style="width: 300px; height: 330px;">
-					<a href="#" onclick="roomDetail(${otherRoom.roomId})"><img class="card-img-top"
-						src="/media/${otherRoom.picName}" style="width: 300px; height: 160px;"></a>
-
-					<div class="card-body">
-						<p class="card-title text-Strong" style="font-size: 20px">${otherRoom.dealType}
-							<c:choose>
-								<c:when test="${0 ne otherRoom.yearRent}">${otherRoom.yearRent}</c:when>
-								<c:when test="${0 ne otherRoom.monthRent}">${otherRoom.deposit}/${otherRoom.monthRent}</c:when>
-								<c:otherwise>${otherRoom.dealRent}</c:otherwise>
-							</c:choose>
-						</p>
-
-						<p style="font-size: 12px">${otherRoom.floor}층,${otherRoom.areaP}m²,관리비${otherRoom.MCost}만</p>
-						<p style="font-size: 15px">${otherRoom.title}</p>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-</section>
-<br />
-<br />
-<br />
-
-
-
-<script src="/js/detail.js" type="text/javascript"></script>
 <script>
    $('#ftco-navbar').removeClass("bg-dark");
    $('#ftco-navbar').removeClass("navbar-dark");
 </script>
+<script src="/js/detail.js" type="text/javascript"></script>
 <script>
-
-
-
 	function goSection() {
 		document.location.href = "#option-section";
-	}
-
-	
+	}	
 </script>
-
-
-
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
@@ -521,21 +466,14 @@
 		level : 3
 	//지도의 레벨(확대, 축소 정도)
 	};
-
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴.
+		
 	function roomDetail(roomId){
 		location.href='/detail/'+roomId;
-	}
-
-
-
-	
+	}	
 </script>
 
 
 
-<br />
-<br />
+
 <%@ include file="../include/footer.jsp"%>
