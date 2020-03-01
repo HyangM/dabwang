@@ -39,11 +39,11 @@ public class SearchController {
 	private HttpSession session;
  
 	@GetMapping("/search")
-	public String search(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1,2,3") String roomType, 
-						 @RequestParam(defaultValue = "월세,전세,매매") String dealType,
+	public String search(@RequestParam(defaultValue = "수영구") String keyword, @RequestParam(defaultValue = "1,2,3") String roomType, 
+						 @RequestParam(defaultValue = "월세,전세,매매") String dealType, @RequestParam(defaultValue = "수영구") String keywordinput,
 						 @ModelAttribute("cri") Criteria cri, Model model) {
 		 
-		List<RespLatlngDto> dto = searchService.지도위치찾기();
+		List<RespLatlngDto> dto = searchService.지도위치찾기(keywordinput, roomType, dealType);
 		
 		User principal = (User)session.getAttribute("principal");
 		int userId = 0;
@@ -51,16 +51,17 @@ public class SearchController {
 			userId = principal.getUserId();		
 		}
 		
-		List<RespSearchListDto> rooms = searchService.방리스트(userId, keyword, roomType, dealType, cri);				
+		List<RespSearchListDto> rooms = searchService.방리스트(userId, keywordinput, roomType, dealType, cri);				
 		model.addAttribute("rooms", rooms);
 		
 		RespSearchListDto filtermodel = new RespSearchListDto();
 		filtermodel.setKeyword(keyword);
 		filtermodel.setFilterRoomType(roomType);
 		filtermodel.setFilterDealType(dealType);
+		filtermodel.setKeywordinput(keywordinput);
 		model.addAttribute("filtermodel", filtermodel);
 		
-		int totalCount=searchService.totalcount(cri);
+		int totalCount = searchService.totalcount(keywordinput, roomType, dealType);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);

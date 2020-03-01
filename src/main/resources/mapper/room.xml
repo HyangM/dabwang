@@ -84,12 +84,8 @@
 									   where userId = #{userId}
 									 ) like_room
 								 on like_room.roomId = room.roomId
-                                 
-					left outer join post_deal
-						         on post_deal.roomId = room.roomId
 								 
 	     where room.addr like CONCAT('%',#{keyword},'%') 
-           and post_deal.confirmYN = 'Y'	    
 	       and (roomType like #{roomType1}	
 	       		 or roomType like #{roomType2} 
 	       		 or roomType like #{roomType3} 
@@ -108,8 +104,19 @@
 	<select id="totalCount" resultType="int">
 	    <![CDATA[
 	    select count(*) 
-	      from room
-	     where roomId > 0
+	      from room 
+	     where room.roomId > 0
+	       and room.addr like CONCAT('%',#{keyword},'%') 
+	       and (roomType like #{roomType1}	
+	       		 or roomType like #{roomType2} 
+	       		 or roomType like #{roomType3} 
+	       		 or roomType like #{roomType4} 
+	       		 or roomType like #{roomType5} 
+	       	   )   			    
+	       and (dealType like #{dealType1}	
+	       		 or dealType like #{dealType2} 
+	       		 or dealType like #{dealType3}
+	       	   )
 	    ]]>
     </select>
 	

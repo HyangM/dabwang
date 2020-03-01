@@ -5,7 +5,20 @@
 <mapper namespace="com.ksh.dabang.repository.SearchRepository">
 
 	<select id="findBylatlng" resultType="com.ksh.dabang.model.room.dto.RespLatlngDto">
-		SELECT lat, lng FROM room 
+		SELECT lat, lng 
+		  FROM room
+								 
+	     where room.addr like CONCAT('%',#{keyword},'%') 
+	       and (roomType like #{roomType1}	
+	       		 or roomType like #{roomType2} 
+	       		 or roomType like #{roomType3} 
+	       		 or roomType like #{roomType4} 
+	       		 or roomType like #{roomType5} 
+	       	   )   			    
+	       and (dealType like #{dealType1}	
+	       		 or dealType like #{dealType2} 
+	       		 or dealType like #{dealType3}
+	       	   )
 	</select>
 	
 	<select id="likeSelect" resultType="int">

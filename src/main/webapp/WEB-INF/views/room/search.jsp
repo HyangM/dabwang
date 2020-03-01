@@ -6,8 +6,7 @@
 
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" /> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <!-- 
 <script src="http://propeller.in/components/range-slider/js/wNumb.js"></script>
 <script src="http://propeller.in/components/range-slider/js/nouislider.js"></script>
@@ -35,7 +34,7 @@
 			<div class="styled__Header-sfs8fz-0 dWEBFj">
 				<div class="styled__SearchForm-sc-1pc2wuh-0 byjidO">
 					<input onkeyup="enterkey();"onclick="sample3_execDaumPostcode()"id="keyword1" type="text" class="styled__Input-sc-1pc2wuh-1 keOJyH"
-						autocomplete="off" placeholder="수영구" value="${filtermodel.keyword}"/>
+						autocomplete="off" placeholder="수영구" value="${filtermodel.keywordinput}"/>
 						
 					<svg onclick="search();"width="18" height="18" viewBox="0 0 18 18">
 			              <g fill="none" fill-rule="evenodd" stroke="#222">
@@ -424,7 +423,7 @@
 					<!--</div> -->
 					<!-- 준공년차 -->
 					<div tabindex="0" class="styled__Wrap-sc-1a98puu-0 hWgOZv">
-						<div class="styled__Btn-jzhnoe-1 bAZEbe">
+						<%-- <div class="styled__Btn-jzhnoe-1 bAZEbe">
 							추가필터 <i width="11" height="7"
 								class="fas fa-angle-down search__btn1__icon"></i>
 						</div>
@@ -716,7 +715,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</div> --%>
 						<!-- 상세 창7 -->
 					</div>
 				</div>
@@ -753,8 +752,8 @@
 			<div class="styled__ListWrap-zfi8ji-1 bcjswF">
 				<div class="styled__Wrap-ityzo6-0 eXwtu">
 					<div class="styled__Tabs-sc-1sk8lv8-0 jLBlsX">
-						<a class="styled__Tab-sc-1sk8lv8-1 hXdylP">조건에 맞는 방 34022개</a> <a
-							class="styled__Tab-sc-1sk8lv8-1 herjpP">단지 3074개</a>
+						<a class="styled__Tab-sc-1sk8lv8-1 hXdylP">조건에 맞는 방 ${pageMaker.totalCount}개</a> 
+						<!--  <a class="styled__Tab-sc-1sk8lv8-1 herjpP">단지 3074개</a>-->
 					</div>
 					<div class="styled__ListWrap-ityzo6-4 cDzGDZ">
 						<ul class="styled__Ul-ityzo6-5 fxRDHg">
@@ -771,14 +770,15 @@
 											</div>
 										</div>
 										<a href="#" onclick="roomDetail(${room.roomId})" target="_blank" 
-											rel="noopener noreferrer" class="styled__A-fi3k4t-1 kpKjGs">
+											rel="noopener noreferrer" class="styled__A-fi3k4t-1 kpKjGs" onmouseover="mouseon(${room.lat},${room.lng})">
 											<div class="styled__RoomImg-fi3k4t-2 kfPGuF RoomImg"
 												style="background: url(/media/${room.picName}) center center/cover no-repeat;"></div>
 											<div class="styled__BadgeWrap-fi3k4t-3 gAdXIp">
-												
+												<c:if test="${0 ne room.agentId}">
 												<div class="styled__ConfirmBadge-fi3k4t-4 gekGFB">
-													<span>공인중개사 확인매물</span>${room.roomId}
+													<span>공인중개사 확인매물</span>
 												</div>
+												</c:if>
 											</div>
 											<p
 												class="styled__Text-fi3k4t-7 styled__RoomType-fi3k4t-8 iKMmNd">
@@ -862,9 +862,10 @@
 <form id="SearchForm" >
 	<input type="hidden" id="userId" value="${sessionScope.principal.userId}"/>
 	<input type="hidden" id="roomId" value="${room.roomId}"/>
-	<input type="hidden" id="keyword" name="keyword" value="">
+	<input type="hidden" id="keyword" name="keyword" value="${filtermodel.keyword}">
 	<input type="hidden" id="roomType" name="roomType" value="">
 	<input type="hidden" id="dealType" name="dealType" value="">
+	<input type="hidden" id="keywordinput" name="keywordinput" value="${filtermodel.keywordinput}">
 </form>
 <form id="pageForm">
 	<input type="hidden" name="page" value="${pageMaker.cri.page}"/>
@@ -879,21 +880,68 @@
 <script src="../js/all.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <script>
+
+	function juso(keywordval){
+		
+/* 		//주소-좌표 변환 객체를 생성합니다
+		 var geocoder = new kakao.maps.services.Geocoder();
+		
+		 // 주소로 좌표를 검색합니다
+		 geocoder.addressSearch(keywordval, function(result, status) {
+		
+		     // 정상적으로 검색이 완료됐으면 
+		      if (status === kakao.maps.services.Status.OK) {
+		
+		         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		         map.setCenter(coords);
+		     } 
+		 });  	 */
+
+
+		// 장소 검색 객체를 생성합니다
+		 var ps = new kakao.maps.services.Places(); 
+
+		
+		 // 키워드로 장소를 검색합니다
+		 ps.keywordSearch(keywordval, placesSearchCB); 
+		 //var data = {positions: ${map}};
+		 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+		 function placesSearchCB (data, status, pagination) {
+		     if (status === kakao.maps.services.Status.OK) {
+
+		         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+		         // LatLngBounds 객체에 좌표를 추가합니다
+		         var bounds = new kakao.maps.LatLngBounds();
+		 		console.log('data : ',data);
+		          for (var i=0; i<data.length; i++) {
+		             //displayMarker(data[i]);   
+		             bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+		         }        
+
+		       
+		         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		         map.setBounds(bounds);
+		     } 
+		 }		 
+	}
+	
 	function enterkey() {
 	    if (window.event.keyCode == 13) {
 	    	search();
 	    }
 	}
 	
-    var keywordval = '';
-   // document.getElementById('keyword').value = '';
-	var keyword = $('#keyword1').val();
-	console.log('keyword1 : ',keyword)
+   // var keywordval = '';
+	var keyword = $('#keyword').val();
+	console.log('keyword : ',keyword)
 	if(keyword == ''){
 		keywordval = $('#keyword1').attr('placeholder'); 
 	}else {
 		keywordval = keyword; 
 	}
+	juso(keywordval);
 
 	var filterRoomType = [${filtermodel.filterRoomType}];
 
@@ -943,13 +991,16 @@ var pageForm = $("#pageForm")
  });
 </script>
 <script>
+
+</script>
+<script>
 //마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -982,33 +1033,6 @@ function placesSearchCB (data, status, pagination) {
     } 
 } */
 
-//주소-좌표 변환 객체를 생성합니다
- var geocoder = new kakao.maps.services.Geocoder();
-
- // 주소로 좌표를 검색합니다
- geocoder.addressSearch(keywordval, function(result, status) {
-
-     // 정상적으로 검색이 완료됐으면 
-      if (status === kakao.maps.services.Status.OK) {
-
-         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-         // 결과값으로 받은 위치를 마커로 표시합니다
-        // var marker = new kakao.maps.Marker({
-        //     map: map,
-        //     position: coords
-        // });
-
-         // 인포윈도우로 장소에 대한 설명을 표시합니다
-         //var infowindow = new kakao.maps.InfoWindow({
-         //    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-         //});
-         //infowindow.open(map, marker);
-
-         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-         map.setCenter(coords);
-     } 
- });   
 // 마커 클러스터러를 생성합니다 
 var clusterer = new kakao.maps.MarkerClusterer({
     map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -1047,81 +1071,109 @@ function displayMarker(place) {
     });
 }
 </script>
+ 
+<script>
+// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+var markers2 = [];
+
+function mouseon(lat, lng){
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35);     
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+    hideMarkers();
+
+	//==========================마커 지우기====================//
+	
+ 	// 마커 하나를 지도위에 표시합니다 
+	addMarker(new kakao.maps.LatLng(lat, lng));
+
+	// 마커를 생성하고 지도위에 표시하는 함수입니다
+	function addMarker(position) {
+	    
+	    // 마커를 생성합니다
+	    var markerB = new kakao.maps.Marker({
+	        position: position,
+	        image : markerImage // 마커 이미지 
+	    });
+
+	    // 마커가 지도 위에 표시되도록 설정합니다
+	    markerB.setMap(map);
+	    
+	    // 생성된 마커를 배열에 추가합니다
+	    markers2.push(markerB);
+	}
+
+	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+	function setMarkers(map) {
+	    for (var i = 0; i < markers2.length; i++) {
+	    	markers2[i].setMap(map);
+	    }            
+	} 
+    	// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+	function hideMarkers() {
+  	  setMarkers(null);    
+	}
+}
+
+</script>
+<script>
+function isNotInMyArea( $targetObj )
+{
+    var isIn = true;
+    var $objArr = Array();
+    var opts = {
+        left: 99999, right: 0, top: 99999, bottom: 0
+    }
+    
+    if( $targetObj )
+    {
+        if( $targetObj.length == 1 ) {
+            $objArr.push( $targetObj );
+        } else {
+            $objArr = $targetObj;
+        }
+
+        $.each($objArr, function(i, $obj){          
+            var obj_position = $obj.offset();
+            obj_position.right = parseInt( obj_position.left ) + ( $obj.width() );
+            obj_position.bottom = parseInt( obj_position.top ) + parseInt( $obj.height() );
+            
+            if( obj_position.left < opts.left ) opts.left = obj_position.left;
+            if( obj_position.right > opts.right ) opts.right = obj_position.right;
+            if( obj_position.top < opts.top ) opts.top = obj_position.top;
+            if( obj_position.bottom > opts.bottom ) opts.bottom = obj_position.bottom;
+        });
+        
+        if( ( opts.left <= event.pageX && event.pageX <= opts.right )
+            && ( opts.top <= event.pageY && event.pageY <= opts.bottom ) )
+        {
+            isIn = false;
+        }
+    }
+    
+    return isIn;
+}
+
+$(function(){
+    $(document).mousedown(function( e ){
+        if( isNotInMyArea ( [ $("input"), $("#wrap") ] ) ) {
+            $("#wrap").hide();
+        }
+    });
+    
+    $("input").click(function(){
+        if( !$("#wrap").is(":visible") ) {
+            $("#wrap").show();
+        }
+    });
+});
+</script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script>
-    // 우편번호 찾기 찾기 화면을 넣을 element
-    var element_wrap = document.getElementById('wrap');
 
-    function foldDaumPostcode() {
-        // iframe을 넣은 element를 안보이게 한다.
-        element_wrap.style.display = 'none';
-    }
-
-    function sample3_execDaumPostcode() {
-        // 현재 scroll 위치를 저장해놓는다.
-        var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-               //     document.getElementById("sample3_extraAddress").value = extraAddr;
-                
-                } else {
-                //    document.getElementById("sample3_extraAddress").value = '';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               // document.getElementById('sample3_postcode').value = data.zonecode;
-               // document.getElementById("sample3_address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-              //  document.getElementById("sample3_detailAddress").focus();
-
-                // iframe을 넣은 element를 안보이게 한다.
-                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-                element_wrap.style.display = 'none';
-
-                // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-                document.body.scrollTop = currentScroll;
-            },
-            // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-           
-            width : '100%',
-            height : '100%'
-        }).embed(element_wrap);
-
-        // iframe을 넣은 element를 보이게 한다.
-        element_wrap.style.display = 'block';
-    }
-</script>
 <script src="/js/search.js"></script>
 </body>
 </html>

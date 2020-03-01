@@ -14,7 +14,8 @@ spring:
     username: dabang
     password: bitc5600
     driver-class-name: com.mysql.cj.jdbc.Driver
-#      com.mysql.cj.jdbc.Driver
+# url: jdbc:mysql://localhost:3306/dabang?serverTimezone=Asia/Seoul
+# driver-class-name: com.mysql.cj.jdbc.Driver
 #  jdbc:log4jdbc:mysql://localhost:3306/dabang?serverTimezone=Asia/Seoul
 #   net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     

@@ -42,8 +42,10 @@ public interface RoomRepository {
 	public List<RespSearchListDto> findBySearchList(int userId, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
 			String dealType1, String dealType2, String dealType3, int page, int perPageNum);
 		
-	public List<RespSearchListDto> listPage(Criteria cri);
-	public int totalCount(Criteria cri);
+	public List<RespSearchListDto> listPage(Criteria cri, String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
+			String dealType1, String dealType2, String dealType3);
+	public int totalCount(String keyword, String roomType1, String roomType2, String roomType3, String roomType4, String roomType5,
+			String dealType1, String dealType2, String dealType3);
 	
 	//서하추가 최근본방 테이블에 저장
 	public int saveToday(int roomId, int userId);

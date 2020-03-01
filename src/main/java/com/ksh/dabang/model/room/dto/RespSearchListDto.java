@@ -41,12 +41,13 @@ public class RespSearchListDto {
 	private String keyword;
 	private String filterRoomType;
 	private String filterDealType;
+	private String keywordinput;
 
 	@Builder
 	public RespSearchListDto(String roomType, String addr, String detailAddr, int yearRent, int deposit, int monthRent, int dealRent,
 			double areaP, double areaM, int floor, String moveDay, int mCost, String parking, String elevator,
 			String lof, String title, String content, Date createDate, int hostId, int agentId, double lat,
-			double lng, String picName, int likeId, String keyword, String filterRoomType, String filterDealType) {
+			double lng, String picName, int likeId, String keyword, String filterRoomType, String filterDealType, String keywordinput) {
 		this.roomType = roomType;
 		this.addr = addr;
 		this.detailAddr = detailAddr;
@@ -74,5 +75,6 @@ public class RespSearchListDto {
 		this.keyword = keyword;
 		this.filterRoomType = filterRoomType;
 		this.filterDealType = filterDealType;
+		this.keywordinput = keywordinput;
 	}
 }
