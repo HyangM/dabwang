@@ -12,7 +12,7 @@
 	String roadFullAddr = request.getParameter("roadFullAddr");
 	String roadAddrPart1 = request.getParameter("roadAddrPart1");
 	String addrDetail = request.getParameter("addrDetail");
-	
+	String jibunAddr = request.getParameter("jibunAddr");
 	String entX = request.getParameter("entX");
 	String entY = request.getParameter("entY");
 %>
@@ -32,7 +32,7 @@ function init(){
 		document.form.action="http://www.juso.go.kr/addrlink/addrCoordUrl.do"; //인터넷망(행정망의 경우 별도 문의)
 		document.form.submit();
 	} else{
-		opener.jusoCallBack("<%=roadFullAddr%>","<%=roadAddrPart1%>","<%=addrDetail%>","<%=entX%>", "<%=entY%>");
+		opener.jusoCallBack("<%=roadFullAddr%>","<%=roadAddrPart1%>","<%=addrDetail%>", "<%=jibunAddr%>","<%=entX%>", "<%=entY%>");
 		window.close();
 	}
 }
@@ -41,12 +41,8 @@ function init(){
 <body onload="init();">
 	<form id="form" name="form" method="post">
 		<input type="hidden" id="confmKey" name="confmKey" value="" /> 
-		<input type="hidden" id="returnUrl" name="returnUrl" value="" /> 
-<<<<<<< HEAD
-			<input type="hidden" id="resultType" name="resultType" value="" />
-=======
+		<input type="hidden" id="returnUrl" name="returnUrl" value="" />
 		<input type="hidden" id="resultType" name="resultType" value="" />
->>>>>>> 96f76bf0af31df60acbd836410267f781125896a
 	</form>
 </body>
 </html>

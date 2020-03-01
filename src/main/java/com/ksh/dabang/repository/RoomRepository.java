@@ -29,7 +29,7 @@ public interface RoomRepository {
 	public int saveRoomPic(int selectKey, int num, String OnepicName);
 
 	//매물승인게시판에 글쓰기.
-	public int dealBoardWrite(int selectKey, int hostId, String addr);
+	public int dealBoardWrite(int selectKey, int hostId, String jibunAddr);
 	//매물승인게시판 리스트 보기.
 	public List<RespRoomApprDto> findAllroomAppr(int pageLimit);
 	//매물직접승인하기.

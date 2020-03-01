@@ -18,6 +18,7 @@ public class ReqUploadDto {
 	private String roomType;
 	private String addr;
 	private String detailAddr;
+	private String jibunAddr;
 
 	private String dealType;
 	private int yearRent;

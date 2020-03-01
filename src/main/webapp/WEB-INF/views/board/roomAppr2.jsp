@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 
 <%@ include file="../include/nav.jsp"%>
 <!-- 윤정추가  -->
@@ -305,13 +303,20 @@
 						<tr class="item text-center">
 
 							<c:forEach var="room_option" items="${room_options}" varStatus="status">
-									<c:if test="${room_option.optionType eq 1}">
+
+								<c:choose>
+									<c:when test="${room_option.optionType eq 1}">
 										<td><img src="/images/kwon/options/${room_option.optionName}" style="width: 70px; height: 80px;"
 											onerror="javascript:this.src ='/images/kwon/unknown.jpg'" /></td>
-									</c:if>
+										<c:if test="${((status.index+1) mod 6) == 0}">
+						</tr>
+						<tr class="item text-center">
+							</c:if>
+							</c:when>
+							<c:otherwise></c:otherwise>
+							</c:choose>
 							</c:forEach>
 						</tr>
-
 					</tbody>
 				</table>
 				<br />

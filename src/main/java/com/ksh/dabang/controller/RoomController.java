@@ -71,6 +71,11 @@ public class RoomController {
 	public String upload() {
 		return "room/upload";
 	}
+	// 테스트
+		@GetMapping("/test")
+		public String teset() {
+			return "test";
+		}
 	// 실제 방등록 처리 과정 실행하기.
 	@PostMapping("/uploadProc")
 	public @ResponseBody String roomUpload(
@@ -108,24 +113,16 @@ public class RoomController {
 		reqSavePicDto.setPicName(picNames);	
 		
 		int result = roomService.방등록하기(reqUploadDto, reqSavePicDto);  //방정보, 방옵션, 방사진까지 등록성공하면, result=1이다.
-		
-//		roomService.매물승인신청(reqUploadDto);
-//		//매물승인신청 게시판에 글쓰는거 성공하면 result 값이 1이된다.
-//		System.out.println("매물승인신청 성공??");
-		
 
 		if(result == 1) {
 //			return new ResponseEntity<RespCM>(new RespCM(200, "ok"), HttpStatus.OK);
 			
 			int hostId = principal.getUserId();
 
-			String addr = reqUploadDto.getAddr();
-			System.out.println("매물주소는:" + addr);
+			String jibunAddr = reqUploadDto.getJibunAddr();
+			System.out.println("매물주소는:" + jibunAddr);
 			
-			roomService.매물승인신청(hostId, addr);
-			//매물승인신청 게시판에 글쓰는거 성공하면 result 값이 1이된다.
-			System.out.println("매물승인신청 성공??");
-			
+			roomService.매물승인신청(hostId, jibunAddr);
 			
 			return Script.href("방내놓기 완료", "/");
 		} else {
@@ -134,13 +131,6 @@ public class RoomController {
 		}
 	}	
 
-	
-	@GetMapping("/buttonTest")
-	public String buttonTest() {
-		return "buttonTest";
-	}
-	
-	
 	
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
@@ -177,10 +167,8 @@ public class RoomController {
 		
 		if(result == 1) {
 			roomService.승인받은매물(roomId, agentId);
-			System.out.println("성공======================================");
 			return Script.href("매물승인 성공", "/roomApprList/1");
 		}else {
-			System.out.println("실패======================================");
 			return Script.back("매물승인 실패");
 		}	
 
