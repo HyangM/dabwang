@@ -1,4 +1,4 @@
-﻿# 스프링 부트 프로젝트
+﻿ # 스프링 부트 프로젝트
 
 ## 다봥
 
@@ -29,77 +29,71 @@ use dabang;
 ```
 ```sql
 CREATE TABLE user (
-	userId int(11) PRIMARY KEY AUTO_INCREMENT,
-	email varchar(30) NOT NULL,
-	name varchar(20) NOT NULL,
-	password varchar(20) NOT NULL,
-	phone varchar(11) NOT NULL,
-	type varchar(10) DEFAULT '',
-	typeName varchar(20) DEFAULT '',
-	typeNum varchar(100) DEFAULT '',
-	typeImage varchar(1000) DEFAULT '',
-	typeCer varchar(1) DEFAULT 'N',
-	role varchar(10) DEFAULT '',
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
-	profile varchar(1000) DEFAULT '',
-	UNIQUE KEY email_UNIQUE (email)
+   userId int(11) PRIMARY KEY AUTO_INCREMENT,
+   email varchar(30) NOT NULL,
+   name varchar(20) NOT NULL,
+   password varchar(20) NOT NULL,
+   phone varchar(11) NOT NULL,
+   type varchar(10) DEFAULT '',
+   typeName varchar(20) DEFAULT '',
+   typeNum varchar(100) DEFAULT '',
+   typeImage varchar(1000) DEFAULT '',
+   typeCer varchar(1) DEFAULT 'N',
+   role varchar(10) DEFAULT '',
+   createDate timestamp DEFAULT CURRENT_TIMESTAMP,
+   profile varchar(1000) DEFAULT '',
+   UNIQUE KEY email_UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-관리자 (최초생성해주세요)
-insert INTO user(email, name, password, phone, role) VALUES ('admin@nate.com', '관리자', '1234','00000000','관리자');
+-- 관리자 (최초생성해주세요)
+insert INTO user(email, name, password, phone, role) VALUES ('admin', '관리자', '1234','00000000','관리자');
 
 ```
 ```sql
 CREATE TABLE room(
-	roomId int PRIMARY KEY AUTO_INCREMENT,
-	roomType varchar(20) NOT NULL,
-	addr varchar(200) NOT NULL,
-	detailAddr varchar(100) NOT NULL,
-	dealType varchar(10) NOT NULL,
-	yearRent int default 0,
-	deposit int default 0,
-	monthRent int default 0,
-	dealRent int default 0,
-	areaP double NOT NULL,
-	areaM double NOT NULL,
-	floor int NOT NULL,
-	moveDay varchar(10) NOT NULL,
-	mCost int default 0,
-	parking varchar(1) NOT NULL,
-	elevator varchar(1) NOT NULL,
-	lof varchar(1) NOT NULL,
-	title varchar(50) NOT NULL,
-	content varchar(200) NOT NULL,
-	createDate timestamp NOT NULL,
-	hostId int NOT NULL,
-	agentId int,
-	lat double NOT NULL default 0,
-	lng double NOT NULL default 0,
-	FOREIGN KEY (hostId) REFERENCES user (userId),
-	FOREIGN KEY (agentId) REFERENCES user (userId)    
+   roomId int PRIMARY KEY AUTO_INCREMENT,
+   roomType varchar(20) NOT NULL,
+   addr varchar(200) NOT NULL,
+   detailAddr varchar(100) NOT NULL,
+   jibunAddr varchar(200) DEFAULT '',
+   dealType varchar(10) NOT NULL,
+   yearRent int default 0,
+   deposit int default 0,
+   monthRent int default 0,
+   dealRent int default 0,
+   areaP double NOT NULL,
+   areaM double NOT NULL,
+   floor int NOT NULL,
+   moveDay varchar(10) NOT NULL,
+   mCost int default 0,
+   parking varchar(1) NOT NULL,
+   elevator varchar(1) NOT NULL,
+   lof varchar(1) NOT NULL,
+   title varchar(100) NOT NULL,
+   content varchar(1000) NOT NULL,
+   createDate timestamp NOT NULL,
+   hostId int NOT NULL,
+   agentId int,
+   lat double NOT NULL default 0,
+   lng double NOT NULL default 0,
+   FOREIGN KEY (hostId) REFERENCES user (userId),
+   FOREIGN KEY (agentId) REFERENCES user (userId)    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-insert INTO room VALUES (1, '투룸', '경기도 시흥시 정왕동','402호','월세',0, 500, 40, 0, 20, 64.7, 4, '즉시입주', 7,
-'P','P','P','오늘준공난!평수깡패투룸!!입니댜^^','**신축! 풀옵션은 이제 기본! 이 방의 첫입주 첫주인이 되어주세욥!!', now(), 2, 1, 37.27943075229118, 127.01763998406159);
-insert INTO room VALUES (2, '원룸', '부산시 남구 대연동','303호','전세',18000, 0, 0, 0, 30, 77.5, 6, '날짜협의', 10,
-'P','P','P','오늘준공난!평수깡패투룸!!입니댜^^','**신축! 풀옵션은 이제 기본! 이 방의 첫입주 첫주인이 되어주세욥!!', now(), 3, 1, 37.55915668706214, 126.92536526611102);
-insert INTO room VALUES (3, '원룸', '부산시 남구 대연동','303호','월세',0, 300, 50, 0, 30, 77.5, 6, '날짜협의', 10,
-'P','P','P','오늘준공난!평수깡패투룸!!입니댜^^','**신축! 풀옵션은 이제 기본! 이 방의 첫입주 첫주인이 되어주세욥!!', now(), 3, 1, 37.55915668706214, 126.92536526611102);
 ```
 ```sql
 CREATE TABLE room_pic (
-	roomId int(11) NOT NULL,
-	picId int(11) NOT NULL,
-	picName varchar(200) NOT NULL,
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY(roomId, picId)   
+   roomId int(11) NOT NULL,
+   picId int(11) NOT NULL,
+   picName varchar(200) NOT NULL,
+   createDate timestamp DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY(roomId, picId)   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 ```sql
-CREATE TABLE options (
-	optionId varchar(5) PRIMARY KEY,
-	optionName varchar(20) not null,
-	optionType int not null 
+CREATE TABLE options (   
+   optionId varchar(5) PRIMARY KEY,
+   optionName varchar(20) not null,
+   optionType int not null 
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
 insert INTO options VALUES ('op1', '에어컨.png', 1);
@@ -124,17 +118,15 @@ insert INTO options VALUES ('op19', '인터폰.png', 2);
 ```
 ```sql
 CREATE TABLE room_option(
-	roomId int,
-	optionId varchar(5),
-	PRIMARY KEY(roomId, optionId)    
+   roomId int,
+   optionId varchar(5),
+   PRIMARY KEY(roomId, optionId)    
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
-
-insert INTO room_option VALUES (1,'op1');
 ```
 ```sql
 CREATE TABLE floor (
-	floorNum int PRIMARY KEY,
-	floorName varchar(10) NOT NULL
+   floorNum int PRIMARY KEY,
+   floorName varchar(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
 insert INTO floor VALUES (1, '1층');
@@ -144,52 +136,75 @@ insert INTO floor VALUES (4, '4층');
 insert INTO floor VALUES (5, '5층');
 insert INTO floor VALUES (6, '6층');
 insert INTO floor VALUES (7, '7층');
+insert INTO floor VALUES (8, '8층');
+insert INTO floor VALUES (9, '9층');
+insert INTO floor VALUES (10, '10층');
+insert INTO floor VALUES (11, '11층');
+insert INTO floor VALUES (12, '12층');
+insert INTO floor VALUES (13, '13층');
+insert INTO floor VALUES (14, '14층');
+insert INTO floor VALUES (15, '15층');
+insert INTO floor VALUES (16, '16층');
+insert INTO floor VALUES (17, '17층');
+insert INTO floor VALUES (18, '18층');
+insert INTO floor VALUES (19, '19층');
+insert INTO floor VALUES (20, '20층');
+insert INTO floor VALUES (21, '21층');
+insert INTO floor VALUES (22, '22층');
+insert INTO floor VALUES (23, '23층');
+insert INTO floor VALUES (24, '24층');
+insert INTO floor VALUES (25, '25층');
+insert INTO floor VALUES (26, '26층');
+insert INTO floor VALUES (27, '27층');
+insert INTO floor VALUES (28, '28층');
+insert INTO floor VALUES (29, '29층');
+insert INTO floor VALUES (30, '30층');
+
 ```
--- 층수 30층까지 추가함.
 ```sql
 CREATE TABLE post_deal (
-	postId int auto_increment PRIMARY KEY,
-	roomId int NOT NULL,
-	hostId int NOT NULL,
-	agentId int,
-	title varchar(40) NOT NULL default '매물 승인 요청합니다.',
-	addr varchar(200),
-	confirmYN varchar(1) NOT NULL default 'N',
-	confirmDate datetime,
-	createDate datetime DEFAULT CURRENT_TIMESTAMP,
-	foreign key (roomId) references room (roomId),
-	foreign key (hostId) references user (userId),
-	foreign key (agentId) references user (userId) on delete set null
+   postId int auto_increment PRIMARY KEY,
+   roomId int NOT NULL,
+   hostId int NOT NULL,
+   agentId int,
+   title varchar(40) NOT NULL default '매물 승인 요청',
+   jibunAddr varchar(200),
+   confirmYN varchar(1) NOT NULL default 'N',
+   confirmDate datetime,
+   createDate datetime DEFAULT CURRENT_TIMESTAMP,
+   foreign key (roomId) references room (roomId),
+   foreign key (hostId) references user (userId),
+   foreign key (agentId) references user (userId) on delete set null
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE post_auth (
-	postId int AUTO_INCREMENT PRIMARY KEY,
-	title varchar(40) NOT NULL default '공인중개사 인증 요청합니다.',
-	agentId int default 0,
-	confirmYN varchar(1) NOT NULL default 'N',
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	foreign key (agentId) references user (userId) on delete set null    
+   postId int AUTO_INCREMENT PRIMARY KEY,
+   title varchar(40) NOT NULL default '공인중개사 인증 요청',
+   agentId int default 0,
+   confirmYN varchar(1) NOT NULL default 'N',
+   createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   foreign key (agentId) references user (userId) on delete set null    
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE like_room (
-	likeId int AUTO_INCREMENT PRIMARY KEY,
-	userId int NOT NULL,
-	roomId int NOT NULL,
-	createDate timestamp DEFAULT CURRENT_TIMESTAMP,
-	foreign key (userId) references user(userId) on delete cascade,
-	foreign key (roomId) references room (roomId) on delete cascade 
+   likeId int AUTO_INCREMENT PRIMARY KEY,
+   userId int NOT NULL,
+   roomId int NOT NULL,
+   createDate timestamp DEFAULT CURRENT_TIMESTAMP,
+   foreign key (userId) references user(userId) on delete cascade,
+   foreign key (roomId) references room (roomId) on delete cascade 
 ) engine=InnoDB default charset=utf8;
 ```
 ```sql
 CREATE TABLE today_recode (
-	recodeId int(11) PRIMARY KEY AUTO_INCREMENT,
-	roomId int(11) NOT NULL,
-	userId int(11) NOT NULL,
-	createDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	FOREIGN KEY (roomId) REFERENCES room (roomId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (userId) REFERENCES user (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
+   recodeId int(11) PRIMARY KEY AUTO_INCREMENT,
+   roomId int(11) NOT NULL,
+   userId int(11) NOT NULL,
+   createDate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   FOREIGN KEY (roomId) REFERENCES room (roomId) ON DELETE CASCADE ON UPDATE CASCADE,
+   FOREIGN KEY (userId) REFERENCES user (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 ```sql

@@ -46,7 +46,7 @@
 							<c:otherwise>없음</c:otherwise>
 						</c:choose>
 					</div></td>
-				<td class="text-right"><span>(주)${room.typeName}</span><br /> <span>${room.name}</span></td>
+				<td class="text-right"><span>${room.typeName}</span><br /> <span>${room.name}</span></td>
 				<td class="text-center"><span> <a href="#" data-toggle="popover"
 						title="연락처"
 						data-content="<fmt:formatNumber var="phone" value="${room.phone}" pattern="###,####,####"></fmt:formatNumber><c:out value="${fn:replace(phone, ',', '-')}"/>">
