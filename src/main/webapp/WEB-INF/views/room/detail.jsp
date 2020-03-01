@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 
 <%@ include file="../include/nav.jsp"%>
 <!-- 윤정추가  -->
@@ -12,6 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
 
 <div class="container">
 	<br /> <br />
@@ -27,17 +26,21 @@
 		</thead>
 		<tbody>
 			<tr>
+
 				<td class="text-center"><span>${room.dealType} <c:choose>
+
 							<c:when test="${0 ne room.yearRent}">${room.yearRent} 만원</c:when>
 							<c:when test="${0 ne room.monthRent}">${room.deposit}/${room.monthRent} 만원</c:when>
 							<c:otherwise>${room.dealRent} 만원</c:otherwise>
 						</c:choose>
 				</span></td>
+
 				<td class="text-center"><span> <fmt:formatNumber value="${room.areaM}" pattern=".00"></fmt:formatNumber>㎡
 				</span> <a href="#" data-toggle="tooltip" title="${room.areaP}평">
 						<button type="button" class="btn btn-outline-info" id="areaP--button">평수</button>
 				</a></td>
 				<td class="text-center"><div class="text-primary">
+
 						<c:choose>
 							<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 + α</c:when>
 							<c:otherwise>없음</c:otherwise>
@@ -47,17 +50,21 @@
 				<td class="text-center"><span> <a href="#" data-toggle="popover"
 						title="연락처"
 						data-content="<fmt:formatNumber var="phone" value="${room.phone}" pattern="###,####,####"></fmt:formatNumber><c:out value="${fn:replace(phone, ',', '-')}"/>">
+
+				
 							<button type="button" class="btn btn-outline-primary ml-auto">연락처보기</button>
 					</a></span></td>
 			</tr>
 		</tbody>
 	</table>
+
 	<span>❤10</span> <span>•</span> <span>📧 🔗</span> <span>•</span><span>🚨 허위매물신고</span>
 
 
 	<table class="table">
 		<tbody>
 			<tr>
+
 				<td colspan="3" style="background-color: #0649C0; color: white;"><span style="font-size: small;">확인매물 [<fmt:formatDate
 							value="${room.createDate}" pattern="yy.MM.dd"></fmt:formatDate>]
 				</span></td>
@@ -69,8 +76,13 @@
 				<td colspan="1" style="font-size: small;">• 해당층</td>
 				<td colspan="2" style="font-size: small;">${room.floor}층</td>
 				<td colspan="1" style="font-size: small;">• 공급면적</td>
-				<td colspan="2" style="font-size: small;">${room.areaM}㎡    <span><button type="button"
-							class="btn btn-outline-secondary btn-sm">평</button></span></td>
+
+				<td colspan="2" style="font-size: small;">${room.areaM}㎡<span><button
+							type="button" class="btn btn-outline-secondary btn-sm">평</button></span></td>
+
+
+
+
 				<td colspan="1" style="font-size: small;">• 입주가능일</td>
 				<td colspan="2" style="font-size: small;">${room.moveDay}</td>
 			</tr>
@@ -104,8 +116,12 @@
 			<tr class="item text-center">
 
 				<c:forEach var="room_pic" items="${room_pics}" varStatus="status">
-					<td><a href="" data-toggle="modal" data-target="#myModal"> <img src="/media/${room_pic.picName}"
-							style="width: 275px; height: 180px;" onerror="javascript:this.src ='/images/kwon/unknown.jpg'"
+
+
+					<td><a href="" data-toggle="modal" data-target="#myModal">
+							<img src="/media/${room_pic.picName}"
+							style="width: 275px; height: 180px;"
+							onerror="javascript:this.src ='/images/kwon/unknown.jpg'"
 							onclick="picModal();" />
 					</a> <!-- The Modal -->
 						<div class="modal" id="myModal">
@@ -117,7 +133,9 @@
 									</div>
 									<!-- Modal body -->
 									<div class="modal-body">
+
 										<img id="picNameModal" src="/media/${room_pic.picName}" style="width: 750px; height: 500px;" />
+
 									</div>
 								</div>
 							</div>
@@ -133,6 +151,7 @@
 	</table>
 	<br /> <br />
 
+
 	<div class="row">
 		<div class="col-md-6">
 <%-- 			<h3>${room.title}</h3> --%>
@@ -142,6 +161,7 @@
 
 		</div>
 		<div class="col-md-6">
+
 <%-- 			<p>글내용 : ${room.content}</p> --%>
 
 			<details>
@@ -166,6 +186,7 @@
 				</ul>
 			</details>
 			<br />
+
 		</div>
 	</div>
 </div>
@@ -179,11 +200,12 @@
 		<tbody>
 			<!--   <tr class="text-center" id="detail_menu" style="position: fixed; top: 100; width:100%;"> -->
 			<tr class="text-center" id="detail_menu">
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#price-section">가격정보</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#option-section">옵션</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#location-section">위치 및 주변시설</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#score-section">다방면 스코어</a></td>
-				<td class="text-center"><a style="text-decoration: none; color: gray;" href="#contact-section">이 공인중개사의 다른 방</a></td>
+
+				<td><a href="#option-section">옵션</a></td>
+				<td><a href="#location-section">위치 및 주변시설</a></td>
+				<td><a href="#score-section">다방면 스코어</a></td>
+				<td><a href="#contact-section">이 공인중개사의 다른 방</a></td>
+
 			</tr>
 
 
@@ -199,81 +221,72 @@
 				<h2 class="text-center">가격정보</h2>
 				<br />
 				<table class="table table-bordered text-center">
-					<thead>
-						<tr>
-						<tr>
-							<th>월세</th>
-							<th>전세</th>
-							<th>관리비</th>
-							<th>주차비</th>
-							<th>단기임대</th>
-					</thead>
-					<c:choose>
+						<thead>
+							<tr><th>월세</th>
+								<th>전세</th>
+								<th>관리비</th>
+								<th>주차비</th>
+								<th>단기임대</th>
+						</thead>
+						<c:choose>
 						<c:when test="${room.dealType eq '전세'}">
-
 							<tbody>
-								<tr>
-									<td>-</td>
-									<td>${room.yearRent}만원</td>
-									<td><c:choose>
-
-											<c:when test="${0 ne room.mcost}">${room.mcost} 만 원<br />(기타)</c:when>
-											<c:otherwise>-</c:otherwise>
-										</c:choose></td>
-									<td><c:choose>
-											<c:when test="${room.parking eq 'P'}">가능<br />(무료)</c:when>
-											<c:otherwise>불가능</c:otherwise>
-										</c:choose></td>
-									<td>불가능</td>
-								</tr>
+							<tr>	
+								<td>-</td>
+								<td>${room.yearRent}만원</td>
+								<td>
+									<c:choose>
+									<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 </c:when>
+									<c:otherwise>-</c:otherwise></c:choose><br />(기타)</td>
+								<td>
+									<c:choose>
+									<c:when test="${room.parking eq 'P'}">가능(무료)</c:when>
+									<c:otherwise>불가능</c:otherwise></c:choose>	
+								</td>
+								<td>불가능</td>
+							</tr>
 							</tbody>
 						</c:when>
 						<c:when test="${room.dealType eq '월세'}">
 							<tbody>
-								<tr>
-									<td>${room.deposit}/${room.monthRent}만원</td>
-									<td>-</td>
-									<td><c:choose>
-											<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 </c:when>
-											<c:otherwise>-</c:otherwise>
-										</c:choose><br />(기타)</td>
-									<td><c:choose>
-											<c:when test="${room.parking eq 'P'}">가능(무료)</c:when>
-											<c:otherwise>불가능</c:otherwise>
-										</c:choose></td>
-									<td>불가능</td>
-								</tr>
+
+							<tr>	
+								<td>${room.deposit}/${room.monthRent}만원</td>
+								<td>-</td>
+								<td>
+									<c:choose>
+									<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 </c:when>
+									<c:otherwise>-</c:otherwise></c:choose><br />(기타)</td>
+								<td>
+									<c:choose>
+									<c:when test="${room.parking eq 'P'}">가능(무료)</c:when>
+									<c:otherwise>불가능</c:otherwise></c:choose>	
+								</td>
+								<td>불가능</td>
+							</tr>
 							</tbody>
-						</c:when>
+						</c:when>	
 						<c:otherwise>
 							<tbody>
-								<tr>
-									<td>-</td>
-									<td>-</td>
-									<td><c:choose>
-											<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 (기타)</c:when>
-											<c:otherwise>-</c:otherwise>
-										</c:choose></td>
-									<td><c:choose>
-											<c:when test="${room.parking eq 'P'}">가능<br />(무료)</c:when>
-											<c:otherwise>불가능</c:otherwise>
-										</c:choose></td>
-									<td>불가능</td>
-								</tr>
+							<tr>	
+								<td>-</td>
+								<td>-</td>
+								<td>
+									<c:choose>
+									<c:when test="${0 ne room.mcost}">${room.mcost} 만 원 (기타)</c:when>
+									<c:otherwise>-</c:otherwise></c:choose></td>
+								<td>
+									<c:choose>
+									<c:when test="${room.parking eq 'P'}">가능<br />(무료)</c:when>
+									<c:otherwise>불가능</c:otherwise></c:choose></td>
+								<td>불가능</td>
+							</tr>
 							</tbody>
 						</c:otherwise>
 					</c:choose>
 
-
-
-
-
-
-
-
-
-
 				</table>
+				
 				<br />
 				<div class="card">
 					<div class="row">
@@ -282,8 +295,10 @@
 						</div>
 						<div class="col-sm-9">
 							<div class="card-body">
+
 								<h5 class="text-primary">	
 								<c:choose>
+
 									<c:when test="${0 ne room.mcost+room.monthRent}">${room.mcost+room.monthRent}만 원 + α
 									<span class="text-secondary">(월세+관리비)</span></c:when>
 									<c:otherwise>없음	<span class="text-secondary">(월세+관리비)</span>
@@ -452,8 +467,7 @@
 </div>
 <hr />
 <br />
-
-
+<br />
 
 
 
@@ -462,12 +476,14 @@
 		<div class="row justify-content-center mb-5 pb-3">
 			<div class="col-md-12 heading-section ftco-animate p-4 p-lg-5">
 				<h3 class="text-center">이 공인중개사의 다른 방</h3>
-				<br /> <br />
+				<br />
+				<br />
 			</div>
 			<c:forEach var="otherRoom" items="${otherRooms}">
 				<div class="card m-2" style="width: 300px; height: 330px;">
-					<a href="#" onclick="roomDetail(${otherRoom.roomId})"><img class="card-img-top"
-						src="/media/${otherRoom.picName}" style="width: 300px; height: 160px;"></a>
+					<a href="#" onclick="roomDetail(${otherRoom.roomId})"><img
+						class="card-img-top" src="/media/${otherRoom.picName}"
+						style="width: 300px; height: 160px;"></a>
 
 					<div class="card-body">
 						<p class="card-title text-Strong" style="font-size: 20px">${otherRoom.dealType}
@@ -478,7 +494,8 @@
 							</c:choose>
 						</p>
 
-						<p style="font-size: 12px">${otherRoom.floor}층,${otherRoom.areaP}m²,관리비${otherRoom.MCost}만</p>
+						<p style="font-size: 12px">${otherRoom.floor}층,${otherRoom.areaP}m²,관리비
+							${otherRoom.MCost} 만</p>
 						<p style="font-size: 15px">${otherRoom.title}</p>
 					</div>
 				</div>
@@ -497,9 +514,9 @@
    $('#ftco-navbar').removeClass("bg-dark");
    $('#ftco-navbar').removeClass("navbar-dark");
 </script>
+
+
 <script>
-
-
 
 	function goSection() {
 		document.location.href = "#option-section";
