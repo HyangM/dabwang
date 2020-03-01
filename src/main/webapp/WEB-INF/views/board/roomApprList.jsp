@@ -16,14 +16,13 @@
 		<br/>
 		<table class="table">
 			<thead class="thead-dark">
-				<tr>
-					<th class="text-center">글번호</th>
-					<th class="text-center">제목</th>
-					<th class="text-center">매물 번호</th>
-					<th class="text-center">매물 위치</th>
-					<th class="text-center">요청자</th>
-					<th class="text-center">요청날짜</th>
-					<th class="text-center">승인여부</th>
+				<tr class="text-center">
+					<th>No.</th>
+					<th>제목</th>
+					<th>매물번호</th>
+					<th>매물 위치</th>
+					<th>요청날짜</th>
+					<th>승인여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,10 +31,16 @@
 						<td class="text-center">${roomApprOne.postId}</td>
 						<td class="text-center"><a href="/roomAppr/${roomApprOne.roomId}">${roomApprOne.title}</a></td>
 						<td class="text-center">${roomApprOne.roomId}</td>
-						<td class="text-center">${roomApprOne.addr}</td>
-						<td class="text-center">${roomApprOne.hostName}</td>
-						<td class="text-center">${fn:substring({roomApprOne.createDate},1,17)}</td>
-						<td class="text-center">${roomApprOne.confirmYN}</td>
+						<td class="text-left">${roomApprOne.jibunAddr}</td>
+						<td class="text-center">${fn:substring({roomApprOne.createDate},1,11)}</td>
+						<c:choose>
+							<c:when test="${roomApprOne.confirmYN eq 'N'}">
+								<td class="text-center">미승인</td></c:when>
+							<c:otherwise>
+								<td class="text-center">승인</td></c:otherwise>
+						</c:choose>
+						
+						
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -71,23 +76,16 @@
 	<br/>
 	<br/>
 	
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/jquery.animateNumber.min.js"></script>
-<script src="/js/jquery.easing.1.3.js"></script>
-<script src="/js/jquery.magnific-popup.min.js"></script>
-<script src="/js/jquery.waypoints.min.js"></script>
-<script src="/js/jquery.stellar.min.js"></script>
-<script>
-	function prev() {
- 		alert('1페이지 입니다.');
-	}
-	
-	function next() {
-		alert('마지막 페이지입니다.');
-	}
-</script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+
+<script src="../js/apprList.js"></script>
 
 
 <%@ include file="../include/footer.jsp"%>

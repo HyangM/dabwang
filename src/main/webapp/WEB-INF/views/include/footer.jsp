@@ -48,14 +48,13 @@
 		</div>
 		<div class="row pt-5 mt-5">
 			<div class="col-md-12 text-center">
-
-				<p>Create + 4030</p>
 				<p>본 사이트는 상업적용도가 아닌 개인포트폴리트용으로 제작되었습니다.</p>
 				<p>모든 이미지는 다방 를 사용하였습니다.</p>
-				<p>
-					This template is made with <i class="icon-heart text-danger"
-						aria-hidden="true"></i> by <a href="https://colorlib.com"
-						target="_blank">Colorlib</a>
+				<p>create<i class="icon-heart text-danger"
+						aria-hidden="true"></i> by 
+						<a href="" target="_blank">hyangMi</a>,
+						<a href="" target="_blank">yunjung</a>,
+						<a href="https://blog.naver.com/mooo4030" target="_blank">seoha</a>
 				</p>
 			</div>
 		</div>

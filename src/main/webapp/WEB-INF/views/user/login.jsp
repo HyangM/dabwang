@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/nav.jsp"%>
-<div class="container col-4 bg-light p-5 contact-form">
-	<form class="text-center">
+<div class="container col-5 bg-light p-5 contact-form">
+	<form>
 		<h3>로그인</h3>
 		<div class="form-group">
 			<input onkeyup="enterkey();" id="email" type="text" class="form-control" placeholder="이메일" value="${cookie.emailCookie.value}">
@@ -46,73 +46,6 @@
 <script src="../js/jquery.waypoints.min.js"></script>
 <script src="../js/jquery.stellar.min.js"></script>
 
-<script>
-
-	function enterkey() {
-	    if (window.event.keyCode == 13) {
-	         login();
-	    }
-	}
-
-	function login(){
-		if($('input:checkbox[id="rememberMe"]').is(":checked") == true){
-			rememberMe=true;
-		}else{
-			rememberMe=false;
-		}
-		var data = {
-				email : $('#email').val(),
-				password : $('#password').val(),
-				rememberMe : rememberMe
-			}
-			
-			$.ajax({
-				type : 'POST',
-				url : '/login',
-				data : JSON.stringify(data),
-				contentType : 'application/json; charset=utf-8',
-				dataType : 'json'
-			}).done(function(r) {
-				if(r.msg  == 'ok'){
-				alert('로그인 성공');
-				location.href = "/"
-				}else if(r.msg  == 'fail'){
-					alert('아이디와 비밀번호를 확인하세요.');
-				}
-			}).fail(function(r) {
-				console.log(r);
-				alert('로그인 실패');
-
-			});
-	}
-
- 	/* $('#login-btn').on('click', function() {
-		var data = {
-			email : $('#email').val(),
-			password : $('#password').val()
-		}
-		
-		$.ajax({
-			type : 'POST',
-			url : '/login',
-			data : JSON.stringify(data),
-			contentType : 'application/json; charset=utf-8',
-			dataType : 'json'
-		}).done(function(r) {
-			if(r.msg  == 'ok'){
-			alert('로그인 성공');
-			location.href = "/"
-			}else if(r.msg  == 'fail'){
-				alert('아이디와 비밀번호를 확인하세요.');
-			}
-		}).fail(function(r) {
-			console.log(r);
-			alert('로그인 실패');
-
-		});
-	}); 
- */
-
-</script>
+<script src="../js/login.js"></script>
 
 <%@ include file="../include/footer.jsp"%>

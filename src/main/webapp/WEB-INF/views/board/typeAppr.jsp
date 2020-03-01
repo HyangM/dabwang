@@ -28,37 +28,13 @@
 </div>
 <br />
 <br />
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/jquery.animateNumber.min.js"></script>
-<script src="/js/jquery.easing.1.3.js"></script>
-<script src="/js/jquery.magnific-popup.min.js"></script>
-<script src="/js/jquery.waypoints.min.js"></script>
-<script src="/js/jquery.stellar.min.js"></script>
-<script>
-	$('#appr_btn').on('click', function() {
-		var data = {
-				agentId : $('#agentId').val()
-		};
-
-		$.ajax({type : 'PUT',
-			url : '/typeAppr',
-			data : JSON.stringify(data),
-			contentType : 'application/json; charset=utf-8',
-			dataType : 'json'})
-		.done(function(r) {
-			if (r.msg == 'ok') {
-			alert('권한 승인 완료');
-			location.href = '/typeApprList/1';
-			}else if (r.msg == 'fail') {
-				alert('권한 승인 실패');
-			}
-		}).fail(function(r) {
-			alert('권한 승인 실패');
-		});
-
-	});
-
-</script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/typeAppr.js"> </script>
 <%@ include file="../include/footer.jsp"%>

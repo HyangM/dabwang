@@ -8,33 +8,25 @@
 		SELECT * FROM user 
 	</select>
 	
-	
 	<!-- 회원가입 -->
 	<insert id="join">
 		insert into user(email,name, password, phone, type,createDate)values(#{email},#{name},#{password},#{phone},#{type},now());
 	</insert>
-	
-	
 	
 	<!-- 회원가입 시 이메일 중복체크 -->
 	<select resultType="int" id="emailCheck">
 		select count(*) from user where email = #{email} 
 	</select>
 	
-	
-	
 	<!-- 로그인 시 아이디와 패스워드 일치여부 알아내서 principal에 넣음 -->
 	<select resultType="com.ksh.dabang.model.user.User" id="findByUsernameAndPassword">
 		select userId,email,name,phone,type,typeCer,typeName,typeNum,typeImage,role,profile from user where email = #{email} and password = #{password}
 	</select>
 	
-	
-	
 	<!-- 회원 수정(비밀번호)-->
 	<update id="updateUser" >
-		UPDATE user SET password = #{password} WHERE userId = #{userId}
+		UPDATE user SET password = #{password} WHERE email = #{email}
 	</update>
-
 	
 	<!-- 공인중개사 승인 -->
 	<update id="typeSave">
@@ -42,7 +34,7 @@
 	</update>
 
 	<!-- 유저별로 오늘 본 방 조인해서 방3개만 들고오기-->
-	<select resultType="com.ksh.dabang.model.user.dto.TodayRecodeDto" id="findTodayRecode">
+	<select resultType="com.ksh.dabang.model.user.dto.RespTodayRecodeDto" id="findTodayRecode">
 		select * from today_recode, room, room_pic where today_recode.roomId = room.roomId and room.roomId = room_pic.roomId and today_recode.userId = #{userId} group by room.roomId limit 0,3
 	</select>
 	

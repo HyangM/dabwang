@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ksh.dabang.model.board.dto.BoardTypeCerDto;
-import com.ksh.dabang.model.board.dto.BoardTypeListDto;
+import com.ksh.dabang.model.board.dto.RespBoardTypeCerDto;
+import com.ksh.dabang.model.board.dto.RespBoardTypeListDto;
 import com.ksh.dabang.repository.BoardRepository;
 
 
@@ -18,7 +18,7 @@ public class BoardService {
 	private BoardRepository BoardRepository;
 
 	@Transactional
-	public List<BoardTypeListDto> 공인중개사승인게시판(int pageNo) {
+	public List<RespBoardTypeListDto> 공인중개사승인게시판(int pageNo) {
 		int pageLimit = (pageNo-1)*10;
 		return BoardRepository.findAll(pageLimit);
 	}
@@ -34,7 +34,7 @@ public class BoardService {
 		return BoardRepository.saveTypeCer(agentId);
 	}
 	@Transactional
-	public BoardTypeCerDto 공인중개사승인디테일(int postId ) {
+	public RespBoardTypeCerDto 공인중개사승인디테일(int postId ) {
 		return BoardRepository.findByPostId(postId);
 	}
 	

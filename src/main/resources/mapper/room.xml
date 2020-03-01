@@ -32,9 +32,9 @@
 	</select>
 	
 	<insert id="upload">
-		insert into room(roomType, addr, detailAddr, dealType, yearRent, deposit, monthRent, dealRent, areaP, areaM, 
+		insert into room(roomType, addr, detailAddr, jibunAddr, dealType, yearRent, deposit, monthRent, dealRent, areaP, areaM, 
 		floor, moveDay, mCost, parking, elevator, lof, title, content, createDate, hostId, lat, lng) 
-		values(#{roomType}, #{addr}, #{detailAddr}, #{dealType}, #{yearRent}, #{deposit}, #{monthRent}, #{dealRent}, #{areaP}, #{areaM}, 
+		values(#{roomType}, #{addr}, #{detailAddr}, #{jibunAddr}, #{dealType}, #{yearRent}, #{deposit}, #{monthRent}, #{dealRent}, #{areaP}, #{areaM}, 
 		#{floor}, #{moveDay}, #{mCost}, #{parking}, #{elevator}, #{lof}, #{title}, #{content}, now(), #{hostId}, #{lat}, #{lng})
 	</insert>
 	
@@ -50,16 +50,16 @@
 	</insert>
 	
 	<insert id="dealBoardWrite">
-		insert into post_deal (roomId, hostId, addr, createDate) 
-		values(#{selectKey}, #{hostId}, #{addr}, now())
+		insert into post_deal (roomId, hostId, jibunAddr, createDate) 
+		values(#{selectKey}, #{hostId}, #{jibunAddr}, now())
 	</insert>
 	
 	<select id="findAllroomAppr" resultType="com.ksh.dabang.model.room.dto.RespRoomApprDto"> 
-		select pd.postId, pd.title, pd.roomId, pd.addr, pd.createDate, pd.confirmYN, u.name 
-		from post_deal pd inner join user u 
+		select pd.postId, pd.title, pd.roomId, pd.jibunAddr, pd.createDate, pd.confirmYN, u.name 
+		from post_deal pd left outer join user u 
 		on pd.hostId = u.userId 
 		order by pd.postId 
-		desc limit #{pageLimit}, 10 
+		desc limit #{pageLimit}, 10  
 	</select>
 	
 	<update id="roomApprove">
@@ -67,7 +67,7 @@
 	</update>
 	
 	<update id="updatePostdeal">
-		update post_deal set agentId = #{agentId}, confirmYN = 'Y' where roomId = #{roomId}
+		update post_deal set agentId = #{agentId}, confirmYN = 'Y', confirmDate = now() where roomId = #{roomId}
 	</update>
 	
 	<select id="findBySearchList" resultType="com.ksh.dabang.model.room.dto.RespSearchListDto">

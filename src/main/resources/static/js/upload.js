@@ -1,11 +1,17 @@
 /**
  * 
  */
+
+$('#ftco-navbar').removeClass("bg-dark");
+$('#ftco-navbar').removeClass("navbar-dark");
+
+
 // 버튼 누른 상태 유지하기.
-$('label').on('click', function(){
-    $('label').removeClass('selected');
-    $(this).addClass('selected');
-});
+//$('radio').on('click', function(){
+//    $('radio').removeClass('selected');
+//    $(this).addClass('selected');
+//});
+
 
 
 //도로명 주소검색
@@ -30,10 +36,11 @@ level: 3 // 지도의 확대 레벨
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
 
-function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, entX, entY){
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, jibunAddr, entX, entY){
 	//팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록.
 	$('#addr').val(roadFullAddr);
 	$('#detailAddr').val(addrDetail);
+	$('#jibunAddr').val(jibunAddr);
 	
 	var data = roadAddrPart1;
 	var geocoder = new kakao.maps.services.Geocoder();
