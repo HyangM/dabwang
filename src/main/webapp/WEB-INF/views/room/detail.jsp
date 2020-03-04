@@ -77,7 +77,7 @@
 				<td colspan="2" style="font-size: small;">${room.floor}층</td>
 				<td colspan="1" style="font-size: small;">• 공급면적</td>
 
-				<td colspan="2" style="font-size: small;">${room.areaM}㎡<span><button
+				<td colspan="2" style="font-size: small;"> <fmt:formatNumber value="${room.areaM}" pattern=".00"></fmt:formatNumber>㎡    <span><button
 							type="button" class="btn btn-outline-secondary btn-sm">평</button></span></td>
 
 
@@ -123,6 +123,9 @@
 							style="width: 275px; height: 180px;"
 							onerror="javascript:this.src ='/images/kwon/unknown.jpg'"
 							onclick="picModal();" />
+							
+							
+							
 					</a> <!-- The Modal -->
 						<div class="modal" id="myModal">
 							<div class="modal-dialog modal-lg">
@@ -155,7 +158,6 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h3>${room.title}</h3>
-			<!-- <h3>오늘 준공난! 평수깡패 투룸!! 입니다*^^*</h3> -->
 			<br />
 			<!-- <h3>방1+큰거실구조(추가)</h3> -->
 

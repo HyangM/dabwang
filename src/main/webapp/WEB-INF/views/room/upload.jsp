@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/nav.jsp"%>
 
-<!-- <script src="/js/jquery.min.js"></script> -->
-<!-- <script src="/js/jquery-migrate-3.0.1.min.js"></script> -->
-<!-- <script src="/js/popper.min.js"></script> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">   
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   
+
+
+
+
 <!-- 카카오 지도 APL 라이브러리 걸기. -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ad4b165fec855f2776f599a8e5f6011&libraries=services,clusterer,drawing"></script>
 <style>
@@ -217,7 +221,7 @@ $(document).ready(function () {
 							<td colspan="2">
 							<div class="form-group text-left">
 							<span>공급면적 
-							<input type="number" style="width:60px;" name="areaP" id="areaP" />평 <input type="text" style="width: 60px;" name="areaM"
+							<input type="number" style="width:60px;" value="0" name="areaP" id="areaP" />평 <input type="text" style="width: 60px;" name="areaM"
 									id="areaM" />㎡
 							</span>
 							</div>
@@ -477,7 +481,7 @@ placeholder="상세설명 작성 주의사항
 			</div>
 			<div class="form-group">
 			<label for="picName" class="text-danger">※ 다방 로고를 제외한 불필요한 정보(워터마크, 상호, 전화번호 등)가 있는 매물은 비공개 처리 됩니다.</label>
-			<input type="file" class="form-control" name="picFiles" id="picFiles" readonly="readonly" multiple />
+			<input type="file" class="form-control" name="picFiles" id="picFiles" required="required" readonly="readonly" multiple />
 			<span class="text-secondary">⁋ 허위 매물을 등록할 경우 다방에서 임의로 계정 및 매물 전체 삭제 처리 됩니다.
 			<a href="#">허위매물 제재 정책 확인하기</a></span>
 			</div>
@@ -508,40 +512,57 @@ placeholder="상세설명 작성 주의사항
 
 
 
-<!-- <script>
-// $('#final').on('click', function(){
+ <script>
+ // switch 문으로 바꾸기??????   break문 사용.??
+ 
+$('#final').on('click', function(){	
 	
 // 	if (document.getElementsByName("roomType").value == null){
-// 		alert('매물종류가 입력되지 않았습니다.');	
-//  	if (document.getElementsByName("addr").value == null || document.getElementsByName("detailAddr").value == null){
-//  		alert('주소가 입력되지 않았습니다.');
-// 	if (document.getElementsByName("dealType").value == null){
-//  		alert('거래유형이 입력되지 않았습니다 .');
-// 	if (
-//  			document.getElementsByName("yearRent").value == null || 
-//  			document.getElementsByName("deposit").value == null ||
-//  			document.getElementsByName("monthRent").value == null || 
-//  			document.getElementsByName("dealRent").value == null){
-//  		alert('거래금액이 입력되지 않았습니다.');
-//  	if (document.getElementsByName("areaP").value == null){
-//  		alert('평수가 입력되지 않았습니다.');
-//  	if (document.getElementsByName("floor").value == null){
+	if ($('input[name="roomType"]:checked').val() == "" || $('input[name="roomType"]:checked').val() == null){
+ 		alert('매물종류가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="addr"]').val() == "" || $('input[name="addr"]').val() == null){
+  		alert('주소가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="detailAddr"]').val() == "" || $('input[name="detailAddr"]').val() == null){
+  		alert('상세주소가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="dealType"]:checked').val() == "" || $('input[name="dealType"]:checked').val() == null){
+ 		alert('거래유형이 입력되지 않았습니다 .');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="yearRent"]').val() == 0 && 
+ 			$('input[name="deposit"]').val() == 0 && 
+ 			$('input[name="monthRent"]').val() == 0 && 
+ 			$('input[name="dealRent"]').val() == 0 ){
+ 		alert('거래금액이 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="areaP"]').val() == 0 || $('input[name="areaP"]').val() == null){
+ 		alert('평수가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="moveDay"]:checked').val() == "" || $('input[name="moveDay"]:checked').val() == null){
+ 		alert('입주가능일이 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="parking"]:checked').val() == "" || $('input[name="parking"]:checked').val() == null){
+ 		alert('주차가능 여부가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="elevator"]:checked').val() == "" || $('input[name="elevator"]:checked').val() == null){
+ 		alert('엘리베이터 유무가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="lof"]:checked').val() == "" || $('input[name="lof"]:checked').val() == null){
+ 		alert('전세자금대출가능 여부가 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="optionId"]:checked').val() == "" || $('input[name="optionId"]:checked').val() == null){
+ 		alert('옵션사항이 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="title"]').val() == "" || $('input[name="title"]').val() == null){
+  		alert('글제목이 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('textarea[name="content"]').val() == "" || $('textarea[name="content"]').val() == null){
+  		alert('글내용이 입력되지 않았습니다.');  $("#final").prop("checked", false);
+ 	} else if ($('input[name="picFiles"]').val() == "" || $('input[name="picFiles"]').val() == null){
+  		alert('매물사진이 등록되지 않았습니다.');  $("#final").prop("checked", false);
+ 	}
+
+
+
+	
+
+//$('#final').on('click') 된거 체크 해제 하기..	
+});
+//	if (document.getElementsByName("floor").value == null){
 //  		alert('층수가 입력되지 않았습니다.');
-//  	if (document.getElementsByName("moveDay").value == null){
-//  		alert('입주가능일이 입력되지 않았습니다.');
-// 	if (document.getElementsByName("parking").value == null){
-//  		alert('주차가능여부가 입력되지 않았습니다.');
-// 	if (document.getElementsByName("elevator").value == null){
-//  		alert('엘리베이터 유무가 입력되지 않았습니다.');
-// 	if (document.getElementsByName("lof").value == null){
-//  		alert('전세자금대출가능 여부가 입력되지 않았습니다.');
-// 	if (document.getElementsByName("title").value == null || document.getElementsByName("content").value == null){
-//  		alert('글제목 또는 글내용이 입력되지 않았습니다.');
-// 	if (document.getElementsByName("optionId").value == null){
-//  		alert('옵션사항이 입력되지 않았습니다.');
-//  	} } } } } } } } } } } }
-// });
-</script> -->
+
+
+
+</script> 
 
 <script src="/js/upload.js" type="text/javascript"></script>
 
