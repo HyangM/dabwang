@@ -1,6 +1,5 @@
 package com.ksh.dabang.model.room;
 
-import java.sql.Timestamp;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

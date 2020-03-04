@@ -1,7 +1,5 @@
 package com.ksh.dabang.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ksh.dabang.model.room.Options;
-import com.ksh.dabang.model.room.Room;
 import com.ksh.dabang.model.room.Room_pic;
-import com.ksh.dabang.model.room.dto.ReqRoomApprDto;
 import com.ksh.dabang.model.room.dto.ReqSavePicDto;
 import com.ksh.dabang.model.room.dto.ReqUploadDto;
 import com.ksh.dabang.model.room.dto.RespLikeRoomDto;
