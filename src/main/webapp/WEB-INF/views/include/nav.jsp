@@ -102,7 +102,7 @@
 							<li class="nav-item"><a href="/logout" class="nav-link"><span>로그아웃</span></a></li>
 						</c:when>
 						
-						<c:when test="${sessionScope.principal.role eq '관리자'}">
+						<c:when test="${sessionScope.principal.role eq 'admin'}">
 							<li class="nav-item"><a href="/search" class="nav-link"><span>방 찾기</span></a></li>
 							<li class="nav-item"><a href="/likeRoom" class="nav-link"><span>관심목록</span></a></li>
 							<li class="nav-item"><a href="/upload" class="nav-link"><span>방내놓기</span></a></li>
