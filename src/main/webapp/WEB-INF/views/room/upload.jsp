@@ -490,14 +490,14 @@ placeholder="상세설명 작성 주의사항
 	<br /><br />
 	<div class="text-center">
 		<span class="text-dark">
-			<input type="checkbox" id="final" />매물관리규정을 확인하였으며, 입력한 정보는 실제 매물과 다름이 없습니다.
+			<input type="checkbox" id="final" name="final" onchange="agree_check()" />매물관리규정을 확인하였으며, 입력한 정보는 실제 매물과 다름이 없습니다.
 		</span>
 	</div>
 	<br/>
 	<div class="text-center">
 		<span>
 			<button type="button" class="btn btn-outline-secondary">등록취소</button>
-			<button type="submit" id="room--upload--submit" class="btn btn-primary">매물등록</button>
+			<button type="submit" id="room--upload--submit" class="btn btn-primary" style="display: none">매물등록</button>
 		</span>
 	</div>
 </form>
@@ -510,7 +510,16 @@ placeholder="상세설명 작성 주의사항
 
 
 
-
+<script type="text/javascript">
+function agree_check(){
+   
+   if ($('input:checkbox[id="final"]').is(':checked')) {
+      $('#room--upload--submit').show();
+   } else {
+      $('#room--upload--submit').hide();
+   }
+}
+</script>
 
  <script>
  // switch 문으로 바꾸기??????   break문 사용.??
