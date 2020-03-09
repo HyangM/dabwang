@@ -90,25 +90,25 @@ CREATE TABLE options (
    optionType int not null 
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
-insert INTO options VALUES ('op1', '에어컨.png', 1);
-insert INTO options VALUES ('op2', '세탁기.png', 1);
-insert INTO options VALUES ('op3', '침대.png', 1);
-insert INTO options VALUES ('op4', '책상.png', 1);
-insert INTO options VALUES ('op5', '옷장.png', 1);
-insert INTO options VALUES ('op6', 'TV.png', 1);
-insert INTO options VALUES ('op7', '신발장.png', 1);
-insert INTO options VALUES ('op8', '냉장고.png', 1);
-insert INTO options VALUES ('op9', '가스레인지.png', 1);
-insert INTO options VALUES ('op10', '인덕션.png', 1);
-insert INTO options VALUES ('op11', '전자레인지.png', 1);
-insert INTO options VALUES ('op12', '전자도어락.png', 1);
-insert INTO options VALUES ('op13', '비데.png', 1);
-insert INTO options VALUES ('op14', '비디오폰.png', 2);
-insert INTO options VALUES ('op15', '공동현관.png', 2);
-insert INTO options VALUES ('op16', '경비원.png', 2);
-insert INTO options VALUES ('op17', 'CCTV.png', 2);
-insert INTO options VALUES ('op18', '방범창.png', 2);
-insert INTO options VALUES ('op19', '인터폰.png', 2);
+insert INTO options VALUES ('op1', 'op1.png', 1);
+insert INTO options VALUES ('op2', 'op2.png', 1);
+insert INTO options VALUES ('op3', 'op3.png', 1);
+insert INTO options VALUES ('op4', 'op4.png', 1);
+insert INTO options VALUES ('op5', 'op5.png', 1);
+insert INTO options VALUES ('op6', 'op6.png', 1);
+insert INTO options VALUES ('op7', 'op7.png', 1);
+insert INTO options VALUES ('op8', 'op8.png', 1);
+insert INTO options VALUES ('op9', 'op9.png', 1);
+insert INTO options VALUES ('op10', 'op10.png', 1);
+insert INTO options VALUES ('op11', 'op11.png', 1);
+insert INTO options VALUES ('op12', 'op12.png', 1);
+insert INTO options VALUES ('op13', 'op13.png', 1);
+insert INTO options VALUES ('op14', 'op14.png', 2);
+insert INTO options VALUES ('op15', 'op15.png', 2);
+insert INTO options VALUES ('op16', 'op16.png', 2);
+insert INTO options VALUES ('op17', 'op17.png', 2);
+insert INTO options VALUES ('op18', 'op18.png', 2);
+insert INTO options VALUES ('op19', 'op19.png', 2);
 select * from options;
 
 CREATE TABLE room_option(
@@ -122,43 +122,43 @@ CREATE TABLE floor (
    floorName varchar(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
 
-insert INTO floor VALUES (1, '1층');
-insert INTO floor VALUES (2, '2층');
-insert INTO floor VALUES (3, '3층');
-insert INTO floor VALUES (4, '4층');
-insert INTO floor VALUES (5, '5층');
-insert INTO floor VALUES (6, '6층');
-insert INTO floor VALUES (7, '7층');
-insert INTO floor VALUES (8, '8층');
-insert INTO floor VALUES (9, '9층');
-insert INTO floor VALUES (10, '10층');
-insert INTO floor VALUES (11, '11층');
-insert INTO floor VALUES (12, '12층');
-insert INTO floor VALUES (13, '13층');
-insert INTO floor VALUES (14, '14층');
-insert INTO floor VALUES (15, '15층');
-insert INTO floor VALUES (16, '16층');
-insert INTO floor VALUES (17, '17층');
-insert INTO floor VALUES (18, '18층');
-insert INTO floor VALUES (19, '19층');
-insert INTO floor VALUES (20, '20층');
-insert INTO floor VALUES (21, '21층');
-insert INTO floor VALUES (22, '22층');
-insert INTO floor VALUES (23, '23층');
-insert INTO floor VALUES (24, '24층');
-insert INTO floor VALUES (25, '25층');
-insert INTO floor VALUES (26, '26층');
-insert INTO floor VALUES (27, '27층');
-insert INTO floor VALUES (28, '28층');
-insert INTO floor VALUES (29, '29층');
-insert INTO floor VALUES (30, '30층');
+insert INTO floor VALUES (1, '1F');
+insert INTO floor VALUES (2, '2F');
+insert INTO floor VALUES (3, '3F');
+insert INTO floor VALUES (4, '4F');
+insert INTO floor VALUES (5, '5F');
+insert INTO floor VALUES (6, '6F');
+insert INTO floor VALUES (7, '7F');
+insert INTO floor VALUES (8, '8F');
+insert INTO floor VALUES (9, '9F');
+insert INTO floor VALUES (10, '10F');
+insert INTO floor VALUES (11, '11F');
+insert INTO floor VALUES (12, '12F');
+insert INTO floor VALUES (13, '13F');
+insert INTO floor VALUES (14, '14F');
+insert INTO floor VALUES (15, '15F');
+insert INTO floor VALUES (16, '16F');
+insert INTO floor VALUES (17, '17F');
+insert INTO floor VALUES (18, '18F');
+insert INTO floor VALUES (19, '19F');
+insert INTO floor VALUES (20, '20F');
+insert INTO floor VALUES (21, '21F');
+insert INTO floor VALUES (22, '22F');
+insert INTO floor VALUES (23, '23F');
+insert INTO floor VALUES (24, '24F');
+insert INTO floor VALUES (25, '25F');
+insert INTO floor VALUES (26, '26F');
+insert INTO floor VALUES (27, '27F');
+insert INTO floor VALUES (28, '28F');
+insert INTO floor VALUES (29, '29F');
+insert INTO floor VALUES (30, '30F');
 
 CREATE TABLE post_deal (
    postId int auto_increment PRIMARY KEY,
    roomId int NOT NULL,
    hostId int NOT NULL,
    agentId int,
-   title varchar(40) NOT NULL default '매물 승인 요청',
+   title varchar(40) NOT NULL default 'Please approve',
    jibunAddr varchar(200),
    confirmYN varchar(1) NOT NULL default 'N',
    confirmDate datetime,
@@ -170,7 +170,7 @@ CREATE TABLE post_deal (
 
 CREATE TABLE post_auth (
    postId int AUTO_INCREMENT PRIMARY KEY,
-   title varchar(40) NOT NULL default '공인중개사 인증 요청',
+   title varchar(40) NOT NULL default 'Please approve',
    agentId int default 0,
    confirmYN varchar(1) NOT NULL default 'N',
    createDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
